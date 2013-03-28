@@ -180,7 +180,7 @@ body{
 }
 #container footer {
     bottom: 0px;
-    position: absolute;
+    position: static;
     text-align: center;
     width: 100%;
 }
