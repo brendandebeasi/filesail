@@ -9,13 +9,12 @@ require_once('head.php');
             <div class="upload-border">
                 <a class="button blue upload" id="upload-button" href="javascript:void(0);">select file to upload</a>
                 <input class="hidden" id="upload-field" type="file" name="file" data-url="upload.php" multiple>
-            </div>
+            </div><!--
             <div class="upload-completed">
-                <em class="hidden">Completed Uploads:</em>
                 <ul>
-                    <!--<li><a href="#">Asdf</a></li>-->
+                    <li><a href="#">Asdf</a></li>
                 </ul>
-            </div>
+            </div>-->
         </div>
 
         <div class="small-text">
