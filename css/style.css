@@ -91,7 +91,6 @@ body{
     background-position: -859px -25px;
 }
 #container .body .upload-contain .status {
-
     margin-top: 10px;
 }
 #container .body .upload-contain .status em {
@@ -114,6 +113,12 @@ body{
 }
 #container .body .upload-contain .status ul li a:hover {
     color: #70989e;
+}
+#container .body .upload-contain .status ul li.success a, #container .body .upload-contain .status ul li.success a:hover {
+    color: rgb(65, 145, 54);
+}
+#container .body .upload-contain .status ul li.failed a, #container .body .upload-contain .status ul li.failed a:hover {
+    color: rgb(145, 0, 6);
 }
 #container .body h1 {
     background: url('../img/filesail-sprite.png') no-repeat -281px -170px;
