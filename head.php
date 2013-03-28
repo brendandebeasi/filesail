@@ -20,14 +20,26 @@ require_once('config.php');
                 <a id="logo" href="<?php $config['base_url']; ?>"></a>
             </div>
             <div class="right">
-                <div class="buttons">
-                    <a class="button login" href="javascript:void(0);">Login</a>
-                    <a class="button signup" href="javascript:void(0);">Signup</a>
+                <div class="buttons right">
+                    <button class="login" href="javascript:void(0);">Login</button>
+                    <button class="signup" href="javascript:void(0);">Signup</button>
                 </div>
                 <div class="login-box hidden">
-                    <input id="username" type="text" />
-                    <input id="password" type="password"/>
+                    <a class="close-box icon-sweets" href="javascript:void(0);">x</a>
+                    <input id="username" placeholder="Username / Email" type="text" />
+                    <input id="password" placeholder="Password" type="password"/>
+                    <button class="login" href="javascript:void(0);">Login</button>
                 </div>
+                <div class="signup-box hidden">
+                    <a class="close-box icon-sweets" href="javascript:void(0);">x</a>
+                    <input id="name" placeholder="Name" type="text" />
+                    <input id="username" placeholder="Username" type="text" />
+                    <input id="email" placeholder="Email Address" text" />
+                    <input id="password" placeholder="Password" type="password"/>
+                    <button class="signup" href="javascript:void(0);">Signup</button>
+                </div>
+                <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
     </header>

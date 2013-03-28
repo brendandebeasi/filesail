@@ -12,6 +12,22 @@ body{
 .right { float: right; }
 .clear { clear: both; }
 
+@font-face {
+    font-family: 'iconSweetsRegular';
+    src: url('../fonts/iconsweets-webfont.eot');
+    src: url('../fonts/iconsweets-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/iconsweets-webfont.woff') format('woff'),
+    url('../fonts/iconsweets-webfont.ttf') format('truetype'),
+    url('../fonts/iconsweets-webfont.svg#iconSweetsRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.icon-sweets {
+    font-family: iconSweetsRegular;
+}
+
+
 #container {
 
 }
@@ -33,30 +49,53 @@ body{
 #container header {
 
 }
-#container header .buttons {
-
-}
-#container header .buttons .button {
+#container header button {
+    background: url('../img/filesail-sprite.png') no-repeat;
+    border: 0px;
     color: rgba(0,0,0,0);
     display: inline-block;
-    background: url('../img/filesail-sprite.png') no-repeat;
-    margin-top: 13px;
+    cursor: pointer;
     width: 76px;
     height: 29px;
 
 }
-#container header .buttons .button.login {
+#container header .buttons button {
+    margin-top: 13px;
+}
+#container header .close-box {
+    text-decoration: none;
+    color: rgba(239, 239, 240, 1.0);
+    position: relative;
+    top: 2px;
+}
+#container header button.login {
     background-position: -757px -149px;
     margin-right: 5px;
 }
-#container header .buttons .button.login:hover {
+#container header button.login:hover {
     background-position:  -757px -189px;
 }
-#container header .buttons .button.signup {
+#container header button.signup {
     background-position: -860px -149px;
 }
-#container header .buttons .button.signup:hover {
+#container header button.signup:hover {
     background-position: -860px -189px
+}
+#container header .login-box, #container header .signup-box {
+    margin-top: 12px;
+}
+#container header input {
+    background: rgba(225, 225, 225, .3);
+    border: 1px solid rgba(60, 60, 60, .9);
+    border-radius: 10px;
+    color: rgba(227, 227, 227, .8);
+    display: inline-block;
+    font-size: 10pt;
+    padding-left: 10px;
+    height: 25px;
+}
+#container header input:focus {
+    outline: none;
 }
 #container .body {
     text-align: center;

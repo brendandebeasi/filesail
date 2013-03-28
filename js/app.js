@@ -1,4 +1,19 @@
 $(document).ready(function() {
+    //Show login field
+    $('header .buttons .login').click(function() {
+        $(this).parent().addClass('hidden');
+        $(this).parent().parent().find('.login-box').removeClass('hidden');
+    });
+    //Show signup field
+    $('header .buttons .signup').click(function() {
+        $(this).parent().addClass('hidden');
+        $(this).parent().parent().find('.signup-box').removeClass('hidden');
+    });
+    //Close Login / Signup field
+    $('header .login-box .close-box, header .signup-box .close-box').click(function() {
+        $(this).parent().addClass('hidden');
+        $(this).parent().parent().find('.buttons').removeClass('hidden');
+    });
 
     //Map the upload button image to trigger the real upload image
     $('#upload-button').click(function() {
