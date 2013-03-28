@@ -17,6 +17,9 @@ $clean_name = str_replace($remove_these, '', $file['name']) . '-' . time();
 $hash = sha1(time() . sha1($clean_name));
 
 //Save the uploaded the file to another location
-$upload_path = $config['file_dir'] . $clean_name;
-if (!move_uploaded_file($file['tmp_name'], $upload_path)) $response = ['success'=>false,'error'=>'File upload error'];
-else echo $config['file_dir'] . $clean_name;
+$upload_path = $config['full_file_dir'] . $clean_name;
+if (!move_uploaded_file($file['tmp_name'], $upload_path))  {
+    echo ['success'=>false,'error'=>'File upload error','url'=>$config['']];
+}
+else echo ['success'=>true,'error'=>null,'url'=>$config['file_dir'] . $clean_name];
+

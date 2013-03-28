@@ -11,7 +11,8 @@ $config = [
         'base_dir'  => '/Users/brendan.debeasi/git/filesail',
         'base_url'  => '/',
         'base_dir'  => getcwd(),
-        'file_dir'    => getcwd() . '/files/',
+        'file_dir'    => 'files/',
+        'full_file_dir'    => getcwd() . 'files/',
     ],
     'stage' => [
         'db' => [
@@ -20,10 +21,11 @@ $config = [
             'pass'  => 'GreatSuccess2012'
         ],
 
-        'host'      => 'http://dev.filesail.com:1337/',
+        'host'      => 'http://debea.si/',
         'base_dir'  => getcwd(),
         'base_url'  => '/fs/',
-        'file_dir'    => getcwd() . '/files/'
+        'file_dir'    =>  'files/',
+        'full_file_dir'   => getcwd() . 'files/'
 
     ]
 ];
