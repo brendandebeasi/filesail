@@ -22,7 +22,7 @@ $(document).ready(function() {
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('.upload-contain .status ul li.pending').remove();
             if(progress != 100) {
-                var inject = inject = '<li class="pending"><a href="javascript:alert(\'Hold yer horses sorry ^_^\');">uploading: ' + progress + '% (' + data.loaded+' / '+ data.total +')</a></li>';
+                var inject = inject = '<li class="pending"><a href="javascript:alert(\'Hold yer horses...\');">uploading: ' + progress + '% (' + data.loaded+' / '+ data.total +')</a></li>';
                 $('.upload-contain .status ul').prepend(inject);
 
             }
