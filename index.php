@@ -1,6 +1,4 @@
-<?php
-require_once('head.php');
-?>
+<?php require_once('head.php'); ?>
 <div class="main-component-contain">
     <div class="body">
         <h1>File Sharing For Professionals, Done Right.</h1>
@@ -17,7 +15,7 @@ require_once('head.php');
         </div>
 
         <div class="small-text">
-            By clicking "select file to upload" you agree to our <a href="javascript:void(0);">Terms of Service</a>
+            By clicking "select file to upload" you agree to our <a href="javascript:alert('Please do not upload copyrighted files. Not only will we delete them, but we could get into trouble. If you enjoy the service please respect United States copyright laws. If you have any complaints or concerns about files hosted on our server please do not hesitate to email b[AT]neueway.com or peridious[AT]icloud.com');">Terms of Service</a>
         </div>
 
         <ul class="file-type-icons">
@@ -32,17 +30,4 @@ require_once('head.php');
         </div>
     </div>
 </div>
-
-<footer>
-    <div class="divider"></div>
-    <ul>
-        <li><a href="javascript:void(0);">Home</a></li>
-        <li><a href="javascript:void(0);">Contact</a></li>
-        <li><a href="javascript:void(0);">About</a></li>
-        <li><a href="javascript:void(0);">Facebook</a></li>
-        <li><a href="javascript:void(0);">Twitter</a></li>
-    </ul>
-    <div class="copyright">
-        &copy; 2013 FileSail, LLC
-    </div>
-</footer>
+<?php require_once('foot.php'); ?>
