@@ -3,6 +3,7 @@ $config = [
     'dev'   => [
         'db' => [
             'host'  => 'localhost',
+            'name'  => 'filesail',
             'user'  => 'root',
             'pass'  => 'root',
         ],
@@ -17,6 +18,7 @@ $config = [
     'stage' => [
         'db' => [
             'host'  => 'localhost',
+            'name'  => 'filesail',
             'user'  => 'root',
             'pass'  => 'GreatSuccess2012'
         ],
@@ -31,7 +33,7 @@ $config = [
     ]
 ];
 
-require('env.php');
+require_once('env.php');
 $config = $config[$env];
 $safeconfig = $config;
 //BE SURE TO REMOVE UNSAFE VARS HERE
