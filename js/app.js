@@ -9,7 +9,7 @@ $(document).ready(function() {
     $('#upload-field').fileupload({
         dataType: 'json',
         done: function (e, data) {
-            debugger;
+            //debugger;
             $.each(data.result.files, function (index, file) {
                 $('<p/>').text(file.name).appendTo(document.body);
             });
