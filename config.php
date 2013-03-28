@@ -24,6 +24,23 @@ $config = [
             'pass'  => 'GreatSuccess2012'
         ],
 
+        'host'      => 'http://stage.filesail.com/',
+        'base_dir'  => getcwd(),
+        'base_url'  => '',
+        'temp_dir'  => 'files/tmp',
+        'file_host'      => 'http://stage.fsail.co/',
+        'file_dir'    =>  'files/',
+        'full_file_dir'   => getcwd() . '/files/'
+
+    ],
+    'prod' => [
+        'db' => [
+            'host'  => 'localhost',
+            'name'  => 'filesail',
+            'user'  => 'root',
+            'pass'  => 'GreatSuccess2012'
+        ],
+
         'host'      => 'http://filesail.com/',
         'base_dir'  => getcwd(),
         'base_url'  => '',
