@@ -33,11 +33,6 @@ $config = [
 
 require('env.php');
 $config = $config[$env];
-ini_set('upload_tmp_dir',$config['temp_dir']);
-ini_set('upload_max_filesize','4G');
-ini_set('post_max_size','4G');
-ini_set('max_execution_time','3600');
-ini_set('max_input_time','3600');
 $safeconfig = $config;
 //BE SURE TO REMOVE UNSAFE VARS HERE
 $safeconfig['db'] = null;
