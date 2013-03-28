@@ -10,7 +10,7 @@ require_once('head.php');
                 <a class="button blue upload" id="upload-button" href="javascript:void(0);">select file to upload</a>
                 <input class="hidden" id="upload-field" type="file" name="file" data-url="upload.php" multiple>
             </div>
-            <div class="upload-completed">
+            <div class="status">
                 <ul>
                 </ul>
             </div>

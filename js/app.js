@@ -16,14 +16,19 @@ $(document).ready(function() {
             else {
                 inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
             }
-            $('.upload-completed ul').prepend(inject);
+            $('.upload-contain .status ul').prepend(inject);
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#progress .bar').css(
-                'width',
-                progress + '%'
-            );
+            $('.upload-contain .status ul li.pending').remove();
+            if(progress != 100) {
+                var inject = inject = '<li class="pending"><a href="javascript:alert(\'Hold yer horses sorry ^_^\');">uploading: ' + progress + '% (' + data.loaded+' / '+ data.total +')</a></li>';
+                $('.upload-contain .status ul').prepend(inject);
+
+            }
+            else {
+
+            }
         }
     });
 });

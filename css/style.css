@@ -90,29 +90,29 @@ body{
 #container .body .upload-contain .upload:active {
     background-position: -859px -25px;
 }
-#container .body .upload-contain .upload-completed {
+#container .body .upload-contain .status {
 
     margin-top: 10px;
 }
-#container .body .upload-contain .upload-completed em {
+#container .body .upload-contain .status em {
     display: block;
 }
-#container .body .upload-contain .upload-completed ul {
+#container .body .upload-contain .status ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-#container .body .upload-contain .upload-completed ul li {
+#container .body .upload-contain .status ul li {
     display: block;
     text-align: center;
     margin-top: 5px;
 }
-#container .body .upload-contain .upload-completed ul li a {
+#container .body .upload-contain .status ul li a {
     color: #587f86;
     font-weight: bold;
     text-decoration: none;
 }
-#container .body .upload-contain .upload-completed ul li a:hover {
+#container .body .upload-contain .status ul li a:hover {
     color: #70989e;
 }
 #container .body h1 {
