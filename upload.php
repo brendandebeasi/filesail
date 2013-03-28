@@ -19,7 +19,7 @@ $hash = sha1(time() . sha1($clean_name));
 //Save the uploaded the file to another location
 $upload_path = $config['full_file_dir'] . $clean_name;
 if (!move_uploaded_file($file['tmp_name'], $upload_path))  {
-    echo ['success'=>false,'error'=>'File upload error','url'=>$config['']];
+    echo ['success'=>false,'error'=>'File upload error'];
 }
 else echo ['success'=>true,'error'=>null,'url'=>$config['file_dir'] . $clean_name];
 
