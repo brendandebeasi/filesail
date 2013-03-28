@@ -4,14 +4,14 @@ $config = [
         'db' => [
             'host'  => 'localhost',
             'user'  => 'root',
-            'pass'  => 'root'
+            'pass'  => 'root',
         ],
 
         'host'      => 'http://dev.filesail.com:1337/',
         'base_dir'  => '/Users/brendan.debeasi/git/filesail',
         'base_url'  => '/',
         'base_dir'  => getcwd(),
-        'file_dir'    => getcwd() . '/files/'
+        'file_dir'    => getcwd() . '/files/',
     ],
     'stage' => [
         'db' => [
