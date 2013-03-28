@@ -1,0 +1,11 @@
+@charset "UTF-8";
+body{
+  padding-top: 60px;
+}
+
+/*Generic classes*/
+.hidden { display: none; }
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+
