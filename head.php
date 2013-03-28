@@ -25,13 +25,13 @@ require_once('config.php');
                     <button class="signup" href="javascript:void(0);">Signup</button>
                 </div>
                 <div class="login-box hidden">
-                    <a class="close-box icon-sweets" href="javascript:void(0);">x</a>
+                    <a class="close-box icon-sweets" href="javascript:void(0);">w</a>
                     <input id="username" placeholder="Username / Email" type="text" />
                     <input id="password" placeholder="Password" type="password"/>
                     <button class="login" href="javascript:void(0);">Login</button>
                 </div>
                 <div class="signup-box hidden">
-                    <a class="close-box icon-sweets" href="javascript:void(0);">x</a>
+                    <a class="close-box icon-sweets" href="javascript:void(0);">w</a>
                     <input id="name" placeholder="Name" type="text" />
                     <input id="username" placeholder="Username" type="text" />
                     <input id="email" placeholder="Email Address" text" />

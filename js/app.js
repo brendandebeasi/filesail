@@ -46,7 +46,7 @@ $(document).ready(function() {
 
             var inject;
             if(data.result.success == true) {
-                inject = '<li class="success"><a href="'+config.host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
+                inject = '<li class="success"><a target="_blank" href="'+config.host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
             }
             else {
                 inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
