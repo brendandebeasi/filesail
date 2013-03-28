@@ -9,6 +9,7 @@ require_once('config.php');
 	<script src="js/jquery.iframe-transport.js"></script>
 	<script src="js/jquery.fileupload.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/dynamic.php"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>

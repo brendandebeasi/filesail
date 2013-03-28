@@ -9,10 +9,14 @@ $(document).ready(function() {
     $('#upload-field').fileupload({
         dataType: 'json',
         done: function (e, data) {
-            //debugger;
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo(document.body);
-            });
+            var inject;
+            if(data.result.success == true) {
+                inject = '<li class="success"><a href="'+config.host + data.result.url+'">&#x2713; ' + data.result.name + '</a></li>'
+            }
+            else {
+                inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
+            }
+            $('.upload-completed ul').prepend(inject);
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);

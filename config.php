@@ -31,3 +31,6 @@ $config = [
 
 require('env.php');
 $config = $config[$env];
+$safeconfig = $config;
+//BE SURE TO REMOVE UNSAFE VARS HERE
+$safeconfig['db'] = null;

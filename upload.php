@@ -21,6 +21,6 @@ $upload_path = $config['full_file_dir'] . $clean_name;
 if (!move_uploaded_file($file['tmp_name'], $upload_path))  {
     $response = ['success'=>false,'error'=>'File upload error'];
 }
-else $response = ['success'=>true,'error'=>null,'url'=>$config['file_dir'] . $clean_name];
+else $response = ['success'=>true,'error'=>null,'name'=>$file['name'],'url'=>$config['file_dir'] . $clean_name];
 echo json_encode($response);
 
