@@ -90,9 +90,6 @@ body{
 #container .body .upload-contain .upload:active {
     background-position: -859px -25px;
 }
-#container .body .upload-contain .status {
-    margin-top: 10px;
-}
 #container .body .upload-contain .status em {
     display: block;
 }
