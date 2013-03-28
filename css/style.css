@@ -65,11 +65,15 @@ body{
     border: white 3px dashed;
     border-radius: 15px;
     display: inline-block;
-    padding: 15px;
+    padding: 25px;
     margin-bottom: 20px;
 }
-#container .body .upload-contain .upload {
-    background: url('../img/filesail-sprite.png') no-repeat -50px -25px;
+#container .body .upload-contain .upload-border {
+    border: 7px solid #f4f4f4;
+    border-radius: 10px;
+}
+#container .body .upload-contain .upload-border .upload {
+    background: transparent url('../img/filesail-sprite.png') no-repeat -50px -25px;
     color: #fff;
     display: block;
     font-weight: bold;
@@ -85,6 +89,31 @@ body{
 }
 #container .body .upload-contain .upload:active {
     background-position: -859px -25px;
+}
+#container .body .upload-contain .upload-completed {
+
+    margin-top: 10px;
+}
+#container .body .upload-contain .upload-completed em {
+    display: block;
+}
+#container .body .upload-contain .upload-completed ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#container .body .upload-contain .upload-completed ul li {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
+#container .body .upload-contain .upload-completed ul li a {
+    color: #587f86;
+    font-weight: bold;
+    text-decoration: none;
+}
+#container .body .upload-contain .upload-completed ul li a:hover {
+    color: #70989e;
 }
 #container .body h1 {
     background: url('../img/filesail-sprite.png') no-repeat -281px -170px;
@@ -149,6 +178,13 @@ body{
     position: absolute;
     text-align: center;
     width: 100%;
+}
+#container footer .divider {
+    background: #cfcfcf;
+    border-top: 1px solid #f4f4f4;
+    display: inline-block;
+    height: 1px;
+    width: 35%;
 }
 #container footer ul {
     list-style-type: none;

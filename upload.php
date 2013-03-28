@@ -12,7 +12,7 @@ if($file['error'] != UPLOAD_ERR_OK) {
 
 //Sanitize the filename (See note below)
 $remove_these = array(' ','`','"','\'','\\','/');
-$clean_name = str_replace($remove_these, '', $file['name']) . '-' time();
+$clean_name = str_replace($remove_these, '', $file['name']) . '-' . time();
 
 $hash = sha1(time() . sha1($clean_name));
 

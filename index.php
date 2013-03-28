@@ -6,12 +6,20 @@ require_once('head.php');
         <h1>File Sharing For Professionals, Done Right.</h1>
 
         <div class="upload-contain">
-            <a class="button blue upload" id="upload-button" href="javascript:void(0);">UPLOAD!</a>
-            <input class="hidden" id="upload-field" type="file" name="file" data-url="upload.php" multiple>
+            <div class="upload-border">
+                <a class="button blue upload" id="upload-button" href="javascript:void(0);">select file to upload</a>
+                <input class="hidden" id="upload-field" type="file" name="file" data-url="upload.php" multiple>
+            </div>
+            <div class="upload-completed">
+                <em class="hidden">Completed Uploads:</em>
+                <ul>
+                    <!--<li><a href="#">Asdf</a></li>-->
+                </ul>
+            </div>
         </div>
 
         <div class="small-text">
-            By clicking "UPLOAD!" you agree to adhere to our <a href="javascript:void(0);">Terms of Service</a>
+            By clicking "select file to upload" you agree to our <a href="javascript:void(0);">Terms of Service</a>
         </div>
 
         <ul class="file-type-icons">
@@ -28,6 +36,7 @@ require_once('head.php');
 </div>
 
 <footer>
+    <div class="divider"></div>
     <ul>
         <li><a href="javascript:void(0);">Home</a></li>
         <li><a href="javascript:void(0);">Contact</a></li>

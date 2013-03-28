@@ -20,8 +20,8 @@ require_once('config.php');
             </div>
             <div class="right">
                 <div class="buttons">
-                    <a class="button login" href="javascript:void();">Login</a>
-                    <a class="button signup" href="javascript:void();">Signup</a>
+                    <a class="button login" href="javascript:void(0);">Login</a>
+                    <a class="button signup" href="javascript:void(0);">Signup</a>
                 </div>
                 <div class="login-box hidden">
                     <input id="username" type="text" />
