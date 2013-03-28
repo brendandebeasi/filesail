@@ -19,7 +19,26 @@ $(document).ready(function() {
     $('#upload-button').click(function() {
         $('#upload-field').trigger('click');
     });
+    //Nicely animate the file type icons
+    $('.file-type-icons li').hover(
+      function() {
+          var backgroundYPosition = $(this).css('background-position').split(' ');
+          var backgroundYPosition = Number(backgroundYPosition[1].replace('px',''));
 
+          if(typeof($(this).data('originalYPosition')) == 'undefined')$(this).data('originalYPosition', backgroundYPosition);
+
+          var newBackgroundYPosition =  backgroundYPosition - 200;
+          $(this).animate({
+              backgroundPositionY: newBackgroundYPosition + 'px'
+          }, 200);
+      },
+      function() {
+          var backgroundPosition = $(this).css('background-position').split(' ');
+          $(this).animate({
+              backgroundPositionY:  $(this).data('originalYPosition') + 'px'
+          }, 200);
+      }
+    );
     //Setup fileuploader
     $('#upload-field').fileupload({
         dataType: 'json',
@@ -49,7 +68,7 @@ $(document).ready(function() {
 
             }
         },
-        dropZone: $('#upload-button')
+        dropZone: $('.upload-contain')
     });
 });
 /**

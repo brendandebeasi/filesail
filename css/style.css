@@ -192,28 +192,28 @@ body{
 #container .body .file-type-icons li.zip {
     background-position: -196px -267px;
 }
-#container .body .file-type-icons li.zip:hover {
-    background-position: -196px -470px;
-}
+/*#container .body .file-type-icons li.zip:hover {*/
+    /*background-position: -196px -470px;*/
+/*}*/
 
 #container .body .file-type-icons li.video {
     background-position: -425px -267px;
 }
-#container .body .file-type-icons li.video:hover {
-    background-position: -425px -470px;
-}
+/*#container .body .file-type-icons li.video:hover {*/
+    /*background-position: -425px -470px;*/
+/*}*/
 #container .body .file-type-icons li.document {
     background-position: -662px -267px;
 }
-#container .body .file-type-icons li.document:hover {
-    background-position: -662px -470px;
-}
+/*#container .body .file-type-icons li.document:hover {*/
+    /*background-position: -662px -470px;*/
+/*}*/
 #container .body .file-type-icons li.photo {
     background-position: -886px -267px;
 }
-#container .body .file-type-icons li.photo:hover {
-    background-position: -886px -470px;
-}
+/*#container .body .file-type-icons li.photo:hover {*/
+    /*background-position: -886px -470px;*/
+/*}*/
 #container footer {
     bottom: 0px;
     position: static;
