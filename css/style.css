@@ -1,6 +1,9 @@
 @charset "UTF-8";
 body{
-  padding-top: 60px;
+    font-family: "Helvetica Neue";
+    padding: 0px;
+    margin: 0px;
+    background: url(../img/main-bg.png);
 }
 
 /*Generic classes*/
@@ -9,3 +12,161 @@ body{
 .right { float: right; }
 .clear { clear: both; }
 
+#container {
+
+}
+#container .main-component-contain {
+    width: 90%;
+    margin: auto;
+}
+#container header {
+    background: url(../img/header-bg.png);
+    height: 57px;
+}
+#container header .logo-contain #logo {
+    background: url('../img/filesail-sprite.png') no-repeat -102px -173px;
+    display: block;
+    height: 21px;
+    margin-top: 18px;
+    width: 110px;
+}
+#container header {
+
+}
+#container header .buttons {
+
+}
+#container header .buttons .button {
+    color: rgba(0,0,0,0);
+    display: inline-block;
+    background: url('../img/filesail-sprite.png') no-repeat;
+    margin-top: 13px;
+    width: 76px;
+    height: 29px;
+
+}
+#container header .buttons .button.login {
+    background-position: -757px -149px;
+    margin-right: 5px;
+}
+#container header .buttons .button.login:hover {
+    background-position:  -757px -189px;
+}
+#container header .buttons .button.signup {
+    background-position: -860px -149px;
+}
+#container header .buttons .button.signup:hover {
+    background-position: -860px -189px
+}
+#container .body {
+    text-align: center;
+}
+#container .body .upload-contain {
+    border: white 3px dashed;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+#container .body .upload-contain .upload {
+    background: url('../img/filesail-sprite.png') no-repeat -50px -25px;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    height: 79px;
+    margin: 0 auto;
+    line-height: 79px;
+    text-align: center;
+    text-decoration: none;
+    width: 381px;
+}
+#container .body .upload-contain .upload:hover {
+    background-position: -454px -25px;
+}
+#container .body .upload-contain .upload:active {
+    background-position: -859px -25px;
+}
+#container .body h1 {
+    background: url('../img/filesail-sprite.png') no-repeat -281px -170px;
+    color: rgba(0,0,0,0);
+    display: block;
+    height: 34px;
+    margin: 40px auto;
+    width: 430px;
+}
+#container .body .small-text {
+    color: #7b7b7b;
+    margin-bottom: 75px;
+    font-size: 10pt;
+}
+#container .body .small-text a {
+    color: #4c798c;
+    font-weight: bold;
+    text-decoration: none;
+}
+#container .body .small-text a:hover {
+    color: #6592a7;
+}
+#container .body .file-type-icons {
+    list-style-type: none;
+}
+#container .body .file-type-icons li {
+    background: black;
+    background: url('../img/filesail-sprite.png') no-repeat;
+    cursor: pointer;
+    display: inline-block;
+    height: 200px;
+    margin-right: 2%;
+    width: 160px;
+}
+#container .body .file-type-icons li.zip {
+    background-position: -196px -267px;
+}
+#container .body .file-type-icons li.zip:hover {
+    background-position: -196px -470px;
+}
+
+#container .body .file-type-icons li.video {
+    background-position: -425px -267px;
+}
+#container .body .file-type-icons li.video:hover {
+    background-position: -425px -470px;
+}
+#container .body .file-type-icons li.document {
+    background-position: -662px -267px;
+}
+#container .body .file-type-icons li.document:hover {
+    background-position: -662px -470px;
+}
+#container .body .file-type-icons li.photo {
+    background-position: -886px -267px;
+}
+#container .body .file-type-icons li.photo:hover {
+    background-position: -886px -470px;
+}
+#container footer {
+    bottom: 0px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+#container footer ul {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+#container footer ul li {
+    display: inline-block;
+    margin-right: 35px;
+}
+#container footer ul li a {
+    color: #587f86;
+    text-decoration: none;
+}
+#container footer ul li a:hover {
+    color: #70989e;
+}
+#container footer .copyright {
+    color: #7b7b7b;
+    font-size: 8pt;
+    padding-bottom: 9pt;
+}

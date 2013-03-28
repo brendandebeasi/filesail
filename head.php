@@ -14,17 +14,19 @@ require_once('config.php');
 <body>
 <div id="container">
     <header>
-        <div class="left">
-            <a id="logo-contain" href="<?php $config['base_url']; ?>"><img id="logo" src="img/logo.png" /></a>
-        </div>
-        <div class="right">
-            <div class="buttons">
-                <a class="button" href="javascript:void();">Login</a>
-                <a class="button blue" href="javascript:void();">Signup</a>
+        <div class="main-component-contain">
+            <div class="left logo-contain">
+                <a id="logo" href="<?php $config['base_url']; ?>"></a>
             </div>
-            <div class="login-box hidden">
-                <input id="username" type="text" />
-                <input id="password" type="password"/>
+            <div class="right">
+                <div class="buttons">
+                    <a class="button login" href="javascript:void();">Login</a>
+                    <a class="button signup" href="javascript:void();">Signup</a>
+                </div>
+                <div class="login-box hidden">
+                    <input id="username" type="text" />
+                    <input id="password" type="password"/>
+                </div>
             </div>
         </div>
     </header>
