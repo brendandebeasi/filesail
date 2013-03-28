@@ -10,9 +10,10 @@ $config = [
 
         'host'      => 'http://dev.filesail.com:1337/',
         'base_url'  => '',
-        'base_dir'  => getcwd(),
-        'file_dir'  => 'files/',
         'temp_dir'  => 'files/tmp',
+        'base_dir'  => getcwd(),
+        'file_host' => 'http://dev.filesail.com:1337/',
+        'file_dir'  => 'files/',
         'full_file_dir'    => getcwd() . '/files/',
     ],
     'stage' => [
@@ -23,11 +24,12 @@ $config = [
             'pass'  => 'GreatSuccess2012'
         ],
 
-        'host'      => 'http://debea.si/',
+        'host'      => 'http://filesail.com/',
         'base_dir'  => getcwd(),
-        'base_url'  => 'fs/',
-        'file_dir'    =>  'files/',
+        'base_url'  => '',
         'temp_dir'  => 'files/tmp',
+        'file_host'      => 'http://fsail.co/',
+        'file_dir'    =>  'files/',
         'full_file_dir'   => getcwd() . '/files/'
 
     ]
