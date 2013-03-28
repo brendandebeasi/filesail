@@ -9,9 +9,10 @@ $(document).ready(function() {
     $('#upload-field').fileupload({
         dataType: 'json',
         done: function (e, data) {
+
             var inject;
             if(data.result.success == true) {
-                inject = '<li class="success"><a href="'+config.host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name + '</a></li>'
+                inject = '<li class="success"><a href="'+config.host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
             }
             else {
                 inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
@@ -20,9 +21,12 @@ $(document).ready(function() {
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
+            var opacity;
+            if(progress<=10) opacity = '0' + progress / 10;
+            else opacity = progress / 10;
             $('.upload-contain .status ul li.pending').remove();
             if(progress != 100) {
-                var inject = inject = '<li class="pending"><a href="javascript:alert(\'Hold yer horses...\');">uploading: ' + progress + '% (' + getBytesWithUnit(data.loaded)+' / '+ getBytesWithUnit(data.total) +')</a></li>';
+                var inject = inject = '<li class="pending" style="opacity: '+opacity+'"><a href="javascript:alert(\'Hold yer horses...\');">&uarr; ' + progress + '% (' + getBytesWithUnit(data.loaded)+' / '+ getBytesWithUnit(data.total) +')</a></li>';
                 $('.upload-contain .status ul').prepend(inject);
 
             }
