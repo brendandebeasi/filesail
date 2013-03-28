@@ -11,7 +11,7 @@ $(document).ready(function() {
         done: function (e, data) {
             var inject;
             if(data.result.success == true) {
-                inject = '<li class="success"><a href="'+config.host + data.result.url+'">&#x2713; ' + data.result.name + '</a></li>'
+                inject = '<li class="success"><a href="'+config.host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name + '</a></li>'
             }
             else {
                 inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'

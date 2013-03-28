@@ -8,7 +8,7 @@ $config = [
         ],
 
         'host'      => 'http://dev.filesail.com:1337/',
-        'base_url'  => '/',
+        'base_url'  => '',
         'base_dir'  => getcwd(),
         'file_dir'    => 'files/',
         'full_file_dir'    => getcwd() . '/files/',
