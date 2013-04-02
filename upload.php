@@ -1,5 +1,5 @@
 <?php
-require_once('config.php');
+require_once('conf/config.php');
 $response = ['success'=>null,'error'=>null];
 
 if(!isset($_FILES['file'])) die('No file input');

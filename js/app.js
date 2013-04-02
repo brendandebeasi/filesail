@@ -1,44 +1,142 @@
+var nc_filesail;
 $(document).ready(function() {
-    //Show login field
-    $('header .buttons .login').click(function() {
-        $(this).parent().addClass('hidden');
-        $(this).parent().parent().find('.login-box').removeClass('hidden');
-    });
-    //Show signup field
-    $('header .buttons .signup').click(function() {
-        $(this).parent().addClass('hidden');
-        $(this).parent().parent().find('.signup-box').removeClass('hidden');
-    });
-    //Close Login / Signup field
-    $('header .login-box .close-box, header .signup-box .close-box').click(function() {
-        $(this).parent().addClass('hidden');
-        $(this).parent().parent().find('.buttons').removeClass('hidden');
-    });
+    var that = this;
+    $.filesail= function(elem) {
+        var that = this;
+        this.elem               = elem;
+        this.auth               = null;
+        this.headerTemplate     = null;
 
+        this.view               = function(renderElement) {
+            this.renderElement = renderElement;
+            this.template   = null;
+            this.model      = {};
+            this.bind       = function() {
+
+            };
+            this.render     = function() {
+                this.renderElement.html(this.template(this.model));
+                this.bind();
+            };
+            this.init       = function() {
+
+            };
+            this.init();
+        }
+
+        this.header                         = new this.view(this.elem.find('.header-contain'));
+        this.header.template                = Handlebars.compile($('#header-template').html());
+        this.header.model                   = {
+            isLoggedIn: false,
+                showLoginBox: false,
+                showSignupBox: false,
+                showInitialButtons: true
+        };
+
+        this.header.showLoginButtonClicked  = function() {
+            this.model.showLoginBox = true;
+            this.model.showSignupBox = false;
+            this.model.showInitialButtons = false;
+            this.render();
+        };
+
+        this.header.showSignupButtonClicked = function() {
+            this.model.showLoginBox = false;
+            this.model.showSignupBox = true;
+            this.model.showInitialButtons = false;
+            this.render();
+        };
+
+        this.header.showSignupButtonClicked = function() {
+            this.model.showLoginBox = false;
+            this.model.showSignupBox = true;
+            this.model.showInitialButtons = false;
+            this.render();
+        };
+
+        this.header.closeLoginSignupClicked = function() {
+            this.model.showLoginBox = false;
+            this.model.showSignupBox = false;
+            this.model.showInitialButtons = true;
+            this.render();
+        };
+
+        this.header.bind                    = function() {
+            $('header .buttons .login').click(function() {nc_filesail.header.showLoginButtonClicked()});
+            $('header .buttons .signup').click(function() {nc_filesail.header.showSignupButtonClicked()});
+            $('header .close').click(function() {nc_filesail.header.closeLoginSignupClicked()});
+            $('header .login-box .login').click(function() {nc_filesail.header.loginButtonClicked()});
+            $('header .signup-box .login').click(function() {nc_filesail.header.signupButtonClicked()});
+        };
+
+        this.landingView            = new this.view(this.elem.find('.body-contain'));
+        this.landingView.template   = Handlebars.compile($('#landing-template').html());
+
+        this.init               = function() {
+            this.auth = new this.connectionStatus();
+
+            this.header.render();
+            this.landingView.render();
+
+        };
+
+        this.connectionStatus   = function() {
+            this.isLoggedIn     = false;
+            this.userName       = 'Anonymous';
+            this.apiKey         = 'anonymous';
+            this.authTime       = false;
+        };
+
+        this.init();
+    };
+    nc_filesail = new $.filesail($('#container'));
+//
+//    $.ajaxSetup({
+//        // Disable caching of AJAX responses
+//        cache: false
+//    });
+//    //Show login field
+//    $('header .buttons .login').click(function() {
+//        $(this).parent().addClass('hidden');
+//        $(this).parent().parent().find('.login-box').removeClass('hidden');
+//    });
+//    //Show signup field
+//    $('header .buttons .signup').click(function() {
+//        $(this).parent().addClass('hidden');
+//        $(this).parent().parent().find('.signup-box').removeClass('hidden');
+//    });
+//    //Close Login / Signup field
+//    $('header .login-box .close-box, header .signup-box .close-box').click(function() {
+//        $(this).parent().addClass('hidden');
+//        $(this).parent().parent().find('.buttons').removeClass('hidden');
+//    });
+//    //Handle login
+//    $('header .login-box .login').click(function() {
+//        var login,password,container,response;
+//
+//        login = $('#login-login',$('header .login-box')).val();
+//        password = $('#login-password',$('header .login-box')).val();
+//        container = $(this).parent();
+//
+//        container.find('input').attr('disabled','disabled');
+//
+//        $.post(config.base_url + '/auth.php', {
+//            action    : 'login',
+//            login     : login,
+//            password  : password
+//        },function(returnData) {
+//
+//            $(this).parent().find('input').removeAttr('disabled','disabled');
+//        });
+//
+//
+//    });
     //Map the upload button image to trigger the real upload image
     $('#upload-button').click(function() {
         $('#upload-field').trigger('click');
     });
-    //Nicely animate the file type icons
-    $('.file-type-icons li').hover(
-      function() {
-          var backgroundYPosition = $(this).css('background-position').split(' ');
-          var backgroundYPosition = Number(backgroundYPosition[1].replace('px',''));
 
-          if(typeof($(this).data('originalYPosition')) == 'undefined')$(this).data('originalYPosition', backgroundYPosition);
 
-          var newBackgroundYPosition =  backgroundYPosition - 200;
-          $(this).animate({
-              backgroundPositionY: newBackgroundYPosition + 'px'
-          }, 200);
-      },
-      function() {
-          var backgroundPosition = $(this).css('background-position').split(' ');
-          $(this).animate({
-              backgroundPositionY:  $(this).data('originalYPosition') + 'px'
-          }, 200);
-      }
-    );
     //Setup fileuploader
     $('#upload-field').fileupload({
         dataType: 'json',
@@ -70,6 +168,7 @@ $(document).ready(function() {
         },
         dropZone: $('.upload-contain')
     });
+
 });
 /**
  * @function: getBytesWithUnit()

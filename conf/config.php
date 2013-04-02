@@ -53,7 +53,13 @@ $config = [
 ];
 
 require_once('env.php');
+
 $config = $config[$env];
 $safeconfig = $config;
+session_start();
 //BE SURE TO REMOVE UNSAFE VARS HERE
 $safeconfig['db'] = null;
+
+if(!isset($in_head)) require_once('dal.php');
+elseif($in_head == false)  require_once('../dal.php');
+$fs_db = new DAL();

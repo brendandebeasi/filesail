@@ -62,7 +62,7 @@ body{
 #container header .buttons button {
     margin-top: 13px;
 }
-#container header .close-box {
+#container header .close {
     text-decoration: none;
     color: rgba(239, 239, 240, 1.0);
     position: relative;

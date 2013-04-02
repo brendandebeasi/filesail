@@ -1,4 +1,4 @@
 <?php //THIS IS JAVASCRIPT WRITTEN BY PHP
-require_once('../config.php');
-?>
-<?php echo 'var config = ' . json_encode($safeconfig) . ';'; ?>
+$in_head = false;
+include('../conf/config.php');
+echo 'var config = ' . json_encode($safeconfig) . ';'; ?>

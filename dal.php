@@ -1,5 +1,6 @@
 <?php
-require_once('config.php');
+//todo: remove hard-coded DB
+include_once('conf/config.php');
 
 class DALQueryResult {
 
@@ -23,17 +24,37 @@ class DALQueryResult {
 class DAL {
 
     public function __construct(){}
+    public function generateSessionKeyForUser($users_id) {
+        $key = uniqid('filesail_',true);
+        if((int)$users_id == 0) return false;
+        else {
+            $sql = 'INSERT INTO `api_keys` (`users_id`,`api_key`) VALUES ("'.$users_id.'","'.$key.'")';
+            $this->query($sql);
+            return $key;
+        }
 
-    public function get_models_by_make_name($name){
-        $sql = "SELECT models.id as id, models.name as name, makes.name as make FROM models INNER JOIN makes ON models.make=makes.id WHERE makes.name='$name'";
-        return $this->query($sql);
+    }
+    public function getUserByEmail($login,$password){
+
+        $login_type = null;
+        if(stripos('@',$login) !== false) $login_type = 'email';
+        $login_type = 'username';
+
+        $password = sha1($password);
+        $sql = 'SELECT * FROM `users` WHERE `'.$login_type.'` = "'.mysql_real_escape_string($login).'"';
+
+        $return = $this->query($sql);
+        if(count($return) == 1) $return = $return[0];
+        return $return;
     }
 
     private function dbconnect() {
-        $conn = mysql_connect($config['db']['host'], $config['db']['user'], $config['db']['pass'])
+//        $conn = mysql_connect($config['db']['host'], $config['db']['user'], $config['db']['pass'])
+        $conn = mysql_connect('localhost', 'root', 'root')
             or die ("<br/>Could not connect to MySQL server");
 
-        mysql_select_db($config['db']['name'],$conn)
+//        mysql_select_db($config['db']['name'],$conn)
+        mysql_select_db('filesail',$conn)
             or die ("<br/>Could not select the indicated database");
 
         return $conn;
