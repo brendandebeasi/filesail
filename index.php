@@ -18,7 +18,7 @@
             </div>
 
             <div class="small-text">
-                By clicking "select file to upload" you agree to our <a href="javascript:alert('Please do not upload copyrighted files. Not only will we delete them, but we could get into trouble. If you enjoy the service please respect United States copyright laws. If you have any complaints or concerns about files hosted on our server please do not hesitate to email b[AT]neueway.com or peridious[AT]icloud.com');">Terms of Service</a>
+                By uploading you agree to our <a href="javascript:alert('Please do not upload copyrighted files. Not only will we delete them, but we could get into trouble. If you enjoy the service please respect United States copyright laws. If you have any complaints or concerns about files hosted on our server please do not hesitate to email b[AT]neueway.com or peridious[AT]icloud.com');">Terms of Service</a>
             </div>
 
             <div id="progress">

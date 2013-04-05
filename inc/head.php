@@ -18,6 +18,7 @@ include_once('conf/config.php');
     </script>
 </head>
 <body>
+<div class="preload">X</div>
 <script id="header-template" type="text/template">
     <header>
         <div class="main-component-contain">
@@ -37,8 +38,8 @@ include_once('conf/config.php');
                 <% } %>
                 <% if(showLoginBox) { %>
                     <div class="login-box">
-                        <% if(!showLoginLoader) { %><a class="close icon-sweets" href="javascript:void(0);">X</a><% } %>
                         <img src="<?php echo $config['host'] . $config['base_url']; ?>/img/ajax-loader.gif" class="process-login <% if(!showLoginLoader) { %>hidden<% } %>" />
+                        <% if(!showLoginLoader) { %><a class="close icon-sweets" href="javascript:void(0);">X</a><% } %>
                         <input id="login-login" placeholder="Username / Email" type="text" />
                         <input id="login-password" placeholder="Password" type="password"/>
                         <button class="login" href="javascript:void(0);">Login</button>
@@ -50,7 +51,7 @@ include_once('conf/config.php');
                         <a class="close icon-sweets" href="javascript:void(0);">X</a>
                         <input id="reg-name" placeholder="Name" type="text" />
                         <input id="reg-username" placeholder="Username" type="text" />
-                        <input id="reg-email" placeholder="Email Address" text" />
+                        <input id="reg-email" placeholder="Email Address" type="text" />
                         <input id="reg-password" placeholder="Password" type="password"/>
                         <button class="signup" href="javascript:void(0);">Signup</button>
                     </div>

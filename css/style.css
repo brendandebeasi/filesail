@@ -3,7 +3,7 @@ body{
     font-family: "Helvetica Neue";
     padding: 0px;
     margin: 0px;
-    background: url(../img/main-bg.png);
+    background: #f9f9f9 url(../img/bg-pattern.png) center center no-repeat;
 }
 
 /*Generic classes*/
@@ -27,6 +27,12 @@ body{
     font-family: iconSweetsRegular;
 }
 
+.preload {
+    font-family: iconSweetsRegular;
+    opacity: 0;
+    height: 0px;
+    width: 0px;
+}
 
 #container {
 
@@ -36,8 +42,9 @@ body{
     margin: auto;
 }
 #container header {
-    background: url(../img/header-bg.png);
-    height: 57px;
+    background: #2c2c2c;
+    box-shadow: 1px 2px 5px 1px rgba(148,148,148,1);
+    height: 54px;
 }
 #container header .logo-contain #logo {
     background: url('../img/filesail-sprite.png') no-repeat -102px -173px;
@@ -49,54 +56,61 @@ body{
 #container header {
 
 }
-#container header button {
-    background: url('../img/filesail-sprite.png') no-repeat;
-    border: 0px;
-    color: rgba(0,0,0,0);
-    display: inline-block;
-    cursor: pointer;
-    width: 76px;
-    height: 29px;
-
-}
-#container header .buttons button {
-    margin-top: 13px;
-}
 #container header .close {
     text-decoration: none;
     color: rgba(239, 239, 240, 1.0);
     position: relative;
-    top: 2px;
+    top: 4px;
 }
+
+#container header button {
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    font-size: 8pt;
+    cursor: pointer;
+    height: 22px;
+
+}
+#container header .buttons button {
+    margin-top: 18px;
+}
+
 #container header button.login {
-    background-position: -757px -149px;
-    margin-right: 5px;
+    background: transparent;
 }
 #container header button.login:hover {
-    background-position:  -757px -189px;
 }
 #container header button.signup {
-    background-position: -860px -149px;
+    width: 56px;
+    background: #4c4c4c;
 }
 #container header button.signup:hover {
-    background-position: -860px -189px
+    background: #6d6d6d;
 }
-#container header .login-box, #container header .signup-box {
-    margin-top: 13px;
+#container header .login-box {
+    margin-top: 15px;
+}
+#container header .signup-box {
+    margin-top: 14px;
 }
 #container header .login-box .process-login {
     position: relative;
     top: 4px;
 }
-#container header input {
+#container header input[type=text],#container header input[type=password] {
     background: rgba(225, 225, 225, .3);
     border: 1px solid rgba(60, 60, 60, .9);
     border-radius: 3px;
     color: rgba(227, 227, 227, .8);
     display: inline-block;
-    font-size: 10pt;
+    font-size: 8pt;
     padding-left: 10px;
-    height: 25px;
+    height: 18px;
+    position: relative;
+    top: 1px;
+    width: 100px;
 }
 #container header input:focus {
     outline: none;
@@ -105,18 +119,20 @@ body{
     text-align: center;
 }
 #container .body .upload-contain {
-    border: white 3px dashed;
+    border: #e3e3e3 3px dashed;
     border-radius: 15px;
     display: inline-block;
     padding: 25px;
     margin-bottom: 20px;
 }
 #container .body .upload-contain .upload-border {
-    border: 7px solid #f4f4f4;
-    border-radius: 10px;
+    border: 10px #fff solid;
+    border-radius: 16px;
 }
 #container .body .upload-contain .upload-border .upload {
-    background: transparent url('../img/filesail-sprite.png') no-repeat -50px -25px;
+    background: #1483b6;
+    border-bottom: 3px #1c6ca4 solid;
+    border-radius: 16px;
     color: #fff;
     display: block;
     font-weight: bold;
@@ -128,10 +144,12 @@ body{
     width: 381px;
 }
 #container .body .upload-contain .upload:hover {
-    background-position: -454px -25px;
+    background: #1492cc;
 }
 #container .body .upload-contain .upload:active {
-    background-position: -859px -25px;
+    background: #0f74a3;
+    border-top: 3px #124569 solid;
+    border-bottom: none;
 }
 #container .body .upload-contain .status em {
     display: block;
@@ -175,7 +193,6 @@ body{
 }
 #container .body .small-text a {
     color: #4c798c;
-    font-weight: bold;
     text-decoration: none;
 }
 #container .body .small-text a:hover {
@@ -233,11 +250,12 @@ body{
 }
 #container footer ul {
     list-style-type: none;
-    margin-bottom: 10px;
+    margin: 5px 0 9px 0;
 }
 #container footer ul li {
+    font-size: 9pt;
     display: inline-block;
-    margin-right: 35px;
+    margin-right: 15px;
 }
 #container footer ul li a {
     color: #587f86;
