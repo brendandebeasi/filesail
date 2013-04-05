@@ -24,60 +24,81 @@ $(document).ready(function() {
             this.init();
         }
 
-        this.header                         = new this.view(this.elem.find('.header-contain'));
-        this.header.template                = Handlebars.compile($('#header-template').html());
-        this.header.model                   = {
-            isLoggedIn: false,
-                showLoginBox: false,
-                showSignupBox: false,
-                showInitialButtons: true
-        };
+        this.HeaderView                     = Backbone.View.extend({
+            isLoggedIn      : false,
+            showLoginBox    : false,
+            showSignupBox   : false,
 
-        this.header.showLoginButtonClicked  = function() {
-            this.model.showLoginBox = true;
-            this.model.showSignupBox = false;
-            this.model.showInitialButtons = false;
-            this.render();
-        };
+            initialize      : function() {
+                this.$el.hide();
+                this.render();
+                this.$el.fadeIn('slow');
+            },
+            render          : function() {
+                var variables = {
+                    isLoggedIn: this.isLoggedIn,
+                    showLoginBox: this.showLoginBox,
+                    showSignupBox: this.showSignupBox
+                }
+                this.$el.html( _.template($("#header-template").html(), variables));
 
-        this.header.showSignupButtonClicked = function() {
-            this.model.showLoginBox = false;
-            this.model.showSignupBox = true;
-            this.model.showInitialButtons = false;
-            this.render();
-        };
+            },
+            events          : {
+                "click header .buttons .login"  :"showLogin",
+                "click header .buttons .signup" :"showSignup",
+                "click header .close"           :"resetAuthButtons",
+                "click header .login-box .login":"processLogin",
+                "click header .signup-box .signup":"processSignup"
+            },
+            showLogin: function(event) {
+                this.showLoginBox = true;
+                this.showSignupBox = false;
+                this.render();
+            },
+            showSignup: function(event) {
+                this.showLoginBox = false;
+                this.showSignupBox = true;
+                this.render();
+            },
+            resetAuthButtons: function(event) {
+                this.showLoginBox = false;
+                this.showSignupBox = false;
+                this.render();
+            },
+            processLogin: function(event) {
 
-        this.header.showSignupButtonClicked = function() {
-            this.model.showLoginBox = false;
-            this.model.showSignupBox = true;
-            this.model.showInitialButtons = false;
-            this.render();
-        };
+            },
+            processSignup: function(event) {
 
-        this.header.closeLoginSignupClicked = function() {
-            this.model.showLoginBox = false;
-            this.model.showSignupBox = false;
-            this.model.showInitialButtons = true;
-            this.render();
-        };
+            }
+        });
 
-        this.header.bind                    = function() {
-            $('header .buttons .login').click(function() {nc_filesail.header.showLoginButtonClicked()});
-            $('header .buttons .signup').click(function() {nc_filesail.header.showSignupButtonClicked()});
-            $('header .close').click(function() {nc_filesail.header.closeLoginSignupClicked()});
-            $('header .login-box .login').click(function() {nc_filesail.header.loginButtonClicked()});
-            $('header .signup-box .login').click(function() {nc_filesail.header.signupButtonClicked()});
-        };
-
-        this.landingView            = new this.view(this.elem.find('.body-contain'));
-        this.landingView.template   = Handlebars.compile($('#landing-template').html());
+        this.FooterView            = Backbone.View.extend({
+            initialize      : function() {
+                this.$el.hide();
+                this.render();
+                this.$el.fadeIn('slow');
+            },
+            render          : function() {
+                this.$el.html(_.template($("#footer-template").html(), {}));
+            },
+        });
+        this.LandingView            = Backbone.View.extend({
+            initialize      : function() {
+                this.$el.hide();
+                this.render();
+                this.$el.fadeIn('slow');
+            },
+            render          : function() {
+                this.$el.html(_.template($("#landing-template").html(), {}));
+            },
+        });
 
         this.init               = function() {
             this.auth = new this.connectionStatus();
-
-            this.header.render();
-            this.landingView.render();
-
+            this.header = new this.HeaderView({el: $('.header-contain')});
+            this.landingView = new this.LandingView({el: $('.body-contain')});
+            this.footer = new this.FooterView({el: $('.footer-contain')});
         };
 
         this.connectionStatus   = function() {

@@ -1,6 +1,6 @@
 <?php require_once('inc/head.php'); ?>
 <div class="body-contain"></div>
-<script id="landing-template" type="text/x-handlebars-template">
+<script id="landing-template" type="text/template">
     <div class="main-component-contain">
 
         <div class="body">

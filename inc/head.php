@@ -4,19 +4,21 @@ include_once('conf/config.php');
 ?><!DOCTYPE html>
 <head>
 	<title>FileSail</title>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="../../js/vendor/jquery.ui.widget.js"></script>
-	<script src="../../js/jquery.iframe-transport.js"></script>
-	<script src="../../js/jquery.fileupload.js"></script>
-	<script src="../../js/jquery.session.js"></script>
-	<script src="../../js/handlebars.js"></script>
-	<script src="../../js/app.js"></script>
-	<script src="../../js/dynamic.php"></script>
-    <link rel="stylesheet" type="text/css" href="../../css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/style.css" />
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-39905228-1', 'filesail.com');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 <body>
-<script id="header-template" type="text/x-handlebars-template">
+<script id="header-template" type="text/template">
     <header>
         <div class="main-component-contain">
             <div class="left logo-contain">
@@ -24,26 +26,25 @@ include_once('conf/config.php');
             </div>
 
             <div class="right">
-                {{#if isLoggedIn}}
+                <% if(isLoggedIn) { %>
                     Welcome!
-                {{else}}
-                    {{#if showInitialButtons}}
+                <% } %>
+                <% if(!showLoginBox && !showSignupBox) { %>
                     <div class="buttons right">
                         <button class="login" href="javascript:void(0);">Login</button>
                         <button class="signup" href="javascript:void(0);">Signup</button>
                     </div>
-                    {{/if}}
-
-                    {{#if showLoginBox}}
+                <% } %>
+                <% if(showLoginBox) { %>
                     <div class="login-box">
                         <a class="close icon-sweets" href="javascript:void(0);">X</a>
                         <input id="login-login" placeholder="Username / Email" type="text" />
                         <input id="login-password" placeholder="Password" type="password"/>
                         <button class="login" href="javascript:void(0);">Login</button>
                     </div>
-                    {{/if}}
 
-                    {{#if showSignupBox}}
+                <% } %>
+                <% if(showSignupBox) { %>
                     <div class="signup-box">
                         <a class="close icon-sweets" href="javascript:void(0);">X</a>
                         <input id="reg-name" placeholder="Name" type="text" />
@@ -52,10 +53,7 @@ include_once('conf/config.php');
                         <input id="reg-password" placeholder="Password" type="password"/>
                         <button class="signup" href="javascript:void(0);">Signup</button>
                     </div>
-                    {{/if}}
-
-
-                {{/if}}
+                <% } %>
                 <div class="clear"></div>
 
             </div>
