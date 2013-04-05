@@ -27,6 +27,7 @@ $(document).ready(function() {
         this.HeaderView                     = Backbone.View.extend({
             isLoggedIn      : false,
             showLoginBox    : false,
+            showLoginLoader : false,
             showSignupBox   : false,
 
             initialize      : function() {
@@ -36,11 +37,9 @@ $(document).ready(function() {
             },
             render          : function() {
                 var variables = {
-                    isLoggedIn: this.isLoggedIn,
-                    showLoginBox: this.showLoginBox,
-                    showSignupBox: this.showSignupBox
+
                 }
-                this.$el.html( _.template($("#header-template").html(), variables));
+                this.$el.html( _.template($("#header-template").html(), this));
 
             },
             events          : {
@@ -66,7 +65,8 @@ $(document).ready(function() {
                 this.render();
             },
             processLogin: function(event) {
-
+                this.showLoginLoader = true;
+                this.render();
             },
             processSignup: function(event) {
 

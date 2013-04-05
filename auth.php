@@ -29,4 +29,3 @@ switch($action) {
         if(isset($_SESSION['auth'])) echo json_encode($_SESSION['auth']);
         break;
 }
-

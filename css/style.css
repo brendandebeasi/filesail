@@ -84,6 +84,10 @@ body{
 #container header .login-box, #container header .signup-box {
     margin-top: 13px;
 }
+#container header .login-box .process-login {
+    position: relative;
+    top: 4px;
+}
 #container header input {
     background: rgba(225, 225, 225, .3);
     border: 1px solid rgba(60, 60, 60, .9);
