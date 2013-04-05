@@ -127,12 +127,12 @@ body{
 }
 #container .body .upload-contain .upload-border {
     border: 10px #fff solid;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 #container .body .upload-contain .upload-border .upload {
     background: #1483b6;
     border-bottom: 3px #1c6ca4 solid;
-    border-radius: 16px;
+    border-radius: 8px;
     color: #fff;
     display: block;
     font-weight: bold;
@@ -242,8 +242,8 @@ body{
     width: 100%;
 }
 #container footer .divider {
-    background: #cfcfcf;
-    border-top: 1px solid #f4f4f4;
+    background: rgb(238,238,238);
+    border-top: 1px solid #fff;
     display: inline-block;
     height: 1px;
     width: 35%;
