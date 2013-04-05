@@ -35,7 +35,7 @@ body{
 }
 
 #container {
-    background: #f9f9f9 url(../img/bg-pattern.jpg) center no-repeat;
+    background: #f9f9f9 url(../img/bg-pattern.png) center no-repeat;
 }
 #container .main-component-contain {
     width: 90%;
