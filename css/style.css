@@ -3,7 +3,7 @@ body{
     font-family: "Helvetica Neue";
     padding: 0px;
     margin: 0px;
-    background: #f9f9f9 url(../img/bg-pattern.png) center center no-repeat;
+    background: #f9f9f9;
 }
 
 /*Generic classes*/
@@ -35,7 +35,7 @@ body{
 }
 
 #container {
-
+    background: #f9f9f9 url(../img/bg-pattern.jpg) center no-repeat;
 }
 #container .main-component-contain {
     width: 90%;
