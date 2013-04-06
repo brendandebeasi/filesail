@@ -1,7 +1,7 @@
 <?php require_once('inc/head.php'); ?>
 <div class="body-contain"></div>
 <script id="landing-template" type="text/template">
-    <div class="main-component-contain">
+    <div class="main-component-contain<% if(isLoggedIn) { %> isLoggedIn<% } %>">
 
         <div class="body">
             <h1>File Sharing For Professionals, Done Right.</h1>
@@ -26,4 +26,6 @@
             </div>
         </div>
 </script>
+<?php require_once('inc/sidebar.php'); ?>
+<div class="clear"></div>
 <?php require_once('inc/foot.php'); ?>

@@ -21,7 +21,7 @@ include_once('conf/config.php');
 <body>
 <div class="preload">X</div>
 <script id="header-template" type="text/template">
-    <header>
+    <header class="<% if(isLoggedIn) { %>isLoggedIn<% } %>">
         <div class="main-component-contain">
             <div class="left logo-contain">
                 <a id="logo" href="<?php $config['base_url']; ?>"></a>

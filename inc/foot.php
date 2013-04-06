@@ -1,5 +1,5 @@
 <script id="footer-template" type="text/template">
-    <footer>
+    <footer class="<% if(isLoggedIn) { %>isLoggedIn<% } %>">
         <div class="divider"></div>
         <ul>
             <li><a href="javascript:void(0);">Help</a></li>

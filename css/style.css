@@ -37,10 +37,6 @@ body{
 #container {
     background: #f9f9f9 url(../img/bg-pattern.png) center no-repeat;
 }
-#container .main-component-contain {
-    width: 90%;
-    margin: auto;
-}
 #container header {
     background: #2c2c2c;
     color: white;
@@ -125,6 +121,17 @@ body{
     color: #6dcefb;
     text-decoration: none;
 }
+#container .main-component-contain {
+    width: 90%;
+    margin: auto;
+}
+#container .main-component-contain.isLoggedIn {
+    width: 70%;
+    float: left;
+    box-shadow: 3px -5px 5px 1px rgba(148,148,148,.25);
+
+    margin: 0;
+}
 #container .body {
     text-align: center;
 }
@@ -208,46 +215,30 @@ body{
 #container .body .small-text a:hover {
     color: #6592a7;
 }
-#container .body .file-type-icons {
-    list-style-type: none;
+#container .sidebar-contain {
+    position: relative;
+    float: right;
+    width: 30%;
 }
-#container .body .file-type-icons li {
-    background: black;
-    background: url('../img/filesail-sprite.png') no-repeat;
-    cursor: pointer;
+#container .sidebar-contain ul {
+    margin:0px;
+    padding: 0px;
+}
+#container .sidebar-contain ul li {
+    margin: 0px;
+    font-size: 8pt;
+    text-align: center;
+    width: 30%;
+    padding: 0px;
     display: inline-block;
-    height: 200px;
-    margin-right: 2%;
-    width: 160px;
 }
-#container .body .file-type-icons li.zip {
-    background-position: -196px -267px;
-}
-/*#container .body .file-type-icons li.zip:hover {*/
-    /*background-position: -196px -470px;*/
-/*}*/
+#container .sidebar-contain {
+    background: #e6e6e6;
 
-#container .body .file-type-icons li.video {
-    background-position: -425px -267px;
 }
-/*#container .body .file-type-icons li.video:hover {*/
-    /*background-position: -425px -470px;*/
-/*}*/
-#container .body .file-type-icons li.document {
-    background-position: -662px -267px;
-}
-/*#container .body .file-type-icons li.document:hover {*/
-    /*background-position: -662px -470px;*/
-/*}*/
-#container .body .file-type-icons li.photo {
-    background-position: -886px -267px;
-}
-/*#container .body .file-type-icons li.photo:hover {*/
-    /*background-position: -886px -470px;*/
-/*}*/
 #container footer {
     bottom: 0px;
-    position: static;
+    position: absolute;
     text-align: center;
     width: 100%;
 }

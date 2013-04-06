@@ -12,9 +12,14 @@ $(document).ready(function() {
         this.init               = function() {
             this.auth = new this.Models.Session();
             this.header = new this.Views.Header({el: $('.header-contain')});
-            this.landingView = new this.Views.Landing({el: $('.body-contain')});
-            this.footer = new this.Views.Footer({el: $('.footer-contain')});
+            this.body = new this.Views.Landing({el: $('.body-contain')});
+            this.sidebar = new this.Views.Sidebar({el: $('.sidebar-contain')});
         };
+        this.getLoggedIn = function() {
+            if(typeof(that.auth) != 'undefined' && typeof(that.auth.get('api_key')) != 'undefined') return true;
+            else return false;
+        };
+
         this.Models.Session     = Backbone.Model.extend({
             defaults: {
                 api_key: null,
@@ -64,7 +69,7 @@ $(document).ready(function() {
                     showLoginBox: this.showLoginBox,
                     showSignupBox: this.showSignupBox,
                     userName: this.getUserName(),
-                    isLoggedIn: this.getLoggedIn()
+                    isLoggedIn: that.getLoggedIn()
                 }
                 this.$el.html( _.template($("#header-template").html(), variables));
             },
@@ -106,10 +111,6 @@ $(document).ready(function() {
                 if(typeof(that.auth) != 'undefined' && that.auth != null) return that.auth.get('name');
                 else return false;
             },
-            getLoggedIn: function() {
-                if(typeof(that.auth) != 'undefined' && typeof(that.auth.get('api_key')) != 'undefined') return true;
-                else return false;
-            },
             processLogin: function(event) {
                 var login,password,container,response,parent,shake;
 
@@ -142,6 +143,8 @@ $(document).ready(function() {
                         console.log('login error - ' + returnData.message);
                     }
                     that.header.render();
+                    that.sidebar.render();
+                    that.body.render();
                     if(shake == true) that.header.shakeLoginBox();
                     that.header.focusLoginBox();
                 },'json');
@@ -158,6 +161,8 @@ $(document).ready(function() {
                     that.auth = null;
                     that.auth = new that.Models.Session();
                     $.session.clear();
+                    that.body.render();
+                    that.sidebar.render();
                     that.header.render();
                 });
             },
@@ -173,8 +178,24 @@ $(document).ready(function() {
                 this.$el.fadeIn('slow');
             },
             render          : function() {
-                this.$el.html(_.template($("#footer-template").html(), {}));
+                var variables = {
+                    isLoggedIn: that.getLoggedIn()
+                };
+                this.$el.html(_.template($("#footer-template").html(), variables));
+            }
+        });
+        this.Views.Sidebar            = Backbone.View.extend({
+            initialize      : function() {
+                this.$el.hide();
+                this.render();
+                this.$el.fadeIn('slow');
             },
+            render          : function() {
+                var variables = {
+                    isLoggedIn: that.getLoggedIn()
+                }
+                this.$el.html(_.template($("#sidebar-template").html(), variables));
+            }
         });
         this.Views.Landing = Backbone.View.extend({
             initialize      : function() {
@@ -183,7 +204,10 @@ $(document).ready(function() {
                 this.$el.fadeIn('slow');
             },
             render          : function() {
-                this.$el.html(_.template($("#landing-template").html(), {}));
+                var variables = {
+                    isLoggedIn: that.getLoggedIn()
+                }
+                this.$el.html(_.template($("#landing-template").html(), variables));
             },
         });
         this.init();
