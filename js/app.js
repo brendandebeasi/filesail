@@ -1,5 +1,6 @@
 var nc_filesail;
 $(document).ready(function() {
+    $.ajaxSetup({ cache: false });
     var that = this;
     $.filesail= function(elem) {
         var that = this;
