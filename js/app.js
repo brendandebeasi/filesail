@@ -50,6 +50,13 @@ $(document).ready(function() {
                 this.$el.hide();
                 this.render();
                 this.$el.fadeIn('slow');
+                _.bindAll(this);
+                $('header .login-box').bind('keyup', this.keypress);
+            },
+            keypress     : function(event) {
+                if(event.charCode == '13') {
+                    this.processLogin(event);
+                }
             },
             render          : function() {
                 var variables = {
@@ -66,6 +73,7 @@ $(document).ready(function() {
                 "click header .buttons .signup"                 : "showSignup",
                 "click header .close"                           : "resetAuthButtons",
                 "click header .login-box button.login"          : "processLogin",
+                "keypress header .login-box"                    : "keypress",
                 "click header .signup-box button.signup"        : "processSignup"
             },
             showLogin: function(event) {
@@ -83,6 +91,12 @@ $(document).ready(function() {
                 this.showSignupBox = false;
                 this.render();
             },
+            shakeLoginBox: function() {
+                $(this.$el).find('.login-box').effect('shake', { times:2 }, 500);
+            },
+            focusLoginBox: function() {
+                $(this.$el).find('.login-box input.login').focus();
+            },
             isLoggedIn: function() {
                 return this.model.isLoggedIn();
             },
@@ -90,7 +104,7 @@ $(document).ready(function() {
                 return this.model.get('name');
             },
             processLogin: function(event) {
-                var login,password,container,response,parent,that;
+                var login,password,container,response,parent,that,shake;
 
                 that = this;
                 this.showLoginLoader = true;
@@ -105,7 +119,7 @@ $(document).ready(function() {
                     login     : login,
                     password  : password
                 },function(returnData) {
-                    this.showLoginLoader = false;
+                    that.showLoginLoader = false;
                     //success
                     if(returnData.success === true) {
                         that.model.set({
@@ -118,10 +132,13 @@ $(document).ready(function() {
                     }
                     //failure
                     else {
-                        console.log('login error - '.returnData.message);
+                        shake = true;
+                        console.log('login error - ' + returnData.message);
                     }
 
                     that.render();
+                    if(shake == true) that.shakeLoginBox();
+                    that.focusLoginBox();
                 },'json');
             },
             processSignup: function(event) {

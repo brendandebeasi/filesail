@@ -1,4 +1,5 @@
 <?php
+require_once('conf/env.php');
 require_once('conf/config.php');
 $response = ['success'=>null,'error'=>null];
 
