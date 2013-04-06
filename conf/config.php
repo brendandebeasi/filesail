@@ -37,8 +37,8 @@ $config = [
         'db' => [
             'host'  => 'localhost',
             'name'  => 'filesail',
-            'user'  => 'root',
-            'pass'  => 'GreatSuccess2012'
+            'user'  => 'filesail',
+            'pass'  => 'txx5bvbA5daFzZZ2'
         ],
 
         'host'      => 'http://filesail.com/',
