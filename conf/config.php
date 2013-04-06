@@ -53,7 +53,7 @@ $config = [
 ];
 
 require_once('env.php');
-
+set_include_path(getcwd());
 $config = $config[$env];
 $safeconfig = $config;
 session_start();
