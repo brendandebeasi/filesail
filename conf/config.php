@@ -20,8 +20,8 @@ $config = [
         'db' => [
             'host'  => 'localhost',
             'name'  => 'filesail',
-            'user'  => 'filesail',
-            'pass'  => 'txx5bvbA5daFzZZ2'
+            'user'  => 'root',
+            'pass'  => 'GreatSuccess2012'
         ],
 
         'host'      => 'http://stage.filesail.com/',
