@@ -11,7 +11,7 @@ switch($action) {
             $return = [ 'success'   => false,'message'   => 'Login failed, invalid username / password'];
 
             $login = $_POST['login'];
-            $password = sha1($_POST['password']);
+            $password = $_POST['password'];
 
             $user = $fs_db->getUserByEmail($login,$password);
 
@@ -32,6 +32,7 @@ switch($action) {
         break;
     case 'logout':
         $fs_db->invalidateSessionKey($_SESSION['auth']['key']);
+        unset($_SESSION["auth"]);
         session_destroy();
         break;
 }

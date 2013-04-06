@@ -11,7 +11,7 @@ $(document).ready(function() {
 
         this.init               = function() {
             this.auth = new this.Models.Session();
-            this.header = new this.Views.Header({el: $('.header-contain'), model: this.auth});
+            this.header = new this.Views.Header({el: $('.header-contain')});
             this.landingView = new this.Views.Landing({el: $('.body-contain')});
             this.footer = new this.Views.Footer({el: $('.footer-contain')});
         };
@@ -31,8 +31,6 @@ $(document).ready(function() {
             isLoggedIn: function() {
                 if(this.get('api_key') == null) return false;
                 else return true;
-            },
-            destroy: function() {
             },
             save: function() {
                 $.session.set('api_key',this.get('api_key'));
@@ -66,7 +64,7 @@ $(document).ready(function() {
                     showLoginBox: this.showLoginBox,
                     showSignupBox: this.showSignupBox,
                     userName: this.getUserName(),
-                    isLoggedIn: this.isLoggedIn()
+                    isLoggedIn: this.getLoggedIn()
                 }
                 this.$el.html( _.template($("#header-template").html(), variables));
             },
@@ -104,17 +102,17 @@ $(document).ready(function() {
             focusSignupBox: function() {
                 $(this.$el).find('.signup-box input.name').focus();
             },
-            isLoggedIn: function() {
-                if(typeof(this.model) != 'undefined') return this.model.isLoggedIn();
+            getUserName: function() {
+                if(typeof(that.auth) != 'undefined' && that.auth != null) return that.auth.get('name');
                 else return false;
             },
-            getUserName: function() {
-                return this.model.get('name');
+            getLoggedIn: function() {
+                if(typeof(that.auth) != 'undefined' && typeof(that.auth.get('api_key')) != 'undefined') return true;
+                else return false;
             },
             processLogin: function(event) {
-                var login,password,container,response,parent,that,shake;
+                var login,password,container,response,parent,shake;
 
-                that = this;
                 this.showLoginLoader = true;
                 this.render();
 
@@ -127,39 +125,40 @@ $(document).ready(function() {
                     login     : login,
                     password  : password
                 },function(returnData) {
-                    that.showLoginLoader = false;
+                    that.header.showLoginLoader = false;
                     //success
                     if(returnData.success === true) {
-                        that.model.set({
+                        that.auth.set({
                             api_key: returnData.key,
                             username: returnData.data.username,
                             name: returnData.data.name,
                             email :returnData.data.email
                         });
-                        that.model.save();
+                        that.auth.save();
                     }
                     //failure
                     else {
                         shake = true;
                         console.log('login error - ' + returnData.message);
                     }
-
-                    that.render();
-                    if(shake == true) that.shakeLoginBox();
-                    that.focusLoginBox();
+                    that.header.render();
+                    if(shake == true) that.header.shakeLoginBox();
+                    that.header.focusLoginBox();
                 },'json');
             },
             processLogout: function(event) {
-                that = this;
                 this.showLoginLoader = true;
+                this.showLoginLoader= false;
+                this.showLoginBox= false;
+                this.showSignupBox= false;
 
                 $.post(config.base_url + '/auth.php', {
                     action      : 'logout'
                 },function(returnData) {
-                    that.showLoginLoader = false;
-                    that.model.destroy();
+                    that.auth = null;
+                    that.auth = new that.Models.Session();
                     $.session.clear();
-                    location.reload(true)
+                    that.header.render();
                 });
             },
             processSignup: function(event) {

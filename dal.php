@@ -38,10 +38,8 @@ class DAL {
         $login_type = null;
         if(stripos('@',$login) !== false) $login_type = 'email';
         $login_type = 'username';
-
         $password = sha1($password);
-        $sql = 'SELECT * FROM `users` WHERE `'.$login_type.'` = "'.mysql_real_escape_string($login).'"';
-
+        $sql = 'SELECT * FROM `users` WHERE `'.$login_type.'` = "'.mysql_real_escape_string($login).'" AND `password` = "'.$password.'"';
         $return = $this->query($sql);
         if(count($return) == 1) $return = $return[0];
         return $return;
