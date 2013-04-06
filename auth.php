@@ -1,5 +1,6 @@
 <?php
 $reveal_db = true;
+require_once('conf/env.php');
 require_once('conf/config.php');
 $action = $_POST['action'];
 $return = [ 'success'   => false,'message'   => 'Invalid action specified'];

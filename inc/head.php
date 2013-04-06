@@ -1,5 +1,4 @@
 <?php
-set_include_path(getcwd());
 include_once('conf/env.php');
 include_once('conf/config.php');
 //$link = mysql_connect($db_host,$db_user,$db_pass) or die('username and password must be wrong n00b');
