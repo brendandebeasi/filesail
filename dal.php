@@ -1,6 +1,5 @@
 <?php
 //todo: remove hard-coded DB
-include_once('conf/config.php');
 
 class DALQueryResult {
 
@@ -49,6 +48,9 @@ class DAL {
     }
 
     private function dbconnect() {
+        include('conf/env.php');
+        include('conf/config.php');
+
         $conn = mysql_connect($config['db']['host'], $config['db']['user'], $config['db']['pass'])
         //$conn = mysql_connect('localhost', 'root', 'root')
             or die ("<br/>Could not connect to MySQL server" . mysql_error());

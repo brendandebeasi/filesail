@@ -1,4 +1,8 @@
 <?php
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 $config = [
     'dev'   => [
         'db' => [
@@ -54,7 +58,6 @@ $config = [
 
 $config = $config[$env];
 $safeconfig = $config;
-session_start();
 //BE SURE TO REMOVE UNSAFE VARS HERE
 $safeconfig['db'] = null;
 
