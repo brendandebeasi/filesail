@@ -51,7 +51,7 @@ class DAL {
     private function dbconnect() {
 //        $conn = mysql_connect($config['db']['host'], $config['db']['user'], $config['db']['pass'])
         $conn = mysql_connect('localhost', 'root', 'root')
-            or die ("<br/>Could not connect to MySQL server");
+            or die ("<br/>Could not connect to MySQL server" . mysql_error());
 
 //        mysql_select_db($config['db']['name'],$conn)
         mysql_select_db('filesail',$conn)
