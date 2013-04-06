@@ -47,6 +47,11 @@ class DAL {
         return $return;
     }
 
+    public function invalidateSessionKey($session_key) {
+        $sql = 'DELETE FROM `api_keys` WHERE `api_key` = "'.mysql_real_escape_string($session_key).'" ';
+        $this->query($sql);
+    }
+
     private function dbconnect() {
         include('conf/env.php');
         include('conf/config.php');

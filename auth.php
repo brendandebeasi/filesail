@@ -30,4 +30,8 @@ switch($action) {
         $return = ['success'=>false];
         if(isset($_SESSION['auth'])) echo json_encode($_SESSION['auth']);
         break;
+    case 'logout':
+        $fs_db->invalidateSessionKey($_SESSION['auth']['key']);
+        session_destroy();
+        break;
 }

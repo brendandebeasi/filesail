@@ -32,7 +32,8 @@ $(document).ready(function() {
                 if(this.get('api_key') == null) return false;
                 else return true;
             },
-
+            destroy: function() {
+            },
             save: function() {
                 $.session.set('api_key',this.get('api_key'));
                 $.session.set('username',this.get('username'));
@@ -55,7 +56,8 @@ $(document).ready(function() {
             },
             keypress     : function(event) {
                 if(event.charCode == '13') {
-                    this.processLogin(event);
+                    if(event.currentTarget.className == 'login-box') this.processLogin(event);
+                    if(event.currentTarget.className == 'signup-box') this.processSignup(event);
                 }
             },
             render          : function() {
@@ -72,9 +74,9 @@ $(document).ready(function() {
                 "click header .buttons .login"                  : "showLogin",
                 "click header .buttons .signup"                 : "showSignup",
                 "click header .close"                           : "resetAuthButtons",
-                "click header .login-box button.login"          : "processLogin",
+                "click header .welcome .logout"                       : "processLogout",
                 "keypress header .login-box"                    : "keypress",
-                "click header .signup-box button.signup"        : "processSignup"
+                "keypress header .signup-box"                   : "keypress"
             },
             showLogin: function(event) {
                 this.showLoginBox = true;
@@ -86,6 +88,7 @@ $(document).ready(function() {
                 this.showLoginBox = false;
                 this.showSignupBox = true;
                 this.render();
+                this.focusSignupBox();
             },
             resetAuthButtons: function(event) {
                 this.showLoginBox = false;
@@ -98,8 +101,12 @@ $(document).ready(function() {
             focusLoginBox: function() {
                 $(this.$el).find('.login-box input.login').focus();
             },
+            focusSignupBox: function() {
+                $(this.$el).find('.signup-box input.name').focus();
+            },
             isLoggedIn: function() {
-                return this.model.isLoggedIn();
+                if(typeof(this.model) != 'undefined') return this.model.isLoggedIn();
+                else return false;
             },
             getUserName: function() {
                 return this.model.get('name');
@@ -141,6 +148,19 @@ $(document).ready(function() {
                     if(shake == true) that.shakeLoginBox();
                     that.focusLoginBox();
                 },'json');
+            },
+            processLogout: function(event) {
+                that = this;
+                this.showLoginLoader = true;
+
+                $.post(config.base_url + '/auth.php', {
+                    action      : 'logout'
+                },function(returnData) {
+                    that.showLoginLoader = false;
+                    that.model.destroy();
+                    $.session.clear();
+                    location.reload(true)
+                });
             },
             processSignup: function(event) {
 
