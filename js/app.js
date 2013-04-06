@@ -80,6 +80,7 @@ $(document).ready(function() {
                 this.showLoginBox = true;
                 this.showSignupBox = false;
                 this.render();
+                this.focusLoginBox();
             },
             showSignup: function(event) {
                 this.showLoginBox = false;
