@@ -28,34 +28,38 @@ include_once('conf/config.php');
 
             <div class="right">
                 <% if(isLoggedIn) { %>
-                    Welcome!
-                <% } %>
-                <% if(!showLoginBox && !showSignupBox) { %>
-                    <div class="buttons right">
-                        <button class="login" href="javascript:void(0);">Login</button>
-                        <button class="signup" href="javascript:void(0);">Signup</button>
+                    <div class="welcome">
+                        Howdy, <a href="javascript:void(0);"><%= userName %></a>!
                     </div>
-                <% } %>
-                <% if(showLoginBox) { %>
-                    <div class="login-box">
-                        <img src="<?php echo $config['host'] . $config['base_url']; ?>/img/ajax-loader.gif" class="process-login <% if(!showLoginLoader) { %>hidden<% } %>" />
-                        <% if(!showLoginLoader) { %><a class="close icon-sweets" href="javascript:void(0);">X</a><% } %>
-                        <input id="login-login" placeholder="Username / Email" type="text" />
-                        <input id="login-password" placeholder="Password" type="password"/>
-                        <button class="login" href="javascript:void(0);">Login</button>
-                    </div>
+                <% } else { %>
+                    <% if(!showLoginBox && !showSignupBox) { %>
+                        <div class="buttons right">
+                            <button class="login" href="javascript:void(0);">Login</button>
+                            <button class="signup" href="javascript:void(0);">Signup</button>
+                        </div>
+                    <% } %>
+                    <% if(showLoginBox) { %>
+                        <div class="login-box">
+                            <img src="<?php echo $config['host'] . $config['base_url']; ?>/img/ajax-loader.gif" class="process-login <% if(!showLoginLoader) { %>hidden<% } %>" />
+                            <% if(!showLoginLoader) { %><a class="close icon-sweets" href="javascript:void(0);">X</a><% } %>
+                            <input class="login" <% if(showLoginLoader) { %>disabled="disabled"<% } %> placeholder="Username / Email" type="text" />
+                            <input class="password" <% if(showLoginLoader) { %>disabled="disabled"<% } %> placeholder="Password" type="password"/>
+                            <button class="login" <% if(showLoginLoader) { %>disabled="disabled"<% } %>href="javascript:void(0);">Login</button>
+                        </div>
 
+                    <% } %>
+                    <% if(showSignupBox) { %>
+                        <div class="signup-box">
+                            <a class="close icon-sweets" href="javascript:void(0);">X</a>
+                            <input id="reg-name" placeholder="Name" type="text" />
+                            <input id="reg-username" placeholder="Username" type="text" />
+                            <input id="reg-email" placeholder="Email Address" type="text" />
+                            <input id="reg-password" placeholder="Password" type="password"/>
+                            <button class="signup" href="javascript:void(0);">Signup</button>
+                        </div>
+                    <% } %>
                 <% } %>
-                <% if(showSignupBox) { %>
-                    <div class="signup-box">
-                        <a class="close icon-sweets" href="javascript:void(0);">X</a>
-                        <input id="reg-name" placeholder="Name" type="text" />
-                        <input id="reg-username" placeholder="Username" type="text" />
-                        <input id="reg-email" placeholder="Email Address" type="text" />
-                        <input id="reg-password" placeholder="Password" type="password"/>
-                        <button class="signup" href="javascript:void(0);">Signup</button>
-                    </div>
-                <% } %>
+
                 <div class="clear"></div>
 
             </div>

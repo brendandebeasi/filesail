@@ -10,13 +10,14 @@ switch($action) {
             $return = [ 'success'   => false,'message'   => 'Login failed, invalid username / password'];
 
             $login = $_POST['login'];
-            $password = sha1($_POST['login']);
+            $password = sha1($_POST['password']);
 
-            $return = $fs_db->getUserByEmail($login,$password);
-            if(count($return)) {
-                $key = $fs_db->generateSessionKeyForUser($return->id);
+            $user = $fs_db->getUserByEmail($login,$password);
+
+            if(count($user)) {
+                $key = $fs_db->generateSessionKeyForUser($user->id);
                 if($key != false) {
-                    $return = ['success'=>true,'key'=>$key,'data'=>['username'=>$return->username,'name'=>$return->name, 'created'=>$return->created,'email'=>$return->email]];
+                    $return = ['success'=>true,'key'=>$key,'data'=>['username'=>$user->username,'name'=>$user->name, 'created'=>$user->created,'email'=>$user->email]];
                     $_SESSION['auth'] = $return;
                 }
             }

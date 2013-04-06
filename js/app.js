@@ -5,29 +5,44 @@ $(document).ready(function() {
         var that = this;
         this.elem               = elem;
         this.auth               = null;
-        this.headerTemplate     = null;
+        this.Views = {};
+        this.Models = {};
 
-        this.view               = function(renderElement) {
-            this.renderElement = renderElement;
-            this.template   = null;
-            this.model      = {};
-            this.bind       = function() {
+        this.init               = function() {
+            this.auth = new this.Models.Session();
+            this.header = new this.Views.Header({el: $('.header-contain'), model: this.auth});
+            this.landingView = new this.Views.Landing({el: $('.body-contain')});
+            this.footer = new this.Views.Footer({el: $('.footer-contain')});
+        };
+        this.Models.Session     = Backbone.Model.extend({
+            defaults: {
+                api_key: null,
+                username: null,
+                name: null,
+                email :null
+            },
+            initialize: function() {
+                if(typeof( $.session.get('api_key'))) this.set('api_key',$.session.get('api_key'));
+                if(typeof( $.session.get('username'))) this.set('username',$.session.get('username'));
+                if(typeof( $.session.get('name'))) this.set('name',$.session.get('name'));
+                if(typeof( $.session.get('email'))) this.set('email',$.session.get('email'));
+            },
+            isLoggedIn: function() {
+                if(this.get('api_key') == null) return false;
+                else return true;
+            },
 
-            };
-            this.render     = function() {
-                this.renderElement.html(this.template(this.model));
-                this.bind();
-            };
-            this.init       = function() {
+            save: function() {
+                $.session.set('api_key',this.get('api_key'));
+                $.session.set('username',this.get('username'));
+                $.session.set('name',this.get('name'));
+                $.session.set('email',this.get('email'));
+            }
+        });
 
-            };
-            this.init();
-        }
-
-        this.HeaderView                     = Backbone.View.extend({
-            isLoggedIn      : false,
-            showLoginBox    : false,
+        this.Views.Header                     = Backbone.View.extend({
             showLoginLoader : false,
+            showLoginBox    : false,
             showSignupBox   : false,
 
             initialize      : function() {
@@ -37,17 +52,20 @@ $(document).ready(function() {
             },
             render          : function() {
                 var variables = {
-
+                    showLoginLoader: this.showLoginLoader,
+                    showLoginBox: this.showLoginBox,
+                    showSignupBox: this.showSignupBox,
+                    userName: this.getUserName(),
+                    isLoggedIn: this.isLoggedIn()
                 }
-                this.$el.html( _.template($("#header-template").html(), this));
-
+                this.$el.html( _.template($("#header-template").html(), variables));
             },
             events          : {
-                "click header .buttons .login"  :"showLogin",
-                "click header .buttons .signup" :"showSignup",
-                "click header .close"           :"resetAuthButtons",
-                "click header .login-box .login":"processLogin",
-                "click header .signup-box .signup":"processSignup"
+                "click header .buttons .login"                  : "showLogin",
+                "click header .buttons .signup"                 : "showSignup",
+                "click header .close"                           : "resetAuthButtons",
+                "click header .login-box button.login"          : "processLogin",
+                "click header .signup-box button.signup"        : "processSignup"
             },
             showLogin: function(event) {
                 this.showLoginBox = true;
@@ -64,16 +82,53 @@ $(document).ready(function() {
                 this.showSignupBox = false;
                 this.render();
             },
+            isLoggedIn: function() {
+                return this.model.isLoggedIn();
+            },
+            getUserName: function() {
+                return this.model.get('name');
+            },
             processLogin: function(event) {
+                var login,password,container,response,parent,that;
+
+                that = this;
                 this.showLoginLoader = true;
                 this.render();
+
+                parent = $(event.currentTarget).parent();
+                login = parent.find('input.login').val();
+                password = parent.find('input.password').val();
+
+                $.post(config.base_url + '/auth.php', {
+                    action    : 'login',
+                    login     : login,
+                    password  : password
+                },function(returnData) {
+                    this.showLoginLoader = false;
+                    //success
+                    if(returnData.success === true) {
+                        that.model.set({
+                            api_key: returnData.key,
+                            username: returnData.data.username,
+                            name: returnData.data.name,
+                            email :returnData.data.email
+                        });
+                        that.model.save();
+                    }
+                    //failure
+                    else {
+                        console.log('login error - '.returnData.message);
+                    }
+
+                    that.render();
+                },'json');
             },
             processSignup: function(event) {
 
             }
         });
 
-        this.FooterView            = Backbone.View.extend({
+        this.Views.Footer            = Backbone.View.extend({
             initialize      : function() {
                 this.$el.hide();
                 this.render();
@@ -83,7 +138,7 @@ $(document).ready(function() {
                 this.$el.html(_.template($("#footer-template").html(), {}));
             },
         });
-        this.LandingView            = Backbone.View.extend({
+        this.Views.Landing = Backbone.View.extend({
             initialize      : function() {
                 this.$el.hide();
                 this.render();
@@ -93,65 +148,12 @@ $(document).ready(function() {
                 this.$el.html(_.template($("#landing-template").html(), {}));
             },
         });
-
-        this.init               = function() {
-            this.auth = new this.connectionStatus();
-            this.header = new this.HeaderView({el: $('.header-contain')});
-            this.landingView = new this.LandingView({el: $('.body-contain')});
-            this.footer = new this.FooterView({el: $('.footer-contain')});
-        };
-
-        this.connectionStatus   = function() {
-            this.isLoggedIn     = false;
-            this.userName       = 'Anonymous';
-            this.apiKey         = 'anonymous';
-            this.authTime       = false;
-        };
-
         this.init();
+
+
     };
     nc_filesail = new $.filesail($('#container'));
-//
-//    $.ajaxSetup({
-//        // Disable caching of AJAX responses
-//        cache: false
-//    });
-//    //Show login field
-//    $('header .buttons .login').click(function() {
-//        $(this).parent().addClass('hidden');
-//        $(this).parent().parent().find('.login-box').removeClass('hidden');
-//    });
-//    //Show signup field
-//    $('header .buttons .signup').click(function() {
-//        $(this).parent().addClass('hidden');
-//        $(this).parent().parent().find('.signup-box').removeClass('hidden');
-//    });
-//    //Close Login / Signup field
-//    $('header .login-box .close-box, header .signup-box .close-box').click(function() {
-//        $(this).parent().addClass('hidden');
-//        $(this).parent().parent().find('.buttons').removeClass('hidden');
-//    });
-//    //Handle login
-//    $('header .login-box .login').click(function() {
-//        var login,password,container,response;
-//
-//        login = $('#login-login',$('header .login-box')).val();
-//        password = $('#login-password',$('header .login-box')).val();
-//        container = $(this).parent();
-//
-//        container.find('input').attr('disabled','disabled');
-//
-//        $.post(config.base_url + '/auth.php', {
-//            action    : 'login',
-//            login     : login,
-//            password  : password
-//        },function(returnData) {
-//
-//            $(this).parent().find('input').removeAttr('disabled','disabled');
-//        });
-//
-//
-//    });
+
     //Map the upload button image to trigger the real upload image
     $('#upload-button').click(function() {
         $('#upload-field').trigger('click');
@@ -191,6 +193,7 @@ $(document).ready(function() {
     });
 
 });
+
 /**
  * @function: getBytesWithUnit()
  * @purpose: Converts bytes to the most simplified unit.
