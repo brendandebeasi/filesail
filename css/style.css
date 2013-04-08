@@ -46,6 +46,7 @@ body, html, #container {
     background: #2c2c2c;
     color: white;
     height: 54px;
+    padding: 0 20px;
 }
 
 #container header .logo-contain #logo {
@@ -222,21 +223,37 @@ body, html, #container {
 }
 #container .sidebar-contain {
 }
-#container .sidebar-contain ul {
+#container .sidebar-contain .hd{
+    border-bottom: 1px solid #bebebe;
+    color: #424242;
+    text-align: center;
+    font-size: 13px;
+}
+#container .sidebar-contain table {
     margin:0px;
     padding: 0px;
 }
-#container .sidebar-contain ul li {
-    margin: 0px;
-    font-size: 8pt;
-    text-align: center;
-    width: 30%;
-    padding: 0px;
-    display: inline-block;
+#container .sidebar-contain .upload-group {
+    border-bottom: #bebebe;
 }
-#container .sidebar-contain {
-    background: #e6e6e6;
-
+#container .sidebar-contain .upload-group div {
+    display: inline-block;
+    border-right: 1px solid #bebebe;
+    border-bottom: 1px solid #bebebe;
+    float: left;
+    font-size: 9px;
+    overflow: hidden;
+}
+#container .sidebar-contain .upload-group div:last-child {
+    border-right: none;
+}
+#container .sidebar-contain .upload-group .name {
+    font-size: 11px;
+    width: 69%;
+}
+#container .sidebar-contain .upload-group .date, #container .sidebar-contain .upload-group .size {
+    width: 15%;
+    text-align: center;
 }
 #container footer {
     bottom: 0px;

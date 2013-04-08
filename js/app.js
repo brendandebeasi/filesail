@@ -24,6 +24,7 @@ $(document).ready(function() {
 //                east__resizable:   false,
 //                east__togglerLength_open:   0,
 //                east__togglerLength_closed:   0,
+                east__minSize: 300,
                 east__paneSelector:   this.sidebar.$el.selector,
 
 //                center__resizable: false,
