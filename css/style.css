@@ -224,36 +224,56 @@ body, html, #container {
 #container .sidebar-contain {
 }
 #container .sidebar-contain .hd{
-    border-bottom: 1px solid #bebebe;
-    color: #424242;
+    border-bottom: 1px solid #d6d6d6;
+    color: #7d7d7d;
+    font-size: 11px;
     text-align: center;
-    font-size: 13px;
-}
-#container .sidebar-contain table {
-    margin:0px;
-    padding: 0px;
 }
 #container .sidebar-contain .upload-group {
-    border-bottom: #bebebe;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #fff;
+    cursor: pointer;
+    height: 22px;
+}
+#container .sidebar-contain .upload-group:first-child {
+    border-top: none;
+}
+#container .sidebar-contain .upload-group:nth-child(even) {
+    background: #f9f9f9;
+}
+#container .sidebar-contain .upload-group:nth-child(even):hover {
+    background: #ebebeb;
+}
+#container .sidebar-contain .upload-group:nth-child(odd) {
+    background: #eaf0f3;
+}
+#container .sidebar-contain .upload-group:nth-child(odd):hover {
+    background: #e4f2ee;
 }
 #container .sidebar-contain .upload-group div {
+    border-right: 1px solid #dddddd;
     display: inline-block;
-    border-right: 1px solid #bebebe;
-    border-bottom: 1px solid #bebebe;
     float: left;
     font-size: 9px;
+    height: 22px;
+    line-height: 22px;
     overflow: hidden;
 }
 #container .sidebar-contain .upload-group div:last-child {
     border-right: none;
 }
 #container .sidebar-contain .upload-group .name {
+    color: #323232;
     font-size: 11px;
-    width: 69%;
+    width: 65.25%;
+}
+#container .sidebar-contain .upload-group .name span {
+    margin-left: 4px;
 }
 #container .sidebar-contain .upload-group .date, #container .sidebar-contain .upload-group .size {
-    width: 15%;
+    color: #808080;
     text-align: center;
+    width: 17%;
 }
 #container footer {
     bottom: 0px;

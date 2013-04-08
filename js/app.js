@@ -14,6 +14,7 @@ $(document).ready(function() {
             this.header = new this.Views.Header({el: $('.header-contain')});
             this.body = new this.Views.Landing({el: $('.body-contain')});
             this.sidebar = new this.Views.Sidebar({el: $('.sidebar-contain')});
+
             this.layout = $('#container').layout({
                 // using custom 'ID' paneSelectors
 //                north__resizable: false,
