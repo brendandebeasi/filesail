@@ -8,15 +8,42 @@ $(document).ready(function() {
         this.auth               = null;
         this.Views = {};
         this.Models = {};
+        this.layout = null;
 
         this.init               = function() {
-            this.auth = new this.Models.Session();
             this.header = new this.Views.Header({el: $('.header-contain')});
             this.body = new this.Views.Landing({el: $('.body-contain')});
             this.sidebar = new this.Views.Sidebar({el: $('.sidebar-contain')});
+            this.layout = $('#container').layout({
+                // using custom 'ID' paneSelectors
+//                north__resizable: false,
+//                north__togglerLength_open: 0,
+//                north__togglerLength_closed: 0,
+                north__paneSelector: this.header.$el.selector,
+
+//                east__resizable:   false,
+//                east__togglerLength_open:   0,
+//                east__togglerLength_closed:   0,
+                east__paneSelector:   this.sidebar.$el.selector,
+
+//                center__resizable: false,
+//                center__togglerLength_open:   0,
+//                center__togglerLength_closed:   0,
+                center__paneSelector: this.body.$el.selector,
+            });
+            this.auth = new this.Models.Session();
+            this.render();
         };
+        this.render         = function() {
+            this.header.render();
+            this.body.render();
+            this.sidebar.render();
+        }
         this.getLoggedIn = function() {
-            if(typeof(that.auth) != 'undefined' && typeof(that.auth.get('api_key')) != 'undefined') return true;
+            if(typeof(that.auth) != 'undefined' && that.auth != null) {
+                if(typeof(that.auth.get('api_key')) != 'undefined' && that.auth.get('api_key') != null) return true;
+                else return false;
+            }
             else return false;
         };
 

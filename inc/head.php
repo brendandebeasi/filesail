@@ -5,7 +5,8 @@ include_once('conf/config.php');
 ?><!DOCTYPE html>
 <head>
 	<title>FileSail</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/default-layout.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/style.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/style.css" />
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -21,7 +22,7 @@ include_once('conf/config.php');
 <body>
 <div class="preload">X</div>
 <script id="header-template" type="text/template">
-    <header class="<% if(isLoggedIn) { %>isLoggedIn<% } %>">
+    <header class=" <% if(isLoggedIn) { %>isLoggedIn<% } %>">
         <div class="main-component-contain">
             <div class="left logo-contain">
                 <a id="logo" href="<?php $config['base_url']; ?>"></a>
@@ -30,7 +31,7 @@ include_once('conf/config.php');
             <div class="right">
                 <% if(isLoggedIn) { %>
                     <div class="welcome">
-                        Howdy, <a class="logout" href="javascript:void(0);"><%= userName %></a>!
+                        Howdy, <a href="javascript:void(0);"><%= userName %></a> | <a class="logout" href="javascript:void(0);">Logout</a>
                     </div>
                 <% } else { %>
                     <% if(!showLoginBox && !showSignupBox) { %>

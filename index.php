@@ -1,5 +1,5 @@
 <?php require_once('inc/head.php'); ?>
-<div class="body-contain"></div>
+<div class="ui-layout-center ui-layout-pane ui-layout-pane-center body-contain"></div>
 <script id="landing-template" type="text/template">
     <div class="main-component-contain<% if(isLoggedIn) { %> isLoggedIn<% } %>">
 
