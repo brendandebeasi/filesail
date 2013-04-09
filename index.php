@@ -1,10 +1,10 @@
 <?php require_once('inc/head.php'); ?>
-<div class="ui-layout-center ui-layout-pane ui-layout-pane-center body-contain"></div>
+<div class="body-contain"></div>
 <script id="landing-template" type="text/template">
     <div class="main-component-contain<% if(isLoggedIn) { %> isLoggedIn<% } %>">
 
         <div class="body">
-            <h1>File Sharing For Professionals, Done Right.</h1>
+            <div class="subhead"><div class="wrp-1">File Sharing For Professionals, Done Right.</div></div>
 
             <div class="upload-contain">
                 <div class="upload-border">
@@ -24,6 +24,8 @@
             <div id="progress">
                 <div class="bar" style="width: 0%;"></div>
             </div>
+
+            <div class="fs-font upload-icon">A</div>
         </div>
 </script>
 <?php require_once('inc/sidebar.php'); ?>

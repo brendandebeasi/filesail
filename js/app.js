@@ -14,25 +14,6 @@ $(document).ready(function() {
             this.header = new this.Views.Header({el: $('.header-contain')});
             this.body = new this.Views.Landing({el: $('.body-contain')});
             this.sidebar = new this.Views.Sidebar({el: $('.sidebar-contain')});
-
-            this.layout = $('#container').layout({
-                // using custom 'ID' paneSelectors
-//                north__resizable: false,
-//                north__togglerLength_open: 0,
-//                north__togglerLength_closed: 0,
-                north__paneSelector: this.header.$el.selector,
-
-//                east__resizable:   false,
-//                east__togglerLength_open:   0,
-//                east__togglerLength_closed:   0,
-                east__minSize: 300,
-                east__paneSelector:   this.sidebar.$el.selector,
-
-//                center__resizable: false,
-//                center__togglerLength_open:   0,
-//                center__togglerLength_closed:   0,
-                center__paneSelector: this.body.$el.selector,
-            });
             this.auth = new this.Models.Session();
             this.render();
         };
@@ -236,8 +217,16 @@ $(document).ready(function() {
                 var variables = {
                     isLoggedIn: that.getLoggedIn()
                 }
+                if(variables.isLoggedIn) this.makePartialWidth();
+                else this.makeFullWidth();
                 this.$el.html(_.template($("#landing-template").html(), variables));
             },
+            makePartialWidth : function() {
+                this.$el.addClass('isLoggedIn');
+            },
+            makeFullWidth : function() {
+                this.$el.removeClass('isLoggedIn');
+            }
         });
         this.init();
 

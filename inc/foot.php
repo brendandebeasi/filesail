@@ -18,10 +18,9 @@
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.session.js"></script>
 <script type="text/javascript" src="http://underscorejs.org/underscore.js"></script>
 <script type="text/javascript" src="http://backbonejs.org/backbone.js"></script>
-<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/vendor/jquery.ui.widget.js"></script>
-<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/vendor/jquery-ui-1.10.2.custom.min.js"></script>
+<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.ui.widget.js"></script>
+<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery-ui-1.10.2.custom.min.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.iframe-transport.js"></script>
-<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.layout.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.fileupload.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/handlebars.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/dynamic.php"></script>

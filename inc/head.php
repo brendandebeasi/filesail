@@ -5,9 +5,8 @@ include_once('conf/config.php');
 ?><!DOCTYPE html>
 <head>
 	<title>FileSail</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/default-layout.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>css/style.css" />
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,7 +24,7 @@ include_once('conf/config.php');
     <header class=" <% if(isLoggedIn) { %>isLoggedIn<% } %>">
         <div class="main-component-contain">
             <div class="left logo-contain">
-                <a id="logo" href="<?php $config['base_url']; ?>"></a>
+                <a id="logo" class="fs-logo" href="<?php $config['base_url']; ?>">FileSail</a>
             </div>
 
             <div class="right">
