@@ -81,15 +81,15 @@ body, html, #container {
     background: #2c2c2c;
     color: white;
     height: 54px;
-    padding: 0 20px;
+    padding: 0 9px;
 }
 
 #container header .logo-contain #logo {
-    font-size: 23pt;
+    font-size: 20pt;
     color: #ffffff;
     text-decoration: none;
     display: block;
-    margin-top: 10px;
+    margin-top: 13px;
     letter-spacing: .06em;
     width: 110px;
 }
@@ -276,10 +276,17 @@ body, html, #container {
 #container .sidebar-contain .hd{
     background: #e6e6e6;
     color: #6b6b6b;
-    font-size: 15px;
+    font-size: 13px;
     text-align: center;
     padding: 3px 8px;
     line-height: 25px;
+}
+#container .sidebar-contain .hd .right {
+    font-size: 18pt;
+    cursor: pointer;
+}
+#container .sidebar-contain .hd .right:hover {
+  color: #949494;
 }
 #container .sidebar-contain .uploads td, #container .sidebar-contain .uploads th {
     padding: 0 12px;
@@ -287,7 +294,7 @@ body, html, #container {
 }
 #container .sidebar-contain .uploads thead tr {
     color: rgba(48, 48, 48, .23);
-    font-size: 12pt;
+    font-size: 10pt;
     text-align: left;
     height: 50px;
     line-height: 59px;

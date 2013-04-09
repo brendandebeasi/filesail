@@ -3,7 +3,7 @@
         <div class="<% if(isLoggedIn) { %>isLoggedIn<% } %>">
             <div class="hd">
                 <div class="title left">Your Files</div>
-                <div class="icon gear right">O</div>
+                <div class="fs-font right">F</div>
                 <div class="clear"></div>
             </div>
             <table class="uploads">
