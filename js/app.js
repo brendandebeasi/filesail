@@ -6,13 +6,97 @@ $(document).ready(function() {
         var that = this;
         this.elem               = elem;
         this.auth               = null;
+        this.layout = null;
+        this.folders            = {};
         this.Views = {};
         this.Models = {};
-        this.layout = null;
+        this.Collections = {};
 
         this.init               = function() {
             this.header = new this.Views.Header({el: $('.header-contain')});
             this.body = new this.Views.Landing({el: $('.body-contain')});
+
+            this.folders = new this.Collections.Folders();
+            var tempFolder = new this.Models.Folder({
+                id: 1,
+                name: 'These Are',
+                size: 102400,
+                hash: 'asdf',
+                created:'08/20/89',
+                users_id:1,
+                enable_comments:true,
+                enable_password:false,
+                enable_expiration_time:false
+            });
+            var tempFolder2 = new this.Models.Folder({
+                id: 2,
+                name: 'Real Folders',
+                size: 102400/2,
+                hash: 'asdf2',
+                created:'08/22/89',
+                users_id:1,
+                enable_comments:true,
+                enable_password:false,
+                enable_expiration_time:false
+            });
+            var file1 = new this.Models.File({
+                id: 1,
+                name: 'Cool_Fish_1',
+                size:'1024',
+                type:'image',
+                hash:'asdf_fish_1',
+                extension:'jpg',
+                created:'04/9/13',
+                users_id:1,
+                version:1,
+                is_latest_version:1
+            });
+            var file2 = new this.Models.File({
+                id: 2,
+                name: 'Cool_Fish_2',
+                size:'1024',
+                type:'image',
+                hash:'asdf_fish_2',
+                extension:'jpg',
+                created:'04/10/13',
+                users_id:1,
+                version:1,
+                is_latest_version:1
+            });
+
+            var file3 = new this.Models.File({
+                id: 3,
+                name: 'Cool_Fish_3',
+                size:'1024',
+                type:'image',
+                hash:'asdf_fish_3',
+                extension:'jpg',
+                created:'04/10/13',
+                users_id:1,
+                version:1,
+                is_latest_version:1
+            });
+            var file4 = new this.Models.File({
+                id: 4,
+                name: 'Cool_Fish_4',
+                size:'10240',
+                type:'image',
+                hash:'asdf_fish_4',
+                extension:'jpg',
+                created:'04/11/13',
+                users_id:1,
+                version:1,
+                is_latest_version:1
+            });
+
+            tempFolder.attributes.files.push(file1);
+            tempFolder.attributes.files.push(file2);
+            tempFolder2.attributes.files.push(file4);
+            tempFolder2.attributes.files.push(file3);
+
+            this.folders.add( tempFolder );
+            this.folders.add( tempFolder2 );
+
             this.sidebar = new this.Views.Sidebar({el: $('.sidebar-contain')});
             this.auth = new this.Models.Session();
             this.render();
@@ -29,15 +113,48 @@ $(document).ready(function() {
             }
             else return false;
         };
-        /*
-        this.Models.Folder      = Backbone.Model.extend({
-            files: new this.,
-            initialize:     function() {
 
+        this.Models.File      = Backbone.Model.extend({
+            defaults: {
+                id: null,
+                name: null,
+                size: null,
+                download_dir_name: null,
+                type:null,
+                hash:null,
+                extension:null,
+                folders_id:null,
+                created:null,
+                users_id:null,
+                version:null,
+                is_latest_version:null
             }
 
         });
-        */
+
+        this.Models.Folder = Backbone.Model.extend({
+            defaults: {
+                id: null,
+                files: new Array(),
+                name: null,
+                size: null,
+                hash: null,
+                created:null,
+                users_id:null,
+                enable_comments:null,
+                enable_password:null,
+                download_password:null,
+                enable_download_notification:null,
+                download_notification_type:null,
+                enable_expiration_time:null,
+                expiration_date:null
+            },
+            model: that.Models.File
+        });
+
+        this.Collections.Folders = Backbone.Collection.extend({
+           model: that.Models.Folder
+        });
 
         this.Models.Session     = Backbone.Model.extend({
             defaults: {
@@ -211,7 +328,8 @@ $(document).ready(function() {
             },
             render          : function() {
                 var variables = {
-                    isLoggedIn: that.getLoggedIn()
+                    isLoggedIn: that.getLoggedIn(),
+                    folders: that.folders
                 }
                 this.$el.html(_.template($("#sidebar-template").html(), variables));
             }
