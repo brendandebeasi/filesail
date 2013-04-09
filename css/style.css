@@ -42,11 +42,12 @@ body, html, #container {
 }
 @font-face {
     font-family: 'filesail_logoblack';
-    src: url('filesaillogo-black-webfont.eot');
-    src: url('filesaillogo-black-webfont.eot?#iefix') format('embedded-opentype'),
-    url('filesaillogo-black-webfont.woff') format('woff'),
-    url('filesaillogo-black-webfont.ttf') format('truetype'),
-    url('filesaillogo-black-webfont.svg#filesail_logoblack') format('svg');
+    src: url('../fonts/filesaillogo-black-webfont.eot');
+    src: url('../fonts/filesaillogo-black-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/filesaillogo-black-webfont.woff') format('woff'),
+    url('../fonts/filesaillogo-black-webfont.ttf') format('truetype'),
+    url('../fonts/filesaillogo-black-webfont.svg#filesail_logoblack') format('svg');
+    url('../fonts/filesaillogo-black-webfont.svg#filesail_logoblack') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -84,10 +85,12 @@ body, html, #container {
 }
 
 #container header .logo-contain #logo {
-    font-family: filesail_logoblack;
+    font-size: 23pt;
+    color: #ffffff;
+    text-decoration: none;
     display: block;
-    height: 21px;
-    margin-top: 18px;
+    margin-top: 10px;
+    letter-spacing: .06em;
     width: 110px;
 }
 #container header {
@@ -171,8 +174,7 @@ body, html, #container {
     border-right: 1px solid #e6e6e6;
 }
 #container .body-contain.isLoggedIn {
-    width: 69.85%;
-    box-shadow: 2px 0px 6px 0px rgba(25, 25, 25, .4);
+    width: 63.85%;
     background-image: none;
 }
 #container .body-contain .main-component-contain {
@@ -198,9 +200,9 @@ body, html, #container {
     color: #fff;
     display: block;
     font-weight: bold;
-    height: 79px;
+    height: 80px;
     margin: 0 auto;
-    line-height: 79px;
+    line-height: 86px;
     text-align: center;
     text-decoration: none;
     width: 381px;
@@ -262,61 +264,62 @@ body, html, #container {
 }
 #container .sidebar-contain {
     float: right;
-    width: 30%;
+    width: 36%;
+    min-height: 2000px;
+    overflow-y: hidden;
+    box-shadow: inset 1px 0px 8px 0px rgba(25, 25, 25, .4);
+    background: #f2f2f2;
+}
+#container .sidebar-contain .hd, #container .sidebar-contain .uploads {
+    margin-left: 4px;
 }
 #container .sidebar-contain .hd{
-    border-bottom: 1px solid #d6d6d6;
-    color: #7d7d7d;
-    font-size: 11px;
+    background: #e6e6e6;
+    color: #6b6b6b;
+    font-size: 15px;
     text-align: center;
+    padding: 3px 8px;
+    line-height: 25px;
 }
-#container .sidebar-contain .upload-group {
-    border-bottom: 1px solid #dddddd;
-    border-top: 1px solid #fff;
+#container .sidebar-contain .uploads td, #container .sidebar-contain .uploads th {
+    padding: 0 12px;
+    font-weight: normal;
+}
+#container .sidebar-contain .uploads thead tr {
+    color: rgba(48, 48, 48, .23);
+    font-size: 12pt;
+    text-align: left;
+    height: 50px;
+    line-height: 59px;
+}
+#container .sidebar-contain .uploads tbody tr {
+    color: #7e7f7f;
+    height: 34px;
+    line-height: 34px;
     cursor: pointer;
-    height: 22px;
-    position: relative;
-    left: 3px;
+    font-size: 10pt;
 }
-#container .sidebar-contain .upload-group:first-child {
-    border-top: none;
+#container .sidebar-contain .uploads tbody tr:nth-child(odd) {
+    background: rgba(255,255,255,.45);
 }
-#container .sidebar-contain .upload-group:nth-child(even) {
-    background: #f9f9f9;
+#container .sidebar-contain .uploads tbody tr:hover {
+    background: rgba(255,255,255,.9);
 }
-#container .sidebar-contain .upload-group:nth-child(even):hover {
-    background: #ebebeb;
+#container .sidebar-contain .uploads tbody tr td.name {
+    color: #1f80ad;
 }
-#container .sidebar-contain .upload-group:nth-child(odd) {
-    background: #eaf0f3;
-}
-#container .sidebar-contain .upload-group:nth-child(odd):hover {
-    background: #e4f2ee;
-}
-#container .sidebar-contain .upload-group div {
-    border-right: 1px solid #dddddd;
-    display: inline-block;
-    /*float: left;*/
-    font-size: 9px;
-    height: 22px;
-    line-height: 22px;
-    overflow: hidden;
-}
-#container .sidebar-contain .upload-group div:last-child {
-    border-right: none;
-}
-#container .sidebar-contain .upload-group .name {
-    color: #323232;
-    font-size: 11px;
-    width: 53%;
-    padding-left: 10px;
-}
-#container .sidebar-contain .upload-group .name span {
-}
-#container .sidebar-contain .upload-group .date, #container .sidebar-contain .upload-group .size {
-    color: #808080;
+#container .sidebar-contain .uploads tbody tr td.num, #container .sidebar-contain .uploads thead tr th.num, #container .sidebar-contain .uploads tbody tr td.date, #container .sidebar-contain .uploads thead tr th.date {
     text-align: center;
-    width: 20%;
+}
+#container .sidebar-contain .uploads tbody tr td.size, #container .sidebar-contain .uploads thead tr th.size {
+    text-align: right;
+}
+#container .sidebar-contain .hd .gear {
+    line-height: 25px;
+    font-size: 20px;
+}
+#container .sidebar-contain .uploads {
+    width: 100%;
 }
 #container footer {
     bottom: 0px;

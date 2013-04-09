@@ -1,38 +1,41 @@
 <script id="sidebar-template" type="text/template">
     <% if(isLoggedIn) { %>
         <div class="<% if(isLoggedIn) { %>isLoggedIn<% } %>">
-            <div class="hd">Your Files</div>
-            <div class="upload-group">
-                <div class="name"><span>Callie & Zoey</span></div>
-                <div class="date"><span>8/20/89</span></div>
-                <div class="size"><span>1.34Gb</span></div>
+            <div class="hd">
+                <div class="title left">Your Files</div>
+                <div class="icon gear right">O</div>
+                <div class="clear"></div>
             </div>
-            <div class="upload-group">
-                <div class="name"><span>Callie & Zoey</span></div>
-                <div class="date"><span>8/20/89</span></div>
-                <div class="size"><span>1.34Gb</span></div>
-            </div>
-            <div class="upload-group">
-                <div class="name"><span>Callie & Zoey</span></div>
-                <div class="date"><span>10/20/89</span></div>
-                <div class="size"><span>1.34Gb</span></div>
-            </div>
-            <div class="upload-group">
-                <div class="name"><span>Callie & Zoey</span></div>
-                <div class="date"><span>8/20/89</span></div>
-                <div class="size"><span>1.34Gb</span></div>
-            </div>
-            <div class="upload-group">
-                <div class="name"><span>Callie & Zoey</span></div>
-                <div class="date"><span>10/30/89</span></div>
-                <div class="size"><span>12.34Gb</span></div>
-            </div>
-            <div class="upload-group">
-                <div class="name"><span>Callie & Zoey</span></div>
-                <div class="date"><span>8/20/89</span></div>
-                <div class="size"><span>1.34Gb</span></div>
-            </div>
-
+            <table class="uploads">
+                <thead>
+                    <tr>
+                        <th class="name">Name</th>
+                        <th class="num"># Files</th>
+                        <th class="date">Date</th>
+                        <th class="size">Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="name">Callie and Zoey </td>
+                        <td class="num">22</td>
+                        <td class="date">08/20/13</td>
+                        <td class="size">1.27GB</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Matt & Danielle </td>
+                        <td class="num">122</td>
+                        <td class="date">11/20/13</td>
+                        <td class="size">19.27GB</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Brendan & Chrissi </td>
+                        <td class="num">1,222</td>
+                        <td class="date">3/3/11</td>
+                        <td class="size">119.27GB</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     <% } %>
 </script>

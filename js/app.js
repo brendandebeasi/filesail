@@ -29,6 +29,15 @@ $(document).ready(function() {
             }
             else return false;
         };
+        /*
+        this.Models.Folder      = Backbone.Model.extend({
+            files: new this.,
+            initialize:     function() {
+
+            }
+
+        });
+        */
 
         this.Models.Session     = Backbone.Model.extend({
             defaults: {
