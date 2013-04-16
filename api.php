@@ -18,12 +18,10 @@ switch($action) {
 
         $remove_these = array(' ','`','"','\'','\\','/');
         $file['name'] = str_replace($remove_these, '',$file['name']);
-
-        $file['extension']  = explode('.',$file['name'] );
-        $file['extension']= strtolower($file['extension'][count($file['extension']) - 1]);
-
+        $file['extension'] = explode('.',$file['name'] );
+        $file['extension'] = $file['extension'][count($file['extension']) - 1];
         $file['name'] = trim(str_replace($file['extension'],'',$file['name'] ),'.');
-
+        $file['extension'] = strtolower($file['extension']);
 
         $file['type'] = 'unknown';
         switch($file['extension']) {
@@ -93,6 +91,8 @@ switch($action) {
 
         break;
     case 'get-files':
-
+        $response = ['success'=>false,'error'=>'Unknown file error'];
+        $files = $fs_db->getFilesForSessionUser();
+        echo json_encode($files);
         break;
 }

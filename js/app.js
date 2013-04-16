@@ -13,119 +13,81 @@ $(document).ready(function() {
         this.Collections = {};
 
         this.receiveUploadData = function(data) {
-            debugger;
             var tempFolder = new this.Models.Folder({
-                id: 1,
-                name: 'These Are',
-                size: 102400,
-                hash: 'asdf',
-                created:'08/20/89',
+                id: data.folder.id,
+                name: data.folder.name,
+                size: null,
+                hash: data.folder.hash,
+                created:null,
                 users_id:1,
                 enable_comments:true,
                 enable_password:false,
                 enable_expiration_time:false
             });
             var tempFile = new this.Models.File({
-                id: 1,
-                name: 'Cool_Fish_1',
-                size:'1024',
-                type:'image',
-                hash:'asdf_fish_1',
-                extension:'jpg',
-                created:'04/9/13',
+                id: data.file.id,
+                name: data.file.name,
+                size:data.file.size,
+                type:data.file.type,
+                hash:data.file.hash,
+                extension:data.file.extension,
+                created:null,
                 users_id:1,
                 version:1,
                 is_latest_version:1
             });
+            tempFolder.attributes.files.push(tempFile);
+            this.folders.add( tempFolder );
+            this.render();
         };
+
+        this.syncFiles = function(silent) {
+            if(typeof(silent) == 'undefind') silent = true;
+            $.getJSON('api.php?action=get-files', function(folders) {
+                that.folders = new that.Collections.Folders();
+                $.each(folders, function(index, folder) {
+                    var tempFolder = new that.Models.Folder({
+                        id: folder.id,
+                        name: folder.name,
+                        size: null,
+                        hash: folder.hash,
+                        created:null,
+                        users_id:1,
+                        enable_comments:true,
+                        enable_password:false,
+                        enable_expiration_time:false
+                    });
+                    $.each(folder.files, function(index2, file) {
+                        var tempFile = new that.Models.File({
+                            id: file.id,
+                            name: file.name,
+                            size:file.size,
+                            type:file.type,
+                            hash:file.hash,
+                            extension:file.extension,
+                            created:null,
+                            users_id:1,
+                            version:1,
+                            is_latest_version:1
+                        });
+                        tempFolder.attributes.files.push(tempFile);
+                    });
+                    that.folders.add( tempFolder );
+                });
+                that.render();
+            });
+        }
         this.init               = function() {
             this.header = new this.Views.Header({el: $('.header-contain')});
             this.body = new this.Views.Landing({el: $('.body-contain')});
 
             this.folders = new this.Collections.Folders();
-            var tempFolder = new this.Models.Folder({
-                id: 1,
-                name: 'These Are',
-                size: 102400,
-                hash: 'asdf',
-                created:'08/20/89',
-                users_id:1,
-                enable_comments:true,
-                enable_password:false,
-                enable_expiration_time:false
-            });
-            var tempFolder2 = new this.Models.Folder({
-                id: 2,
-                name: 'Real Folders',
-                size: 102400/2,
-                hash: 'asdf2',
-                created:'08/22/89',
-                users_id:1,
-                enable_comments:true,
-                enable_password:false,
-                enable_expiration_time:false
-            });
-            var file1 = new this.Models.File({
-                id: 1,
-                name: 'Cool_Fish_1',
-                size:'1024',
-                type:'image',
-                hash:'asdf_fish_1',
-                extension:'jpg',
-                created:'04/9/13',
-                users_id:1,
-                version:1,
-                is_latest_version:1
-            });
-            var file2 = new this.Models.File({
-                id: 2,
-                name: 'Cool_Fish_2',
-                size:'1024',
-                type:'image',
-                hash:'asdf_fish_2',
-                extension:'jpg',
-                created:'04/10/13',
-                users_id:1,
-                version:1,
-                is_latest_version:1
-            });
-
-            var file3 = new this.Models.File({
-                id: 3,
-                name: 'Cool_Fish_3',
-                size:'1024',
-                type:'image',
-                hash:'asdf_fish_3',
-                extension:'jpg',
-                created:'04/10/13',
-                users_id:1,
-                version:1,
-                is_latest_version:1
-            });
-            var file4 = new this.Models.File({
-                id: 4,
-                name: 'Cool_Fish_4',
-                size:'10240',
-                type:'image',
-                hash:'asdf_fish_4',
-                extension:'jpg',
-                created:'04/11/13',
-                users_id:1,
-                version:1,
-                is_latest_version:1
-            });
-
-            tempFolder.attributes.files.push(file1);
-            tempFolder.attributes.files.push(file2);
-            tempFolder2.attributes.files.push(file4);
-            tempFolder2.attributes.files.push(file3);
-
-            this.folders.add( tempFolder );
-            this.folders.add( tempFolder2 );
 
             this.sidebar = new this.Views.Sidebar({el: $('.sidebar-contain')});
             this.auth = new this.Models.Session();
             this.render();
+
+            if(this.getLoggedIn()) this.syncFiles();
         };
         this.render         = function() {
             this.header.render();
@@ -234,6 +196,8 @@ $(document).ready(function() {
                     isLoggedIn: that.getLoggedIn()
                 }
                 this.$el.html( _.template($("#header-template").html(), variables));
+                this.delegateEvents();
+                return this;
             },
             events          : {
                 "click header .buttons .login"                  : "showLogin",
@@ -309,6 +273,7 @@ $(document).ready(function() {
                     that.body.render();
                     if(shake == true) that.header.shakeLoginBox();
                     that.header.focusLoginBox();
+                    that.syncFiles();
                 },'json');
             },
             processLogout: function(event) {
@@ -344,6 +309,8 @@ $(document).ready(function() {
                     isLoggedIn: that.getLoggedIn()
                 };
                 this.$el.html(_.template($("#footer-template").html(), variables));
+                this.delegateEvents();
+                return this;
             }
         });
         this.Views.Sidebar            = Backbone.View.extend({
@@ -358,6 +325,8 @@ $(document).ready(function() {
                     folders: that.folders
                 }
                 this.$el.html(_.template($("#sidebar-template").html(), variables));
+                this.delegateEvents();
+                return this;
             }
         });
         this.Views.Landing = Backbone.View.extend({
@@ -373,6 +342,9 @@ $(document).ready(function() {
                 if(variables.isLoggedIn) this.makePartialWidth();
                 else this.makeFullWidth();
                 this.$el.html(_.template($("#landing-template").html(), variables));
+
+                this.delegateEvents();
+                return this;
             },
             makePartialWidth : function() {
                 this.$el.addClass('isLoggedIn');

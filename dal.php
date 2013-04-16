@@ -80,6 +80,40 @@ class DAL {
         else die('Invalid session OR user ID isn\'t set');
     }
 
+    public function getFilesForSessionUser() {
+        if($_SESSION['auth']['success'] == 1)
+        {
+            $users_id = $_SESSION['auth']['data']['id'];
+            $sql = "SELECT `files`.*,`folders`.`id` AS `folder_id`,`folders`.`name` AS `folder_name`,`folders`.`hash` AS `folder_hash` FROM `files`
+                    JOIN `folders`
+                    ON `folders`.`id` = `files`.`folders_id`
+                    WHERE `files`.`users_id` = " . $users_id;
+            $result = $this->query($sql);
+            $folders = false;
+            if(count($result) != false) {
+                foreach($result as $file) {
+                    $folders[$file->folder_id] = [
+                        'id'=>$file->folder_id,
+                        'name'=>$file->folder_name,
+                        'hash'=>$file->folder_hash
+                    ];
+                    $folders[$file->folder_id]['files'][] = [
+                        'name'=>$file->name,
+                        'download_dir_name'=>$file->download_dir_name,
+                        'type'=>$file->type,
+                        'hash'=>$file->hash,
+                        'extension'=>$file->extension,
+                        'folders_id'=>$file->folders_id,
+                        'users_id'=>$file->users_id,
+                        'version'=>$file->version,
+                        'is_latest_version'=>$file->is_latest_version
+                    ];
+                }
+            }
+            return $folders;
+        }
+    }
+
     private function dbconnect() {
         include('conf/env.php');
         include('conf/config.php');
