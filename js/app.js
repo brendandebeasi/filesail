@@ -31,6 +31,7 @@ $(document).ready(function() {
                 type:data.file.type,
                 hash:data.file.hash,
                 extension:data.file.extension,
+                download_dir_name:data.file.fs_group.join('/'),
                 created:null,
                 users_id:1,
                 version:1,
@@ -65,6 +66,7 @@ $(document).ready(function() {
                             type:file.type,
                             hash:file.hash,
                             extension:file.extension,
+                            download_dir_name:file.download_dir_name,
                             created:null,
                             users_id:1,
                             version:1,
@@ -116,6 +118,9 @@ $(document).ready(function() {
                 users_id:null,
                 version:null,
                 is_latest_version:null
+            },
+            getDownloadLink: function() {
+                return config.file_host + config.file_dir + this.get('download_dir_name') + '/' + this.get('name') + '.' + this.get('extension');
             }
 
         });
@@ -321,23 +326,43 @@ $(document).ready(function() {
                 this.render();
                 this.$el.fadeIn('slow');
             },
+            events          : {
+                "click .uploads tr"                  : "downloadFile",
+                "mouseenter .uploads tr"                  : "showFolder"
+            },
+            downloadFile: function(e) {
+                alert($(e.target.parentElement.parentElement).attr('data-download-url'));
+            },
+            showFolder: function(e) {
+//                debugger;
+
+            },
             render          : function() {
                 var variables = {
                     isLoggedIn: that.getLoggedIn(),
-                    folders: that.folders
+                    folders: that.folders,
+                    downloadPath: config['file_host'] + '/' + config['file_dir']
                 }
 
-                //Map the upload button image to trigger the real upload image
-                $('#upload-button').click(function() {
-                    $('#upload-field').trigger('click');
-                });
-
-
-                //Setup fileuploader
+                this.$el.html(_.template($("#sidebar-template").html(), variables));
+                this.delegateEvents();
+                _.bindAll(this);
+            }
+        });
+        this.Views.Landing = Backbone.View.extend({
+            initialize      : function() {
+                this.$el.hide();
+                this.render();
+                this.$el.fadeIn('slow');
+            },
+            events: {
+                "click #upload-button"    : "triggerUpload"
+            },
+            triggerUpload : function(e) {
                 $('#upload-field').fileupload({
                     dataType: 'json',
                     done: function (e, data) {
-                        nc_filesail.receiveUploadData(data.result.data);
+                        that.receiveUploadData(data.result.data);
                         /*
                          var inject;
                          if(data.result.success == true) {
@@ -368,17 +393,7 @@ $(document).ready(function() {
                     },
                     dropZone: $('.upload-contain')
                 });
-
-                this.$el.html(_.template($("#sidebar-template").html(), variables));
-                this.delegateEvents();
-                _.bindAll(this);
-            }
-        });
-        this.Views.Landing = Backbone.View.extend({
-            initialize      : function() {
-                this.$el.hide();
-                this.render();
-                this.$el.fadeIn('slow');
+                $('#upload-field').trigger('click');
             },
             render          : function() {
                 var variables = {
@@ -390,7 +405,6 @@ $(document).ready(function() {
 
                 this.delegateEvents();
                 _.bindAll(this);
-                return this;
             },
             makePartialWidth : function() {
                 this.$el.addClass('isLoggedIn');
@@ -422,7 +436,46 @@ $(document).ready(function() {
     };
     nc_filesail = new $.filesail($('#container'));
 });
+//Map the upload button image to trigger the real upload image
+$('#upload-button').bind('click',function() {
+    $('#upload-field').trigger('click');
+});
 
+//Setup fileuploader
+$('#upload-field').fileupload({
+    dataType: 'json',
+    done: function (e, data) {
+        nc_filesail.receiveUploadData(data.result.data);
+        /*
+         var inject;
+         if(data.result.success == true) {
+         inject = '<li class="success"><a target="_blank" href="'+config.file_host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
+         }
+         else {
+         inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
+         }
+         $('.upload-contain .status ul').prepend(inject);
+         */
+    },
+    progressall: function (e, data) {
+        /*
+         var progress = parseInt(data.loaded / data.total * 100, 10);
+         var opacity;
+         if(progress<=10) opacity = '0' + progress / 10;
+         else opacity = progress / 10;
+         $('.upload-contain .status ul li.pending').remove();
+         if(progress != 100) {
+         var inject = inject = '<li class="pending" style="opacity: '+opacity+'"><a href="javascript:alert(\'Hold yer horses...\');">&uarr; ' + progress + '% (' + getBytesWithUnit(data.loaded)+' / '+ getBytesWithUnit(data.total) +')</a></li>';
+         $('.upload-contain .status ul').prepend(inject);
+
+         }
+         else {
+
+         }
+         */
+    },
+    dropZone: $('.upload-contain')
+});
 /**
  * @function: getBytesWithUnit()
  * @purpose: Converts bytes to the most simplified unit.

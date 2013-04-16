@@ -17,8 +17,8 @@
                 </thead>
                 <tbody>
                 <% _.each(folders.models, function(folder) { %>
-                    <tr>
-                        <td class="name"><%= folder.attributes.name %></td>
+                    <tr data-download-url="<%= folder.attributes.files[0].getDownloadLink() %>">
+                        <td class="name"><span><%= folder.attributes.name %></span></td>
                         <td class="num"><%= folder.attributes.files.length %></td>
                         <td class="date"><%= folder.attributes.created %></td>
                         <td class="size"><%= folder.attributes.size %></td>
