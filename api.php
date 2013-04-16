@@ -15,79 +15,80 @@ switch($action) {
         }
 
 //Sanitize the filename (See note below)
+
         $remove_these = array(' ','`','"','\'','\\','/');
-        $clean_name = str_replace($remove_these, '',$file['name']);
-        $extension = explode('.',$clean_name);
-        $extension = strtolower($extension[count($extension) - 1]);
+        $file['name'] = str_replace($remove_these, '',$file['name']);
 
-        $clean_name = trim(str_replace($extension,'',$clean_name ),'.');
+        $file['extension']  = explode('.',$file['name'] );
+        $file['extension']= strtolower($file['extension'][count($file['extension']) - 1]);
 
-        $type = 'unknown';
-        switch($extension) {
+        $file['name'] = trim(str_replace($file['extension'],'',$file['name'] ),'.');
+
+
+        $file['type'] = 'unknown';
+        switch($file['extension']) {
             case 'jpg' :
-                $type = 'img';
+                $file['type']= 'img';
                 break;
             case 'jpeg' :
-                $type = 'img';
+                $file['type']= 'img';
                 break;
             case 'png' :
-                $type = 'img';
+                $file['type']= 'img';
                 break;
             case 'gif' :
-                $type = 'img';
+                $file['type']= 'img';
                 break;
             case 'mov' :
-                $type = 'mov';
+                $file['type']= 'mov';
                 break;
             case 'avi' :
-                $type = 'mov';
+                $file['type']= 'mov';
                 break;
             case 'mp4' :
-                $type = 'mov';
+                $file['type']= 'mov';
                 break;
             case 'mkv' :
-                $type = 'mov';
+                $file['type']= 'mov';
                 break;
         }
 
+        $file['hash'] = sha1(time() . sha1('calliefile' . $file['name']));
 
-        $hash = sha1(time() . sha1('calliefile' . $clean_name));
-
-
-
+        $file['fs_group'][0] = date('Y.m.d');
+        $file['fs_group'][1] = time() . '-' . rand(0,100);
 
 //TODO: Update logic to support multiple file uploads
 
-        $upload_folder = date('Y.m.d');
-        $time_freeze = time() . '-' . rand(0,100);
 
-        $folder_name = $clean_name;
-        $folder_hash = $hash = sha1(time() . sha1('calliefolder' . $clean_name));
+        $folder['name'] = $file['name'];
+        $folder['hash'] = sha1(time() . sha1('calliefolder' . $folder['name']));
+
 //Save pertinant info to DB
-        $folder_id = $fs_db->createFolder($folder_name,$folder_hash);
-        $fs_db->createFile($clean_name, $upload_folder , $type, $hash, $extension, $folder_id);
+        $folder['id'] = $fs_db->createFolder($folder['name'],$folder['hash']);
+        $fs_db->createFile($file['name'], implode('/',$file['fs_group']) , $file['type'], $file['hash'], $file['extension'], $folder['id']);
 
 
-        $upload_path = $config['full_file_dir'] . $upload_folder . '/' . $time_freeze .'/' . $clean_name . $extension;
-        echo $config['full_file_dir'] . $upload_folder;
+        $upload_path = $config['full_file_dir'] . implode('/',$file['fs_group']) . '/' . $file['name'] . '.' . $file['extension'];
+
 //make sure main dir is created
         if (!is_dir($config['full_file_dir'])) {
             mkdir($config['full_file_dir']);
         }
 //make sure date grouping dir is created
-        if (!is_dir($config['full_file_dir'] . $upload_folder )) {
-            mkdir($config['full_file_dir'] . $upload_folder);
+        if (!is_dir($config['full_file_dir'] . $file['fs_group'][0] )) {
+            mkdir($config['full_file_dir'] . $file['fs_group'][0]);
         }
 //make sure split time dir is created
-        if (!is_dir($config['full_file_dir'] . $upload_folder . '/' . $time_freeze)) {
-            mkdir($config['full_file_dir'] . $upload_folder . '/' . $time_freeze);
+        if (!is_dir($config['full_file_dir'] . $file['fs_group'][0] . '/' . $file['fs_group'][1])) {
+            mkdir($config['full_file_dir'] . $file['fs_group'][0] . '/' . $file['fs_group'][1]);
         }
 
 //Save the uploaded the file to another location
         if (!move_uploaded_file($file['tmp_name'], $upload_path))  {
             $response = ['success'=>false,'error'=>'File upload error'];
         }
-        else $response = ['success'=>true,'error'=>null,'name'=>$file['name'],'size'=>''.$file['size'],'url'=>$upload_path];
+        else $response = ['success'=>true,'data'=>['file'=>$file,'folder'=>$folder]];
         echo json_encode($response);
 
         break;
