@@ -9,7 +9,7 @@
             <div class="upload-contain">
                 <div class="upload-border">
                     <a class="button blue upload" id="upload-button" href="javascript:void(0);">select or drag files to upload</a>
-                    <input class="hidden" id="upload-field" type="file" name="file" data-url="upload.php" multiple>
+                    <input class="hidden" id="upload-field" type="file" name="file" data-url="api.php?action=upload" multiple>
                 </div>
                 <div class="status">
                     <ul>

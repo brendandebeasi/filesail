@@ -18,7 +18,7 @@ switch($action) {
             if(count($user)) {
                 $key = $fs_db->generateSessionKeyForUser($user->id);
                 if($key != false) {
-                    $return = ['success'=>true,'key'=>$key,'data'=>['username'=>$user->username,'name'=>$user->name, 'created'=>$user->created,'email'=>$user->email]];
+                    $return = ['success'=>true,'key'=>$key,'data'=>['username'=>$user->username,'name'=>$user->name, 'created'=>$user->created,'email'=>$user->email, 'id'=>$user->id]];
                     $_SESSION['auth'] = $return;
                 }
             }

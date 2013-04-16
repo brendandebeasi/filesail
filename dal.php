@@ -23,6 +23,7 @@ class DALQueryResult {
 class DAL {
 
     public function __construct(){}
+
     public function generateSessionKeyForUser($users_id) {
         $key = uniqid('filesail_',true);
         if((int)$users_id == 0) return false;
@@ -48,6 +49,35 @@ class DAL {
     public function invalidateSessionKey($session_key) {
         $sql = 'DELETE FROM `api_keys` WHERE `api_key` = "'.mysql_real_escape_string($session_key).'" ';
         $this->query($sql);
+    }
+
+    public function createFolder($name,$hash,$enable_comments=1,$enable_password=0,$download_password=null,$enable_download_notification=0,$download_notification_type=null,$enable_expiration_time=0,$expiration_date=null) {
+        if($_SESSION['auth']['success'] == 1)
+        {
+            $users_id = $_SESSION['auth']['data']['id'];
+            $sql = "INSERT INTO `folders`
+            (`name`,`hash`,`users_id`,`enable_comments`,`enable_password`,`download_password`,`enable_download_notification`,`download_notification_type`,`enable_expiration_time`,`expiration_date`)
+            VALUES ('". mysql_real_escape_string($name) ."','". mysql_real_escape_string($hash) ."','". mysql_real_escape_string($users_id) ."','". mysql_real_escape_string($enable_comments) ."','". mysql_real_escape_string($enable_password) ."','". mysql_real_escape_string($download_password) ."','". mysql_real_escape_string($enable_download_notification) ."','". mysql_real_escape_string($download_notification_type) ."','". mysql_real_escape_string($enable_expiration_time) ."','". mysql_real_escape_string($expiration_date) ."')";
+
+            $result = $this->query($sql);
+            return $result;
+        }
+        else die('Invalid session OR user ID isn\'t set');
+
+    }
+
+    public function createFile($name, $download_dir_name, $type, $hash, $extension, $folders_id, $version=1, $is_latest_version=1) {
+        if($_SESSION['auth']['success'] == 1)
+        {
+            $users_id = $_SESSION['auth']['data']['id'];
+            $sql = "INSERT INTO `files`
+                    (`name`,`download_dir_name`,`type`,`hash`,`extension`,`folders_id`,`users_id`,`version`,`is_latest_version`)
+                    VALUES ('". mysql_real_escape_string($name) ."','". mysql_real_escape_string($download_dir_name) ."','". mysql_real_escape_string($type) ."','". mysql_real_escape_string($hash) ."','". mysql_real_escape_string($extension) ."','". mysql_real_escape_string($folders_id) ."','". mysql_real_escape_string($users_id) ."','". mysql_real_escape_string($version) ."','". mysql_real_escape_string($is_latest_version) ."')";
+
+            $result = $this->query($sql);
+            return $result;
+        }
+        else die('Invalid session OR user ID isn\'t set');
     }
 
     private function dbconnect() {
