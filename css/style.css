@@ -265,8 +265,9 @@ body, html, #container {
 #container .sidebar-contain {
     float: right;
     width: 36%;
-    min-height: 2000px;
-    overflow-y: hidden;
+    max-height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
     box-shadow: inset 1px 0px 8px 0px rgba(25, 25, 25, .4);
     background: #f2f2f2;
 }
