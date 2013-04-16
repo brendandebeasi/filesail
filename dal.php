@@ -100,10 +100,10 @@ class DAL {
         $this->dbconnect();
 
         $res = mysql_query($sql);
-
         if ($res){
             if (strpos($sql,'SELECT') === false){
-                return true;
+                if(strpos($sql,'INSERT') !== false) return mysql_insert_id();
+                else return true;
             }
         }
         else{
@@ -118,7 +118,6 @@ class DAL {
         $results = array();
 
         while ($row = mysql_fetch_array($res)){
-
             $result = new DALQueryResult();
 
             foreach ($row as $k=>$v){

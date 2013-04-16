@@ -12,6 +12,32 @@ $(document).ready(function() {
         this.Models = {};
         this.Collections = {};
 
+        this.receiveUploadData = function(data) {
+            debugger;
+            var tempFolder = new this.Models.Folder({
+                id: 1,
+                name: 'These Are',
+                size: 102400,
+                hash: 'asdf',
+                created:'08/20/89',
+                users_id:1,
+                enable_comments:true,
+                enable_password:false,
+                enable_expiration_time:false
+            });
+            var tempFile = new this.Models.File({
+                id: 1,
+                name: 'Cool_Fish_1',
+                size:'1024',
+                type:'image',
+                hash:'asdf_fish_1',
+                extension:'jpg',
+                created:'04/9/13',
+                users_id:1,
+                version:1,
+                is_latest_version:1
+            });
+        };
         this.init               = function() {
             this.header = new this.Views.Header({el: $('.header-contain')});
             this.body = new this.Views.Landing({el: $('.body-contain')});
@@ -371,7 +397,8 @@ $(document).ready(function() {
     $('#upload-field').fileupload({
         dataType: 'json',
         done: function (e, data) {
-
+            nc_filesail.receiveUploadData(data.result.data);
+            /*
             var inject;
             if(data.result.success == true) {
                 inject = '<li class="success"><a target="_blank" href="'+config.file_host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
@@ -380,8 +407,10 @@ $(document).ready(function() {
                 inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
             }
             $('.upload-contain .status ul').prepend(inject);
+            */
         },
         progressall: function (e, data) {
+            /*
             var progress = parseInt(data.loaded / data.total * 100, 10);
             var opacity;
             if(progress<=10) opacity = '0' + progress / 10;
@@ -395,6 +424,7 @@ $(document).ready(function() {
             else {
 
             }
+            */
         },
         dropZone: $('.upload-contain')
     });
