@@ -302,7 +302,7 @@ $(document).ready(function() {
                 this.showLoginLoader= false;
                 this.showLoginBox= false;
                 this.showSignupBox= false;
-
+                this.initialize();
                 $.post(config.base_url + '/auth.php', {
                     action      : 'logout'
                 },function(returnData) {

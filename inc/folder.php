@@ -6,10 +6,10 @@
                     <span class="fs-logo folderName"><%= model.get('name') %></span>
                     <span class="fs-font editFolderName"> H</span>
                 </div>
-                <div class="folderLink">
-                    Folder Link
-                    <a href="javascript:void(0);">copy</a>
-                </div>
+<!--                <div class="folderLink">-->
+<!--                    Folder Link-->
+<!--                    <a href="javascript:void(0);">copy</a>-->
+<!--                </div>-->
             </div>
             <div class="right">
                 <span class="left icon fs-font toggleGridView selected">J</span>
