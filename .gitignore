@@ -3,3 +3,4 @@ php.ini
 files/*
 .DS_Store
 .idea/*
+*.DS_Store*
