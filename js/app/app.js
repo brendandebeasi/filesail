@@ -131,6 +131,10 @@ $(document).ready(function() {
             },
             getDownloadLink: function() {
                 return config.file_host + config.file_dir + this.get('download_dir_name') + '/' + this.get('name') + '.' + this.get('extension');
+            },
+            getSize: function(pretty) {
+                if(typeof(pretty) != 'undefined') return getBytesWithUnit(this.get('size'));
+                else return this.get('size');
             }
 
         });
@@ -154,6 +158,12 @@ $(document).ready(function() {
                 download_notification_type:null,
                 enable_expiration_time:null,
                 expiration_date:null
+            },
+            getSize: function(pretty) {
+                debugger;
+                if(typeof(pretty) == 'undefined') var pretty = false;
+                var files = this.files.open;
+
             }
         });
 
@@ -425,7 +435,9 @@ $(document).ready(function() {
             },
             render : function() {
                 var vars = {
-                    'model': this.model
+                    'model': this.model,
+                    'rawSize': this.model.getSize(),
+                    'prettySize': this.model.getSize(true)
                 }
                 this.$el.html(_.template($("#file-template").html(), vars));
                 this.delegateEvents();

@@ -66,13 +66,13 @@ class DAL {
 
     }
 
-    public function createFile($name, $download_dir_name, $type, $hash, $extension, $folders_id, $version=1, $is_latest_version=1) {
+    public function createFile($name, $size, $download_dir_name, $type, $hash, $extension, $folders_id, $version=1, $is_latest_version=1) {
         if($_SESSION['auth']['success'] == 1)
         {
             $users_id = $_SESSION['auth']['data']['id'];
             $sql = "INSERT INTO `files`
-                    (`name`,`download_dir_name`,`type`,`hash`,`extension`,`folders_id`,`users_id`,`version`,`is_latest_version`)
-                    VALUES ('". mysql_real_escape_string($name) ."','". mysql_real_escape_string($download_dir_name) ."','". mysql_real_escape_string($type) ."','". mysql_real_escape_string($hash) ."','". mysql_real_escape_string($extension) ."','". mysql_real_escape_string($folders_id) ."','". mysql_real_escape_string($users_id) ."','". mysql_real_escape_string($version) ."','". mysql_real_escape_string($is_latest_version) ."')";
+                    (`name`,`size`,`download_dir_name`,`type`,`hash`,`extension`,`folders_id`,`users_id`,`version`,`is_latest_version`)
+                    VALUES ('". mysql_real_escape_string($name) ."','". $size ."','". mysql_real_escape_string($download_dir_name) ."','". mysql_real_escape_string($type) ."','". mysql_real_escape_string($hash) ."','". mysql_real_escape_string($extension) ."','". mysql_real_escape_string($folders_id) ."','". mysql_real_escape_string($users_id) ."','". mysql_real_escape_string($version) ."','". mysql_real_escape_string($is_latest_version) ."')";
 
             $result = $this->query($sql);
             return $result;

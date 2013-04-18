@@ -32,7 +32,7 @@
     <div class="wrp-1">
         <div class="hd">
             <div class="left"><%= model.get('name') %>.<%= model.get('extension') %></div>
-            <div class="right">1.24Mb</div>
+            <div class="right"><%= model.getSize() %></div>
             <div class="clear"></div>
         </div>
         <div class="bd">

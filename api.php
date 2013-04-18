@@ -64,7 +64,7 @@ switch($action) {
 
 //Save pertinant info to DB
         $folder['id'] = $fs_db->createFolder($folder['name'],$folder['hash']);
-        $fs_db->createFile($file['name'], implode('/',$file['fs_group']) , $file['type'], $file['hash'], $file['extension'], $folder['id']);
+        $fs_db->createFile($file['name'], $file['size'], implode('/',$file['fs_group']) , $file['type'], $file['hash'], $file['extension'], $folder['id']);
 
 
         $upload_path = $config['full_file_dir'] . implode('/',$file['fs_group']) . '/' . $file['name'] . '.' . $file['extension'];
