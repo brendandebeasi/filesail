@@ -381,12 +381,16 @@ body, html, #container {
 }
 #container .sidebar-contain {
     float: right;
+    height: 100%;
     width: 36%;
     max-height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     box-shadow: inset 1px 0px 8px 0px rgba(25, 25, 25, .4);
     background: #f2f2f2;
+}
+#container .sidebar-contain .isLoggedIn {
+    height: 100%;
 }
 #container .sidebar-contain .hd, #container .sidebar-contain .uploads {
     margin-left: 4px;
