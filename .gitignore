@@ -2,3 +2,4 @@ env.php
 php.ini
 files/*
 .DS_Store
+.idea/*
