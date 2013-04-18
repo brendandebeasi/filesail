@@ -2,9 +2,9 @@
     <div class="folder-contain<% if(isLoggedIn) { %> isLoggedIn<% } %>">
         <div class="hd">
             <div class="left">
-                <div class="folderName">
-                    <%= model.get('name') %>
-                    <span class="fs-font ditFolderName">H</span>
+                <div class="folderNameContain">
+                    <span class="fs-logo folderName"><%= model.get('name') %></span>
+                    <span class="fs-font editFolderName"> H</span>
                 </div>
                 <div class="folderLink">
                     Folder Link
@@ -12,15 +12,16 @@
                 </div>
             </div>
             <div class="right">
-                <span class="fs-font toggleGridView">J</span>
-                <span class="fs-font toggleListView">I</span>
-                <span class="downloadAll button">Download All<span class="downloadAll fs-font">K</span></span>
-                <span class="fs-font upload button">N</span>
-                <span class="toggleFolderOptionsView">^</span>
+                <span class="left icon fs-font toggleGridView selected">J</span>
+                <span class="left icon fs-font toggleListView">I</span>
+                <span class="left download button fs-logo">Download All</span>
+                <span class="left fs-font upload button">N</span>
+                <span class="left toggleFolderOptionsView">^</span>
+                <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
-        <div class="body">
+        <div class="bd">
             <ul>
 
             </ul>
@@ -35,7 +36,9 @@
             <div class="clear"></div>
         </div>
         <div class="bd">
-
+            <% if(model.get('type') == 'img') { %>
+                <img width="100%" src="<%= model.getDownloadLink() %>" />
+            <% } %>
         </div>
     </div>
 </script>

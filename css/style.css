@@ -167,7 +167,6 @@ body, html, #container {
 #container .main-component-contain {
 }
 #container .body-contain {
-    text-align: center;
     background: #f9f9f9 url(../img/bg-pattern.jpg) no-repeat;
     float: left;
     width: 100%;
@@ -188,6 +187,9 @@ body, html, #container {
     display: inline-block;
     padding: 10px;
     margin-bottom: 5px;
+}
+#container .body {
+    text-align: center;
 }
 #container .body .upload-contain .upload-border {
     border: 10px #fff solid;
@@ -264,6 +266,102 @@ body, html, #container {
 }
 #container .body-contain .folder-contain {
     padding: 10px;
+}
+#container .body-contain .folder-contain .hd {
+
+}
+#container .body-contain .folder-contain .hd .folderNameContain {
+    margin-bottom: 4px;
+}
+#container .body-contain .folder-contain .hd .folderNameContain .folderName {
+    letter-spacing: .1em;
+    color: #424242;
+}
+#container .body-contain .folder-contain .hd .folderNameContain .editFolderName {
+    color: #e1e1e1;
+    font-size: 21pt;
+    margin-left: 10px;
+}
+#container .body-contain .folder-contain .hd .folderLink {
+    color: #7f7f7f;
+    font-family: Helvetica;
+    font-size: 10pt;
+}
+#container .body-contain .folder-contain .hd .right {
+    color: #e1e1e1;
+}
+#container .body-contain .folder-contain .hd .right .button {
+    border-radius: 4px;
+    height: 37px;
+    line-height: 37px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+#container .body-contain .folder-contain .hd .right .button.upload {
+    border: 1px solid #c81211;
+    background: #e75a3f; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e75a3f 0%, #dc442f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e75a3f), color-stop(100%,#dc442f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #e75a3f 0%,#dc442f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #e75a3f 0%,#dc442f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #e75a3f 0%,#dc442f 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #e75a3f 0%,#dc442f 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e75a3f', endColorstr='#dc442f',GradientType=0 ); /* IE6-9 */
+
+}
+#container .body-contain .folder-contain .hd .right .button.download {
+    border: 1px solid #1371d1;
+    background: #3d96e6; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3d96e6 0%, #2f85dc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3d96e6), color-stop(100%,#2f85dc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #3d96e6 0%,#2f85dc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #3d96e6 0%,#2f85dc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #3d96e6 0%,#2f85dc 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #3d96e6 0%,#2f85dc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d96e6', endColorstr='#2f85dc',GradientType=0 ); /* IE6-9 */
+    color: #ffffff;
+    margin-right: 10px;
+}
+#container .body-contain .folder-contain .hd .right .toggleGridView.selected,#container .body-contain .folder-contain .hd .right .toggleListView.selected {
+    color: #9c9c9c;
+}
+#container .body-contain .folder-contain .hd .right .fs-font {
+    font-size: 21pt;
+}
+#container .body-contain .folder-contain .hd .right .fs-font.icon {
+    position: relative;
+    margin-right: 10px;
+    top: 15px;
+}
+#container .body-contain .folder-contain .bd {
+
+}
+#container .body-contain .folder-contain .bd ul {
+    padding: 0;
+    margin: 0;
+}
+#container .body-contain .folder-contain .bd ul li {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    height: 16&;
+    width: 33%;
+
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 {
+
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 .hd {
+
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 .hd .left {
+
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 .hd .right {
+
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 .bd {
+
 }
 #container .sidebar-contain {
     float: right;
