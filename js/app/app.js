@@ -11,9 +11,13 @@ $(document).ready(function() {
         this.Views = {};
         this.Models = {};
         this.Collections = {};
-
+        this.triggerUpload = function(e) {
+            $('#upload-field').trigger('click');
+            debugger;
+        }
         this.showFolderView = function(folder) {
-            this.body =  new this.Views.Folder({el: $('.body-contain'),model: folder});
+            this.body.unbind();
+            this.body = new this.Views.Folder({el: $('.body-contain'),model: folder});
             this.body.render();
         }
 
@@ -367,7 +371,7 @@ $(document).ready(function() {
             },
             className: 'notSelected',
             events: {
-                "mouseover td"  : "showFolder"
+                "mouseover"  : "showFolder"
             },
             showFolder: function(e) {
                 that.showFolderView(this.model);
@@ -407,6 +411,12 @@ $(document).ready(function() {
                 }
                 this.delegateEvents();
                 _.bindAll(this);
+            },
+            events: {
+                "click .button.upload"    : "triggerUpload"
+            },
+            triggerUpload : function(e) {
+                that.triggerUpload(e);
             }
         });
         this.Views.Folder.File = Backbone.View.extend({
@@ -433,41 +443,7 @@ $(document).ready(function() {
                 "click #upload-button"    : "triggerUpload"
             },
             triggerUpload : function(e) {
-                $('#upload-field').fileupload({
-                    dataType: 'json',
-                    done: function (e, data) {
-                        that.receiveUploadData(data.result.data);
-                        /*
-                         var inject;
-                         if(data.result.success == true) {
-                         inject = '<li class="success"><a target="_blank" href="'+config.file_host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
-                         }
-                         else {
-                         inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
-                         }
-                         $('.upload-contain .status ul').prepend(inject);
-                         */
-                    },
-                    progressall: function (e, data) {
-                        /*
-                         var progress = parseInt(data.loaded / data.total * 100, 10);
-                         var opacity;
-                         if(progress<=10) opacity = '0' + progress / 10;
-                         else opacity = progress / 10;
-                         $('.upload-contain .status ul li.pending').remove();
-                         if(progress != 100) {
-                         var inject = inject = '<li class="pending" style="opacity: '+opacity+'"><a href="javascript:alert(\'Hold yer horses...\');">&uarr; ' + progress + '% (' + getBytesWithUnit(data.loaded)+' / '+ getBytesWithUnit(data.total) +')</a></li>';
-                         $('.upload-contain .status ul').prepend(inject);
-
-                         }
-                         else {
-
-                         }
-                         */
-                    },
-                    dropZone: $('.upload-contain')
-                });
-                $('#upload-field').trigger('click');
+                that.triggerUpload(e);
             },
             render          : function() {
                 var variables = {
@@ -495,43 +471,15 @@ $(document).ready(function() {
     };
     nc_filesail = new $.filesail($('#container'));
 });
-//Map the upload button image to trigger the real upload image
-$('#upload-button').bind('click',function() {
-    $('#upload-field').trigger('click');
-});
+
 
 //Setup fileuploader
 $('#upload-field').fileupload({
     dataType: 'json',
     done: function (e, data) {
         nc_filesail.receiveUploadData(data.result.data);
-        /*
-         var inject;
-         if(data.result.success == true) {
-         inject = '<li class="success"><a target="_blank" href="'+config.file_host + config.base_url +  data.result.url+'">&#x2713; ' + data.result.name +  ' (' + getBytesWithUnit(data.result.size) + ')</a></li>'
-         }
-         else {
-         inject = '<li class="failed"><a href="javascript:alert(\'We are VERY sorry ^_^\');">&#x2717; ' + data.result.name + '</a></li>'
-         }
-         $('.upload-contain .status ul').prepend(inject);
-         */
     },
     progressall: function (e, data) {
-        /*
-         var progress = parseInt(data.loaded / data.total * 100, 10);
-         var opacity;
-         if(progress<=10) opacity = '0' + progress / 10;
-         else opacity = progress / 10;
-         $('.upload-contain .status ul li.pending').remove();
-         if(progress != 100) {
-         var inject = inject = '<li class="pending" style="opacity: '+opacity+'"><a href="javascript:alert(\'Hold yer horses...\');">&uarr; ' + progress + '% (' + getBytesWithUnit(data.loaded)+' / '+ getBytesWithUnit(data.total) +')</a></li>';
-         $('.upload-contain .status ul').prepend(inject);
-
-         }
-         else {
-
-         }
-         */
     },
     dropZone: $('.upload-contain')
 });

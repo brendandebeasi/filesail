@@ -38,6 +38,8 @@
         <div class="bd">
             <% if(model.get('type') == 'img') { %>
                 <img width="100%" src="<%= model.getDownloadLink() %>" />
+            <% } else { %>
+                <a target="_blank" href="<%= model.getDownloadLink() %>">Download</a>
             <% } %>
         </div>
     </div>
