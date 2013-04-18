@@ -16,36 +16,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                <% _.each(folders.models, function(folder) { %>
-                    <tr data-download-url="<%= folder.attributes.files[0].getDownloadLink() %>">
-                        <td class="name"><span><%= folder.attributes.name %></span></td>
-                        <td class="num"><%= folder.attributes.files.length %></td>
-                        <td class="date"><%= folder.attributes.created %></td>
-                        <td class="size"><%= folder.attributes.size %></td>
-                    </tr>
-                <% }); %>
-
-<!--                    <tr>-->
-<!--                        <td class="name">Callie and Zoey </td>-->
-<!--                        <td class="num">22</td>-->
-<!--                        <td class="date">08/20/13</td>-->
-<!--                        <td class="size">1.27GB</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td class="name">Matt & Danielle </td>-->
-<!--                        <td class="num">122</td>-->
-<!--                        <td class="date">11/20/13</td>-->
-<!--                        <td class="size">19.27GB</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td class="name">Brendan & Chrissi </td>-->
-<!--                        <td class="num">1,222</td>-->
-<!--                        <td class="date">3/3/11</td>-->
-<!--                        <td class="size">119.27GB</td>-->
-<!--                    </tr>-->
                 </tbody>
             </table>
         </div>
     <% } %>
+</script>
+<script id="sidebar-row" type="text/template">
+        <td class="name"><%= model.get('name') %></td>
+        <td class="num"><%= model.files.size() %></td>
+        <td class="date"></td>
+        <td class="size"></td>
 </script>
 <div class="sidebar-contain"></div>

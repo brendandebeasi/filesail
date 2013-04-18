@@ -262,6 +262,9 @@ body, html, #container {
 #container .body .small-text a:hover {
     color: #6592a7;
 }
+#container .body-contain .folder-contain {
+    padding: 10px;
+}
 #container .sidebar-contain {
     float: right;
     width: 36%;
@@ -310,7 +313,7 @@ body, html, #container {
 #container .sidebar-contain .uploads tbody tr:nth-child(odd) {
     background: rgba(255,255,255,.45);
 }
-#container .sidebar-contain .uploads tbody tr:hover {
+#container .sidebar-contain .uploads tbody tr:hover, #container .sidebar-contain .uploads tbody tr.selected {
     background: rgba(255,255,255,.9);
 }
 #container .sidebar-contain .uploads tbody tr td.name {

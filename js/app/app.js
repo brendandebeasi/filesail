@@ -12,6 +12,11 @@ $(document).ready(function() {
         this.Models = {};
         this.Collections = {};
 
+        this.showFolderView = function(folder) {
+            this.body =  new this.Views.Folder({el: $('.body-contain'),model: folder});
+            this.body.render();
+        }
+
         this.receiveUploadData = function(data) {
             var tempFolder = new this.Models.Folder({
                 id: data.folder.id,
@@ -37,7 +42,7 @@ $(document).ready(function() {
                 version:1,
                 is_latest_version:1
             });
-            tempFolder.attributes.files.push(tempFile);
+            tempFolder.files.add(tempFile);
             this.folders.add( tempFolder );
             this.render();
         };
@@ -72,7 +77,8 @@ $(document).ready(function() {
                             version:1,
                             is_latest_version:1
                         });
-                        tempFolder.attributes.files.push(tempFile);
+//                        debugger;
+                        tempFolder.files.push(tempFile);
                     });
                     that.folders.add( tempFolder );
                 });
@@ -126,9 +132,12 @@ $(document).ready(function() {
         });
 
         this.Models.Folder = Backbone.Model.extend({
+            files: null,
+            initialize: function() {
+                this.files = new that.Collections.Files();
+            },
             defaults: {
                 id: null,
-                files: new Array(),
                 name: null,
                 size: null,
                 hash: null,
@@ -141,12 +150,14 @@ $(document).ready(function() {
                 download_notification_type:null,
                 enable_expiration_time:null,
                 expiration_date:null
-            },
-            model: that.Models.File
+            }
         });
 
         this.Collections.Folders = Backbone.Collection.extend({
            model: that.Models.Folder
+        });
+        this.Collections.Files = Backbone.Collection.extend({
+           model: that.Models.File
         });
 
         this.Models.Session     = Backbone.Model.extend({
@@ -209,7 +220,7 @@ $(document).ready(function() {
                 "click header .buttons .login"                  : "showLogin",
                 "click header .buttons .signup"                 : "showSignup",
                 "click header .close"                           : "resetAuthButtons",
-                "click header .welcome .logout"                       : "processLogout",
+                "click header .welcome .logout"                 : "processLogout",
                 "keypress header .login-box"                    : "keypress",
                 "keypress header .signup-box"                   : "keypress"
             },
@@ -326,27 +337,90 @@ $(document).ready(function() {
                 this.render();
                 this.$el.fadeIn('slow');
             },
-            events          : {
-                "click .uploads tr"                  : "downloadFile",
-                "mouseenter .uploads tr"                  : "showFolder"
-            },
             downloadFile: function(e) {
-                alert($(e.target.parentElement.parentElement).attr('data-download-url'));
             },
             showFolder: function(e) {
-//                debugger;
 
             },
             render          : function() {
                 var variables = {
                     isLoggedIn: that.getLoggedIn(),
-                    folders: that.folders,
-                    downloadPath: config['file_host'] + '/' + config['file_dir']
                 }
 
                 this.$el.html(_.template($("#sidebar-template").html(), variables));
+
+                if(that.folders.size() > 0)
+                {
+                    var folderList = this.$el.find('tbody');
+                    that.folders.each(function(folder) {
+                        var sidebarRow = new that.Views.Sidebar.Row({model: folder});
+                        folderList.append( sidebarRow.render().el );
+                    });
+                }
                 this.delegateEvents();
                 _.bindAll(this);
+            }
+        });
+        this.Views.Sidebar.Row = Backbone.View.extend({
+            tagName         : 'tr',
+                initialize      : function() {
+            },
+            className: 'notSelected',
+            events: {
+                "mouseover td"  : "showFolder"
+            },
+            showFolder: function(e) {
+                that.showFolderView(this.model);
+                this.className = 'selected';
+                this.render();
+            },
+            render : function() {
+                var vars = {
+                    'model': this.model
+                }
+                this.$el.html(_.template($("#sidebar-row").html(), vars));
+                this.delegateEvents();
+                _.bindAll(this);
+                return this;
+            }
+        });
+        this.Views.Folder            = Backbone.View.extend({
+
+            initialize: function() {
+                this.render();
+            },
+            render          : function() {
+                var variables = {
+                    isLoggedIn: that.getLoggedIn(),
+                    'model':this.model
+                }
+
+                this.$el.html(_.template($("#folder-template").html(), variables));
+
+                if(this.model.files.size() > 0)
+                {
+                    var fileList = this.$el.find('ul');
+                    this.model.files.each(function(file) {
+                        var file = new that.Views.Folder.File({model: file});
+                        fileList.append( file.render().el );
+                    });
+                }
+                this.delegateEvents();
+                _.bindAll(this);
+            }
+        });
+        this.Views.Folder.File = Backbone.View.extend({
+            tagName         : 'li',
+            initialize      : function() {
+            },
+            render : function() {
+                var vars = {
+                    'model': this.model
+                }
+                this.$el.html(_.template($("#file-template").html(), vars));
+                this.delegateEvents();
+                _.bindAll(this);
+                return this;
             }
         });
         this.Views.Landing = Backbone.View.extend({
@@ -413,23 +487,8 @@ $(document).ready(function() {
                 this.$el.removeClass('isLoggedIn');
             }
         });
-        this.Views.Folder = Backbone.View.extend({
-            initialize      : function() {
-                this.$el.hide();
-                this.render();
-                this.$el.fadeIn('slow');
-            },
-            render          : function() {
-                var variables = {
-                    folders: that.folders.get,
-                    isLoggedIn: that.getLoggedIn()
-                }
-                this.$el.html(_.template($("#folder-template").html(), variables));
 
-                this.delegateEvents();
-                return this;
-            }
-        });
+
         this.init();
 
 

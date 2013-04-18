@@ -28,13 +28,7 @@
             <div class="fs-font upload-icon">A</div>
         </div>
 </script>
-<script id="folder-template" type="text/template">
-    <div class="main-component-contain<% if(isLoggedIn) { %> isLoggedIn<% } %>">
-
-        <div class="body">
-            Files!
-        </div>
-</script>
+<?php require_once('inc/folder.php'); ?>
 <?php require_once('inc/sidebar.php'); ?>
 <div class="clear"></div>
 <?php require_once('inc/foot.php'); ?>
