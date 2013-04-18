@@ -39,8 +39,9 @@
             <% if(model.get('type') == 'img') { %>
                 <img width="100%" src="<%= model.getDownloadLink() %>" />
             <% } else { %>
-                <a target="_blank" href="<%= model.getDownloadLink() %>">Download</a>
+                <img width="100%" src="/img/fs-guy.png" />
             <% } %>
+            <a class="download" target="_blank" href="<%= model.getDownloadLink() %>"><span class="fs-font">K</span> Download</a>
         </div>
     </div>
 </script>

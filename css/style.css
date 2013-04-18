@@ -265,7 +265,7 @@ body, html, #container {
     color: #6592a7;
 }
 #container .body-contain .folder-contain {
-    padding: 10px;
+    padding: 25px;
 }
 #container .body-contain .folder-contain .hd {
 
@@ -298,6 +298,8 @@ body, html, #container {
     cursor: pointer;
 }
 #container .body-contain .folder-contain .hd .right .button.upload {
+    font-size: 14pt;
+    color: #ffffff;
     border: 1px solid #c81211;
     background: #e75a3f; /* Old browsers */
     background: -moz-linear-gradient(top,  #e75a3f 0%, #dc442f 100%); /* FF3.6+ */
@@ -329,9 +331,10 @@ body, html, #container {
     font-size: 21pt;
 }
 #container .body-contain .folder-contain .hd .right .fs-font.icon {
-    position: relative;
     margin-right: 10px;
-    top: 15px;
+}
+#container .body-contain .folder-contain .hd .right .fs-font.icon:last-child {
+    margin-right: 0;
 }
 #container .body-contain .folder-contain .bd {
 
@@ -341,10 +344,13 @@ body, html, #container {
     margin: 0;
 }
 #container .body-contain .folder-contain .bd ul li {
-    padding: 0;
+    background: #ededed;
+    color: #8e8e8e;
+    padding: 10px;
     margin: 0;
     display: inline-block;
-    height: 16&;
+    height: 16%;
+    overflow: hidden;
     width: 33%;
 
 }
@@ -362,6 +368,16 @@ body, html, #container {
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .bd {
 
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 .bd a {
+    color: rgba(0,0,0,.25);
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+#container .body-contain .folder-contain .bd ul li .wrp-1 .bd a:hover {
+    color: rgba(0,0,0,.8);
 }
 #container .sidebar-contain {
     float: right;
