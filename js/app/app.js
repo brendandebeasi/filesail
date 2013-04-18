@@ -13,7 +13,7 @@ $(document).ready(function() {
         this.Collections = {};
         this.triggerUpload = function(e) {
             $('#upload-field').trigger('click');
-            debugger;
+//            debugger;
         }
         this.showFolderView = function(folder) {
             this.body.unbind();
