@@ -205,9 +205,7 @@ $(document).ready(function() {
             showSignupBox   : false,
 
             initialize      : function() {
-                this.$el.hide();
                 this.render();
-                this.$el.fadeIn('slow');
                 _.bindAll(this);
                 $('header .login-box').bind('keyup', this.keypress);
             },
@@ -331,9 +329,7 @@ $(document).ready(function() {
 
         this.Views.Footer            = Backbone.View.extend({
             initialize      : function() {
-                this.$el.hide();
                 this.render();
-                this.$el.fadeIn('slow');
             },
             render          : function() {
                 var variables = {
@@ -347,9 +343,7 @@ $(document).ready(function() {
         });
         this.Views.Sidebar            = Backbone.View.extend({
             initialize      : function() {
-                this.$el.hide();
                 this.render();
-                this.$el.fadeIn('slow');
             },
             downloadFile: function(e) {
             },
@@ -447,9 +441,7 @@ $(document).ready(function() {
         });
         this.Views.Landing = Backbone.View.extend({
             initialize      : function() {
-                this.$el.hide();
                 this.render();
-                this.$el.fadeIn('slow');
             },
             events: {
                 "click #upload-button"    : "triggerUpload"
