@@ -327,7 +327,7 @@ $(document).ready(function() {
             }
         });
 
-        this.Views.Footer            = Backbone.View.extend({
+            this.Views.Footer            = Backbone.View.extend({
             initialize      : function() {
                 this.render();
             },
@@ -341,6 +341,7 @@ $(document).ready(function() {
                 return this;
             }
         });
+
         this.Views.Sidebar            = Backbone.View.extend({
             initialize      : function() {
                 this.render();
