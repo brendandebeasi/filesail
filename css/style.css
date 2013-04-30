@@ -347,10 +347,11 @@ body, html, #container {
     color: #8e8e8e;
     padding: 20px;
     margin: 0;
+    margin-right: 10px;
     display: inline-block;
     height: 16%;
     overflow: hidden;
-    width: 33%;
+    width: 19%;
 
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 {
@@ -360,6 +361,10 @@ body, html, #container {
 
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .hd .left {
+    font-size: 13pt;
+    line-height: 13pt;
+    max-height: 13pt;
+    overflow-y: hidden;
 
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .hd .right {
@@ -414,11 +419,11 @@ body, html, #container {
     font-weight: normal;
 }
 #container .sidebar-contain .uploads thead tr {
-    color: rgba(48, 48, 48, .23);
+    color: rgba(0, 0, 0, 0.59);
     font-size: 10pt;
     text-align: left;
     height: 50px;
-    line-height: 59px;
+    line-height: 39px;
 }
 #container .sidebar-contain .uploads tbody tr {
     color: #7e7f7f;

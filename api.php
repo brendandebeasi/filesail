@@ -14,7 +14,8 @@ switch($action) {
             die(json_encode($response = ['success'=>false,'error'=>'Upload error: ' . $file['error']] ));
         }
 
-//Sanitize the filename (See note below)
+
+        //Sanitize the filename (See note below)
 
         $remove_these = array(' ','`','"','\'','\\','/');
         $file['name'] = str_replace($remove_these, '',$file['name']);
@@ -63,7 +64,10 @@ switch($action) {
         $folder['hash'] = sha1(time() . sha1('calliefolder' . $folder['name']));
 
 //Save pertinant info to DB
-        $folder['id'] = $fs_db->createFolder($folder['name'],$folder['hash']);
+
+        if(isset($_GET['folder_id']) && is_numeric($_GET['folder_id'])) $folder['id'] = $_GET['folder_id'];
+        else $folder['id'] = $fs_db->createFolder($folder['name'],$folder['hash']);
+
         $fs_db->createFile($file['name'], $file['size'], implode('/',$file['fs_group']) , $file['type'], $file['hash'], $file['extension'], $folder['id']);
 
 

@@ -19,7 +19,7 @@ include_once('conf/config.php');
     </script>
 </head>
 <body>
-<input class="hidden" id="upload-field" type="file" name="file" data-url="api.php?action=upload" multiple>
+<input class="hidden" id="upload-field" type="file" name="file" original-data-url="api.php?action=upload" multiple="">
 <div class="preload">X</div>
 <script id="header-template" type="text/template">
     <header class=" <% if(isLoggedIn) { %>isLoggedIn<% } %>">
