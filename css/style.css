@@ -49,6 +49,20 @@ body, html, #container {
     font-weight: normal;
     font-style: normal;
 }
+.oswald-font {
+    font-family: 'Oswald', sans-serif;
+}
+.ssp-font {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.ssp-font.italic {
+    font-weight: 700;
+    font-style: italic;
+}
+.ssp-font.bold {
+    font-weight: 900;
+    font-style: oblique;
+}
 .icon-sweets {
     font-family: iconSweetsRegular;
 }
@@ -273,7 +287,6 @@ body, html, #container {
     margin-bottom: 4px;
 }
 #container .body-contain .folder-contain .hd .folderNameContain .folderName {
-    letter-spacing: .1em;
     color: #424242;
 }
 #container .body-contain .folder-contain .hd .folderNameContain .editFolderName {

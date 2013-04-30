@@ -3,7 +3,7 @@
         <div class="hd">
             <div class="left">
                 <div class="folderNameContain">
-                    <span class="fs-logo folderName"><%= model.get('name') %></span>
+                    <span class="ssp-font italic folderName"><%= model.get('name') %></span>
                     <span class="fs-font editFolderName"> H</span>
                 </div>
 <!--                <div class="folderLink">-->
@@ -14,7 +14,7 @@
             <div class="right">
                 <span class="left icon fs-font toggleGridView selected">J</span>
                 <span class="left icon fs-font toggleListView">I</span>
-                <span class="left download button fs-logo">Download All</span>
+                <span class="left download button ssp-font">Download All</span>
                 <span class="left fs-font upload button">+</span>
                 <span class="left toggleFolderOptionsView">^</span>
                 <div class="clear"></div>
