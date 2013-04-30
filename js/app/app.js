@@ -26,17 +26,26 @@ $(document).ready(function() {
         }
 
         this.receiveUploadData = function(data) {
-            var tempFolder = new this.Models.Folder({
-                id: data.folder.id,
-                name: data.folder.name,
-                size: null,
-                hash: data.folder.hash,
-                created:null,
-                users_id:1,
-                enable_comments:true,
-                enable_password:false,
-                enable_expiration_time:false
-            });
+            var createFolder = false;
+            var tempFolder;
+
+            if(typeof(that.folders.get(data.folder.id)) != 'undefined')
+            {
+                createFolder = true;
+                tempFolder = new this.Models.Folder({
+                    id: data.folder.id,
+                    name: data.folder.name,
+                    size: null,
+                    hash: data.folder.hash,
+                    created:null,
+                    users_id:1,
+                    enable_comments:true,
+                    enable_password:false,
+                    enable_expiration_time:false
+                });
+            }
+            else tempFolder = that.folders.get(data.folder.id);
+
             var tempFile = new this.Models.File({
                 id: data.file.id,
                 name: data.file.name,
@@ -55,8 +64,12 @@ $(document).ready(function() {
             if(that.uploadSessionFolderID == null) that.uploadSessionFolderID = data.folder.id;
 
             tempFolder.files.add(tempFile);
-            this.folders.add( tempFolder );
-            this.render();
+
+            if(createFolder == true) this.folders.add( tempFolder );
+            else this.folders.set(data.folder.id, tempFolder);
+
+            that.render();
+
         };
 
         this.syncFiles = function(silent) {

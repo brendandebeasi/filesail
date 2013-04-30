@@ -87,7 +87,9 @@ class DAL {
             $sql = "SELECT `files`.*,`folders`.`id` AS `folder_id`,`folders`.`name` AS `folder_name`,`folders`.`hash` AS `folder_hash` FROM `files`
                     JOIN `folders`
                     ON `folders`.`id` = `files`.`folders_id`
-                    WHERE `files`.`users_id` = " . $users_id;
+                    WHERE `files`.`users_id` = " . $users_id . "
+                    ORDER BY folder_id ASC
+                    ";
             $result = $this->query($sql);
             $previous_folder_id = 0;
             $folders = [];

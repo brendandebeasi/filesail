@@ -29,18 +29,19 @@
     </div>
 </script>
 <script id="file-template" type="text/template">
-    <div class="wrp-1">
+    <% if(model.get('type') == 'img') { %>
+        <div style="background-image:url(<%= model.getDownloadLink() %>);background-size:cover;background-position:center center;background-repeat: no-repeat;" class="wrp-1">
+    <% } else { %>
+        <div style="background-image:url(/img/fs-guy.png);background-size:cover;background-position:center center;background-repeat: no-repeat;" class="wrp-1">
+    <% } %>
+
         <div class="hd">
-            <div class="left"><%= model.get('name') %>.<%= model.get('extension') %></div>
+            <div class="left" title="<%= model.get('name') %>.<%= model.get('extension') %>"><%= model.get('name') %>.<%= model.get('extension') %></div>
             <div class="right"><%= rawSize %></div>
             <div class="clear"></div>
         </div>
         <div class="bd">
-            <% if(model.get('type') == 'img') { %>
-                <img width="100%" src="<%= model.getDownloadLink() %>" />
-            <% } else { %>
-                <img width="100%" src="/img/fs-guy.png" />
-            <% } %>
+
             <a class="download" target="_blank" href="<%= model.getDownloadLink() %>"><span class="fs-font">K</span> Download</a>
         </div>
     </div>
