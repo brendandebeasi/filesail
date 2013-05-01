@@ -176,6 +176,7 @@ body, html, #container {
     position: relative;
     top: 1px;
     color: #e6e6e6;
+    -webkit-font-smoothing: antialiased;
 }
 #container .main-component-contain {
 }
@@ -205,12 +206,12 @@ body, html, #container {
     text-align: center;
 }
 #container .body .upload-contain .upload-border {
-    border: 10px #fff solid;
+    border: 10px #fff solid !important;
     border-radius: 8px;
 }
 #container .body .upload-contain .upload-border .upload {
     background: #1483b6;
-    border-bottom: 3px #1c6ca4 solid;
+    border-bottom: 3px #1c6ca4 solid !important;
     border-radius: 8px;
     color: #fff;
     display: block;
