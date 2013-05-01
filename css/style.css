@@ -72,6 +72,7 @@ body, html, #container {
 }
 .fs-logo {
     font-family: filesail_logoblack;
+    -webkit-font-smoothing: antialiased;
 }
 .fs-font.upload-icon {
     cursor: pointer;
@@ -360,7 +361,7 @@ body, html, #container {
 }
 #container .body-contain .folder-contain .hd .right .fs-font.icon {
     margin-right: 5px;
-    margin-top: 16px;
+    margin-top: 9px;
 }
 #container .body-contain .folder-contain .hd .right .fs-font.icon.toggleListView {
     margin-right: 10px;
@@ -445,6 +446,29 @@ body, html, #container {
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .bd a:hover {
 }
+/*dashboard*/
+#container .body-contain .dashboard-contain {
+
+}
+#container .body-contain .dashboard-contain .hd {
+
+}
+#container .body-contain .dashboard-contain .bd {
+
+}
+#container .body-contain .dashboard-contain .bd div.file-cell {
+    float: left;
+    margin: 5px;
+    opacity: .76;
+}
+#container .body-contain .dashboard-contain .bd div.file-cell, #container .body-contain .dashboard-contain .bd div.file-cell div {
+    width: 100px;
+    height: 100px;
+}
+#container .body-contain .dashboard-contain .bd div.file-cell:hover, #container .body-contain .dashboard-contain .bd div.file-cell:hover div {
+    opacity: 1;
+}
+/*Sidebar*/
 #container .sidebar-contain {
     float: right;
     height: 100%;
@@ -476,6 +500,9 @@ body, html, #container {
     border: 0;
     box-sizing: border-box;
     line-height: 38px;
+}
+#container .sidebar-contain .hd a {
+    margin-right: 18px;
 }
 /*TODO: Add .bd class to all elements in sidebar .bd*/
 #container .sidebar-contain .bd {

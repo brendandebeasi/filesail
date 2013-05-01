@@ -28,6 +28,7 @@
         </div>
 </script>
 <?php require_once('inc/folder.php'); ?>
+<?php require_once('inc/dashboard.php'); ?>
 <?php require_once('inc/sidebar.php'); ?>
 <div class="clear"></div>
 <?php require_once('inc/foot.php'); ?>

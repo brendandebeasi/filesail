@@ -15,7 +15,7 @@
                 <span class="left icon fs-font toggleGridView selected">J</span>
                 <span class="left icon fs-font toggleListView">I</span>
                 <span class="left download button ssp-font">Download All</span>
-                <span class="left fs-font upload button">+</span>
+                <span class="left upload button">+</span>
                 <span class="left toggleFolderOptionsView">^</span>
                 <div class="clear"></div>
             </div>

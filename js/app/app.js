@@ -24,7 +24,11 @@ $(document).ready(function() {
             this.body = new this.Views.Folder({el: $('.body-contain'),model: folder});
             this.body.render();
         }
-
+        this.showDash = function(e) {
+            this.body.unbind();
+            this.body = new this.Views.Dashboard({el: $('.body-contain'),model: this.folders});
+            this.body.render();
+        }
         this.receiveUploadData = function(data) {
             var createFolder = false;
             var tempFolder;
@@ -322,6 +326,7 @@ $(document).ready(function() {
                     that.header.render();
                     that.sidebar.render();
                     that.body.render();
+                    that.showDash(null);
                     if(shake == true) that.header.shakeLoginBox();
                     that.header.focusLoginBox();
                     that.syncFiles();
@@ -369,7 +374,11 @@ $(document).ready(function() {
                 this.render();
             },
             events: {
-                "click .button.upload"  : "newUpload"
+                "click .button.upload"  : "newUpload",
+                "mouseenter .dash-row"  : "showDash"
+            },
+            showDash        : function(e) {
+                that.showDash(e);
             },
             newUpload       : function(e) {
                 that.uploadSessionFolderID = null;
@@ -422,6 +431,56 @@ $(document).ready(function() {
                 return this;
             }
         });
+        this.Views.Dashboard            = Backbone.View.extend({
+
+            initialize: function() {
+                this.render();
+            },
+            render          : function() {
+                var variables = {
+                    isLoggedIn: that.getLoggedIn(),
+                    'model':that.folders
+                }
+
+                this.$el.html(_.template($("#dashboard-template").html(), variables));
+                if(this.model.models.length > 0)
+                {
+                    var dashboardBody = this.$el.find('.bd');
+                    //iterate over folders
+                    for(i=0;i<this.model.models.length;i++)
+                    {
+                        var folder = this.model.models[i];
+                        folder.files.each(function(file) {
+                            var file = new that.Views.Dashboard.Cell({model: file});
+                            dashboardBody.append( file.render().el );
+                        });
+                    }
+
+                }
+
+                this.delegateEvents();
+                _.bindAll(this);
+                return this;
+            }
+        });
+        this.Views.Dashboard.Cell = Backbone.View.extend({
+            tagName         : 'div',
+            className       : 'file-cell',
+            initialize      : function() {
+            },
+            render : function() {
+                var vars = {
+                    'model': this.model,
+                    'rawSize': this.model.getSize(),
+                    'prettySize': this.model.getSize(true)
+                }
+                this.$el.html(_.template($("#dashboard-cell-template").html(), vars));
+                this.delegateEvents();
+                _.bindAll(this);
+                return this;
+            }
+        });
+
         this.Views.Folder            = Backbone.View.extend({
 
             initialize: function() {
@@ -453,6 +512,9 @@ $(document).ready(function() {
                 that.triggerUpload(e);
             }
         });
+
+
+
         this.Views.Folder.File = Backbone.View.extend({
             tagName         : 'li',
             initialize      : function() {
