@@ -68,6 +68,7 @@ body, html, #container {
 }
 .fs-font {
     font-family: fs_font;
+    -webkit-font-smoothing: antialiased;
 }
 .fs-logo {
     font-family: filesail_logoblack;
@@ -176,7 +177,6 @@ body, html, #container {
     position: relative;
     top: 1px;
     color: #e6e6e6;
-    -webkit-font-smoothing: antialiased;
 }
 #container .main-component-contain {
 }
