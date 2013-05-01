@@ -7,17 +7,23 @@
 
                 <div class="clear"></div>
             </div>
-            <table class="uploads">
-               <tbody>
-                </tbody>
-            </table>
+            <div class="bd">
+                <div class="dash-row"><span class="fs-font">O</span> Dashboard</div>
+                <table class="uploads">
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     <% } %>
 </script>
 <script id="sidebar-row" type="text/template">
-        <td class="name"><%= model.get('name') %></td>
-        <td class="num"><%= model.files.size() %></td>
-        <td class="date"></td>
-        <td class="size"></td>
+        <td>
+            <span class="row-icon fs-font">P</span>
+            <span class="folder-name"><%= model.get('name') %></span>
+            <span class="num-files"><%= model.files.size() %> files</span>
+        </td>
 </script>
 <div class="sidebar-contain"></div>

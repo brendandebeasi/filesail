@@ -93,7 +93,8 @@ body, html, #container {
     background: #2c2c2c;
     color: white;
     height: 50px;
-    padding: 0 9px;
+    line-height: 50px;
+    padding: 0px 25px;
 }
 
 #container header .logo-contain #logo {
@@ -101,19 +102,15 @@ body, html, #container {
     color: #ffffff;
     text-decoration: none;
     display: block;
-    margin-top: 13px;
     letter-spacing: .06em;
     width: 110px;
     font-weight: normal;
-}
-#container header {
-
+    position: relative;
+    top: 2px;
 }
 #container header .close {
     text-decoration: none;
     color: rgba(239, 239, 240, 1.0);
-    position: relative;
-    top: 4px;
 }
 
 #container header button {
@@ -124,10 +121,8 @@ body, html, #container {
     font-size: 8pt;
     cursor: pointer;
     height: 22px;
-
 }
 #container header .buttons button {
-    margin-top: 18px;
 }
 
 #container header button.login {
@@ -169,7 +164,6 @@ body, html, #container {
     outline: none;
 }
 #container header .welcome {
-    margin-top: 23px;
     font-size: 8pt;
     color: #bcb5b5;
 }
@@ -333,7 +327,7 @@ body, html, #container {
 
 }
 .button.upload.with-caption {
-    width: 85px;
+    width: 105px;
     font-size: 8pt;
     text-decoration: none;
     line-height: 35px;
@@ -341,6 +335,8 @@ body, html, #container {
 .button.upload.with-caption span {
     font-size: 11pt;
     margin-left: 3px;
+    position: relative;
+    top: 1px;
 }
 .button.download {
     border: 1px solid #1371d1;
@@ -362,10 +358,11 @@ body, html, #container {
     font-size: 21pt;
 }
 #container .body-contain .folder-contain .hd .right .fs-font.icon {
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-top: 16px;
 }
-#container .body-contain .folder-contain .hd .right .fs-font.icon:last-child {
-    margin-right: 0;
+#container .body-contain .folder-contain .hd .right .fs-font.icon.toggleListView {
+    margin-right: 10px;
 }
 #container .body-contain .folder-contain .bd {
     padding-top: 20px;
@@ -468,7 +465,7 @@ body, html, #container {
     color: #6b6b6b;
     font-size: 13px;
     text-align: center;
-    padding: 25px 8px 7px 8px;
+    padding: 23px 8px 7px 8px;
 }
 #container .sidebar-contain .hd  .search-box {
 }
@@ -478,6 +475,29 @@ body, html, #container {
     border: 0;
     box-sizing: border-box;
     line-height: 38px;
+}
+/*TODO: Add .bd class to all elements in sidebar .bd*/
+#container .sidebar-contain .bd {
+
+}
+#container .sidebar-contain .bd .dash-row:hover {
+    background: rgba(255,255,255,.9);
+    color: #3080cf;
+}
+#container .sidebar-contain .bd .dash-row {
+    padding: 7px;
+    font-size: 10pt;
+    cursor: pointer;
+    position: relative;
+    left: 4px;
+}
+#container .sidebar-contain .bd .dash-row .fs-font {
+    font-size: 20pt;
+    color: #b6b8b8;
+    font-weight: normal;
+}
+#container .sidebar-contain .bd .dash-row:hover .fs-font {
+    color: #3080cf;
 }
 #container .sidebar-contain .uploads td, #container .sidebar-contain .uploads th {
     padding: 0 12px;
@@ -492,8 +512,8 @@ body, html, #container {
 }
 #container .sidebar-contain .uploads tbody tr {
     color: #7e7f7f;
-    height: 34px;
-    line-height: 34px;
+    height: 27px;
+    line-height: 27px;
     cursor: pointer;
     font-size: 10pt;
 }
@@ -503,8 +523,28 @@ body, html, #container {
 #container .sidebar-contain .uploads tbody tr:hover { /*#container .sidebar-contain .uploads tbody tr.selected {*/
     background: rgba(255,255,255,.9);
 }
-#container .sidebar-contain .uploads tbody tr td.name {
+#container .sidebar-contain .uploads tbody tr td {
+    padding-left: 30px;
+}
+#container .sidebar-contain .uploads tbody tr:hover td .row-icon  {
+    color: #3080cf;
+}
+#container .sidebar-contain .uploads tbody tr td .row-icon  {
+    color: #b6b8b8;
+    font-size: 25pt;
+    position: relative;
+    top: 3px;
+}
+#container .sidebar-contain .uploads tbody tr td .folder-name,  #container .sidebar-contain .dash-row {
+    font-weight: bold;
+    color: #676868;
+}
+#container .sidebar-contain .uploads tbody tr:hover td .folder-name {
     color: #1f80ad;
+}
+#container .sidebar-contain .uploads tbody tr td .num-files  {
+    font-size: 8pt;
+    font-style: italic;
 }
 #container .sidebar-contain .uploads tbody tr td.num, #container .sidebar-contain .uploads thead tr th.num, #container .sidebar-contain .uploads tbody tr td.date, #container .sidebar-contain .uploads thead tr th.date {
     text-align: center;
