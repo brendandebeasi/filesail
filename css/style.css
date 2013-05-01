@@ -177,6 +177,12 @@ body, html, #container {
     color: #6dcefb;
     text-decoration: none;
 }
+#container header .welcome a.fs-font {
+    font-size: 12pt;
+    position: relative;
+    top: 1px;
+    color: #e6e6e6;
+}
 #container .main-component-contain {
 }
 #container .body-contain {
@@ -302,14 +308,14 @@ body, html, #container {
 #container .body-contain .folder-contain .hd .right {
     color: #e1e1e1;
 }
-#container .body-contain .folder-contain .hd .right .button {
+ .button {
     border-radius: 4px;
     height: 37px;
     line-height: 37px;
     padding: 0 20px;
     cursor: pointer;
 }
-#container .body-contain .folder-contain .hd .right .button.upload {
+.button.upload {
     font-size: 14pt;
     color: #ffffff;
     border: 1px solid #c81211;
@@ -321,9 +327,22 @@ body, html, #container {
     background: -ms-linear-gradient(top,  #e75a3f 0%,#dc442f 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #e75a3f 0%,#dc442f 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e75a3f', endColorstr='#dc442f',GradientType=0 ); /* IE6-9 */
+    width: 45px;
+    padding: 0;
+    text-align: center;
 
 }
-#container .body-contain .folder-contain .hd .right .button.download {
+.button.upload.with-caption {
+    width: 85px;
+    font-size: 8pt;
+    text-decoration: none;
+    line-height: 35px;
+}
+.button.upload.with-caption span {
+    font-size: 11pt;
+    margin-left: 3px;
+}
+.button.download {
     border: 1px solid #1371d1;
     background: #3d96e6; /* Old browsers */
     background: -moz-linear-gradient(top,  #3d96e6 0%, #2f85dc 100%); /* FF3.6+ */
@@ -444,20 +463,21 @@ body, html, #container {
 #container .sidebar-contain .hd, #container .sidebar-contain .uploads {
     margin-left: 4px;
 }
-#container .sidebar-contain .hd{
+#container .sidebar-contain .hd {
     background: #e6e6e6;
     color: #6b6b6b;
     font-size: 13px;
     text-align: center;
-    padding: 3px 8px;
-    line-height: 25px;
+    padding: 25px 8px 7px 8px;
 }
-#container .sidebar-contain .hd .right {
-    font-size: 18pt;
-    cursor: pointer;
+#container .sidebar-contain .hd  .search-box {
 }
-#container .sidebar-contain .hd .right:hover {
-  color: #949494;
+#container .sidebar-contain .hd  .search-box, #container .sidebar-contain .hd a {
+    padding: 0 10px;
+    height: 38px;
+    border: 0;
+    box-sizing: border-box;
+    line-height: 38px;
 }
 #container .sidebar-contain .uploads td, #container .sidebar-contain .uploads th {
     padding: 0 12px;
@@ -477,10 +497,10 @@ body, html, #container {
     cursor: pointer;
     font-size: 10pt;
 }
-#container .sidebar-contain .uploads tbody tr:nth-child(odd) {
-    background: rgba(255,255,255,.45);
-}
-#container .sidebar-contain .uploads tbody tr:hover, #container .sidebar-contain .uploads tbody tr.selected {
+/*#container .sidebar-contain .uploads tbody tr:nth-child(odd) {*/
+    /*background: rgba(255,255,255,.45);*/
+/*}*/
+#container .sidebar-contain .uploads tbody tr:hover { /*#container .sidebar-contain .uploads tbody tr.selected {*/
     background: rgba(255,255,255,.9);
 }
 #container .sidebar-contain .uploads tbody tr td.name {

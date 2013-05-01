@@ -368,14 +368,16 @@ $(document).ready(function() {
             initialize      : function() {
                 this.render();
             },
-            downloadFile: function(e) {
+            events: {
+                "click .button.upload"  : "newUpload"
             },
-            showFolder: function(e) {
-
+            newUpload       : function(e) {
+                that.uploadSessionFolderID = null;
+                that.triggerUpload(e);
             },
             render          : function() {
                 var variables = {
-                    isLoggedIn: that.getLoggedIn(),
+                    isLoggedIn: that.getLoggedIn()
                 }
 
                 this.$el.html(_.template($("#sidebar-template").html(), variables));

@@ -2,20 +2,13 @@
     <% if(isLoggedIn) { %>
         <div class="<% if(isLoggedIn) { %>isLoggedIn<% } %>">
             <div class="hd">
-                <div class="title left">Your Files</div>
-                <div class="fs-font right">F</div>
+                <input class="search-box left" type="text" placeholder="Search uploads"/>
+                <a class="right button upload with-caption" href="javascript:void;">New Upload <span class="fs-font">N</span></a>
+
                 <div class="clear"></div>
             </div>
             <table class="uploads">
-                <thead>
-                    <tr>
-                        <th class="name">Name</th>
-                        <th class="num"># Files</th>
-                        <th class="date">Date</th>
-                        <th class="size">Size</th>
-                    </tr>
-                </thead>
-                <tbody>
+               <tbody>
                 </tbody>
             </table>
         </div>

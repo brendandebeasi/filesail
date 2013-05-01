@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <?php
 include_once('conf/env.php');
 include_once('conf/config.php');
 //$link = mysql_connect($db_host,$db_user,$db_pass) or die('username and password must be wrong n00b');
-?><!DOCTYPE html>
+?>
 <head>
 	<title>FileSail</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $config['host'] . $config['base_url']; ?>css/normalize.css" />
@@ -34,7 +35,9 @@ include_once('conf/config.php');
             <div class="right">
                 <% if(isLoggedIn) { %>
                     <div class="welcome">
-                        Howdy, <a href="javascript:void(0);"><%= userName %></a> | <a class="logout" href="javascript:void(0);">Logout</a>
+                        Howdy, <a href="javascript:void(0);"><%= userName %></a>
+                        &nbsp;<a href="javascript:void(0);" class="gray fs-font">F</a>
+                        <div class="clear"></div>
                     </div>
                 <% } else { %>
                     <% if(!showLoginBox && !showSignupBox) { %>
