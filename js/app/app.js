@@ -1,19 +1,23 @@
 var nc_filesail;
+var file_uploader;
 $(document).ready(function() {
     $.ajaxSetup({ cache: false });
     var that = this;
+
     $.filesail= function(elem) {
         var that = this;
         this.elem               = elem;
         this.auth               = null;
         this.layout = null;
+        this.uploadSessionFolderID = null;
         this.folders            = {};
         this.Views = {};
         this.Models = {};
         this.Collections = {};
         this.triggerUpload = function(e) {
+            if(that.uploadSessionFolderID != null) setUploadFolderId(that.uploadSessionFolderID)
+            else setUploadFolderId();
             $('#upload-field').trigger('click');
-//            debugger;
         }
         this.showFolderView = function(folder) {
             this.body.unbind();
@@ -22,17 +26,26 @@ $(document).ready(function() {
         }
 
         this.receiveUploadData = function(data) {
-            var tempFolder = new this.Models.Folder({
-                id: data.folder.id,
-                name: data.folder.name,
-                size: null,
-                hash: data.folder.hash,
-                created:null,
-                users_id:1,
-                enable_comments:true,
-                enable_password:false,
-                enable_expiration_time:false
-            });
+            var createFolder = false;
+            var tempFolder;
+
+            if(typeof(that.folders.get(data.folder.id)) != 'undefined')
+            {
+                createFolder = true;
+                tempFolder = new this.Models.Folder({
+                    id: data.folder.id,
+                    name: data.folder.name,
+                    size: null,
+                    hash: data.folder.hash,
+                    created:null,
+                    users_id:1,
+                    enable_comments:true,
+                    enable_password:false,
+                    enable_expiration_time:false
+                });
+            }
+            else tempFolder = that.folders.get(data.folder.id);
+
             var tempFile = new this.Models.File({
                 id: data.file.id,
                 name: data.file.name,
@@ -46,9 +59,17 @@ $(document).ready(function() {
                 version:1,
                 is_latest_version:1
             });
+
+            //If we don't have an upload folder ID yet, assign it to the app
+            if(that.uploadSessionFolderID == null) that.uploadSessionFolderID = data.folder.id;
+
             tempFolder.files.add(tempFile);
-            this.folders.add( tempFolder );
-            this.render();
+
+            if(createFolder == true) this.folders.add( tempFolder );
+            else this.folders.set(data.folder.id, tempFolder);
+
+            that.render();
+
         };
 
         this.syncFiles = function(silent) {
@@ -67,6 +88,7 @@ $(document).ready(function() {
                         enable_password:false,
                         enable_expiration_time:false
                     });
+
                     $.each(folder.files, function(index2, file) {
                         var tempFile = new that.Models.File({
                             id: file.id,
@@ -327,7 +349,7 @@ $(document).ready(function() {
             }
         });
 
-        this.Views.Footer            = Backbone.View.extend({
+            this.Views.Footer            = Backbone.View.extend({
             initialize      : function() {
                 this.render();
             },
@@ -341,6 +363,7 @@ $(document).ready(function() {
                 return this;
             }
         });
+
         this.Views.Sidebar            = Backbone.View.extend({
             initialize      : function() {
                 this.render();
@@ -375,12 +398,17 @@ $(document).ready(function() {
             },
             className: 'notSelected',
             events: {
-                "mouseover"  : "showFolder"
+                "mouseenter"  : "showFolder"
             },
             showFolder: function(e) {
-                that.showFolderView(this.model);
-                this.className = 'selected';
-                this.render();
+                if(typeof(that.body.model) == 'undefined' || that.body.model.id != this.model.id)
+                {
+                    that.uploadSessionFolderID = this.model.id;
+                    that.showFolderView(this.model);
+                    this.className = 'selected';
+                    this.render();
+                }
+
             },
             render : function() {
                 var vars = {
@@ -474,19 +502,34 @@ $(document).ready(function() {
 
     };
     nc_filesail = new $.filesail($('#container'));
+    function bindFileUpload() {
+        $('#upload-field').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                nc_filesail.receiveUploadData(data.result.data);
+            },
+            progressall: function (e, data) {
+            },
+            dropZone: $('.upload-contain')
+        });
+    }
+    function setUploadFolderId(id) {
+        var url = $('#upload-field').attr('original-data-url');
+        if(typeof(id) != 'undefined') url = url + '&folder_id=' + id;
+
+        $('#upload-field').fileupload(
+            'option',
+            {
+                url: url
+            }
+        );
+    }
+
+    bindFileUpload();
 });
 
 
-//Setup fileuploader
-$('#upload-field').fileupload({
-    dataType: 'json',
-    done: function (e, data) {
-        nc_filesail.receiveUploadData(data.result.data);
-    },
-    progressall: function (e, data) {
-    },
-    dropZone: $('.upload-contain')
-});
+
 /**
  * @function: getBytesWithUnit()
  * @purpose: Converts bytes to the most simplified unit.

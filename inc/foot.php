@@ -14,9 +14,9 @@
 </script>
 <div class="footer-contain"></div>
 <div style="display:none" class="icon-sweets">X</div>
-<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/require.min.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.session.js"></script>
+<script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.hoverIntent.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/underscore.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/backbone.js"></script>
 <script src="<?php echo $config['host'] . $config['base_url']; ?>/js/jquery.ui.widget.js"></script>

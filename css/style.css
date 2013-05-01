@@ -45,11 +45,23 @@ body, html, #container {
     src: url('../fonts/filesaillogo-black-webfont.eot');
     src: url('../fonts/filesaillogo-black-webfont.eot?#iefix') format('embedded-opentype'),
     url('../fonts/filesaillogo-black-webfont.woff') format('woff'),
-    url('../fonts/filesaillogo-black-webfont.ttf') format('truetype'),
-    url('../fonts/filesaillogo-black-webfont.svg#filesail_logoblack') format('svg');
-    url('../fonts/filesaillogo-black-webfont.svg#filesail_logoblack') format('svg');
+    url('../fonts/filesaillogo-black-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+.oswald-font {
+    font-family: 'Oswald', sans-serif;
+}
+.ssp-font {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.ssp-font.italic {
+    font-weight: 700;
+    font-style: italic;
+}
+.ssp-font.bold {
+    font-weight: 900;
+    font-style: oblique;
 }
 .icon-sweets {
     font-family: iconSweetsRegular;
@@ -92,6 +104,7 @@ body, html, #container {
     margin-top: 13px;
     letter-spacing: .06em;
     width: 110px;
+    font-weight: normal;
 }
 #container header {
 
@@ -274,7 +287,6 @@ body, html, #container {
     margin-bottom: 4px;
 }
 #container .body-contain .folder-contain .hd .folderNameContain .folderName {
-    letter-spacing: .1em;
     color: #424242;
 }
 #container .body-contain .folder-contain .hd .folderNameContain .editFolderName {
@@ -346,21 +358,50 @@ body, html, #container {
 #container .body-contain .folder-contain .bd ul li {
     background: #ededed;
     color: #8e8e8e;
-    padding: 20px;
+    padding: 0;
     margin: 0;
+    margin-right: 10px;
     display: inline-block;
-    height: 16%;
+    height: 200px;
     overflow: hidden;
-    width: 33%;
+    box-sizing: border-box;
+    width: 23.75%;
+    position: relative;
 
+}
+@media all and (max-width: 500px) {
+    #container .body-contain .folder-contain .bd ul li {
+        width: 100%;
+        margin: 0;
+    }
+}
+@media all and (max-width: 700px) and (min-width: 501px) {
+    #container .body-contain .folder-contain .bd ul li {
+        width: 45.75%;
+    }
+}
+@media all and (max-width: 1350px) and (min-width: 701px){
+    #container .body-contain .folder-contain .bd ul li {
+        width: 30.75%;
+    }
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 {
-
+    padding: 10px;
+    height: 200px;
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .hd {
-
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    background: rgba(40, 40, 40, 0.89);
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .hd .left {
+    font-size: 8pt;
+    line-height: 8pt;
+    max-height: 8pt;
+    overflow-y: hidden;
 
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .hd .right {
@@ -370,14 +411,22 @@ body, html, #container {
 
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .bd a {
-    color: rgba(0,0,0,.25);
     font-weight: bold;
     text-decoration: none;
     text-align: center;
     display: block;
+    font-size: 9pt;
+    font-weight: normal;
+}
+#container .body-contain .folder-contain .bd ul li .download {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: rgba(255,255,255,.8);
+    background: rgba(0,0,0,.8);
 }
 #container .body-contain .folder-contain .bd ul li .wrp-1 .bd a:hover {
-    color: rgba(0,0,0,.8);
 }
 #container .sidebar-contain {
     float: right;
@@ -415,11 +464,11 @@ body, html, #container {
     font-weight: normal;
 }
 #container .sidebar-contain .uploads thead tr {
-    color: rgba(48, 48, 48, .23);
+    color: rgba(0, 0, 0, 0.59);
     font-size: 10pt;
     text-align: left;
     height: 50px;
-    line-height: 59px;
+    line-height: 39px;
 }
 #container .sidebar-contain .uploads tbody tr {
     color: #7e7f7f;

@@ -87,16 +87,24 @@ class DAL {
             $sql = "SELECT `files`.*,`folders`.`id` AS `folder_id`,`folders`.`name` AS `folder_name`,`folders`.`hash` AS `folder_hash` FROM `files`
                     JOIN `folders`
                     ON `folders`.`id` = `files`.`folders_id`
-                    WHERE `files`.`users_id` = " . $users_id;
+                    WHERE `files`.`users_id` = " . $users_id . "
+                    ORDER BY folder_id ASC
+                    ";
             $result = $this->query($sql);
-            $folders = false;
+            $previous_folder_id = 0;
+            $folders = [];
             if(count($result) != false) {
                 foreach($result as $file) {
-                    $folders[$file->folder_id] = [
-                        'id'=>$file->folder_id,
-                        'name'=>$file->folder_name,
-                        'hash'=>$file->folder_hash
-                    ];
+                    if($previous_folder_id == 0 || $file->folder_id != $previous_folder_id) {
+                        $folders[$file->folder_id] = [
+                            'id'=>$file->folder_id,
+                            'name'=>$file->folder_name,
+                            'hash'=>$file->folder_hash,
+                            'files'=>[]
+                        ];
+                        $previous_folder_id=$file->folder_id;
+                    }
+
                     $folders[$file->folder_id]['files'][] = [
                         'name'=>$file->name,
                         'download_dir_name'=>$file->download_dir_name,
